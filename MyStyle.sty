@@ -1,0 +1,23 @@
+\ProvidesPackage{MyStyle}
+
+%Margin note styles
+\usepackage{marginnote}
+
+%Document dimensions
+\usepackage{geometry}
+
+\newif\if@draftVersion
+
+\DeclareOption{draft}{\@draftVersionTrue}
+
+\ProcessOptions\relax
+
+%Distinguish between draft versions and non-draft versions
+\if@draftVersion
+  \newcommand{\empNote}[1]{#1\marginnote{\emph{#1}}}
+\else
+  \newcommand{\empNote}[1]{%
+    #1
+    \PackageWarning{MyStyle}{Emphasis margin note on \"#1\" not removed, consider removing for final draft.}
+  }
+\fi

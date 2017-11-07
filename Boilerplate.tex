@@ -1,0 +1,161 @@
+\documentclass[a4paper,10pt]{report}
+
+  \usepackage{upquote}
+
+  \usepackage[utf8]{inputenc}
+
+  \usepackage{graphicx}
+  \usepackage{wrapfig}
+  \usepackage{lscape}
+  \usepackage{rotating}
+
+  %Color control
+  \usepackage{color}
+  %Driver independent
+  \usepackage{xcolor}
+
+  %Multicols environment
+  \usepackage{multicol}
+  
+  %Document dimensions
+  \usepackage{geometry}
+  
+  %Files within files
+  \usepackage{subfiles}
+  
+
+  \usepackage{xr}
+  \usepackage{zref}
+
+  %symbols
+  \usepackage{amsmath,amssymb,textcomp}
+  \usepackage{amsthm}
+  \usepackage{gensymb}
+  \usepackage{mathbbol}
+  
+  
+  \usepackage{enumerate}
+
+  %Graphics
+  \usepackage{tikz}
+  
+  %Captions in floating environments
+  \usepackage{caption}
+  %Hyper-linking within latex
+  \usepackage{hyperref}
+  %Header control
+  \usepackage{fancyhdr}
+  %Extra underlines
+  \usepackage{ulem}
+  %Paragraph indent and skip control
+  \usepackage{parskip}
+
+  \setlength{\parskip}{1.5\baselineskip}
+  \setlength{\parindent}{5pt}
+
+  \graphicspath{ {./Assets} }
+  
+    \hypersetup
+    {
+      colorlinks=true,
+      linkcolor=blue,
+      filecolor=magenta,
+      urlcolor=cyan,
+    }
+  
+    \urlstyle{same}
+  
+    %Hyperbolic trig functions
+      \DeclareMathOperator{\arcsec}{arcSec}
+      \DeclareMathOperator{\arccot}{arcCot}
+      \DeclareMathOperator{\arccsc}{arcCsc}
+    
+      \DeclareMathOperator{\sech}{sech}
+      \DeclareMathOperator{\csch}{csch}
+      \DeclareMathOperator{\coth}{coth}   
+
+      \DeclareMathOperator{\arcosh}{arCosh}
+      \DeclareMathOperator{\arsinh}{arSinh}
+      \DeclareMathOperator{\artanh}{arTanh}
+
+      \DeclareMathOperator{\arsech}{arSech}
+      \DeclareMathOperator{\arcsch}{arCsch}
+      \DeclareMathOperator{\arcoth}{arCoth}
+  
+    %Other maths operators
+      \DeclareMathOperator{\diag}{diag}
+  
+    %Commands
+  
+      %Column Vectors
+        \newcount\colveccount
+        \newcommand*\colvec[1]{
+          \global\colveccount#1
+          \begin{bmatrix}
+          \colvecnext
+        }
+        \def\colvecnext#1{
+          #1
+          \global\advance\colveccount-1
+          \ifnum\colveccount>0
+            \\
+            \expandafter\colvecnext
+          \else
+            \end{bmatrix}
+          \fi
+        }
+  
+      %Row Vectors
+        \newcount\rowveccount
+        \newcommand*\rowvec[1]{
+          \global\rowveccount#1
+          \begin{bmatrix}
+          \rowvecnext
+        }
+        \def\rowvecnext#1{
+          #1
+          \global\advance\rowveccount-1
+          \ifnum\rowveccount>0
+            &
+            \expandafter\colvecnext
+          \else
+            \\
+            \end{bmatrix}
+          \fi
+        }
+  
+      %Norm vectors
+        \newcount\normveccount
+        \newcommand*\normvec[1]{
+          \global\normveccount#1
+          \begin{Vmatrix}
+          \normvecnext
+        }
+  
+        \def\normvecnext#1{
+          #1
+          \global\advance\normveccount-1
+          \ifnum\normveccount>0
+            \\
+            \expandafter\normvecnext
+          \else
+            \end{Vmatrix}
+          \fi
+        }
+  
+      %Vector style
+        \renewcommand{\vec}[1]{\pmb{\uline{#1}}}
+        \newcommand{\hvec}[1]{\vec{\hat{#1}}}
+        \newcommand{\trav}[1]{\pmb{\uline{#1}}^{\textbf{T}}}
+        \newcommand{\tra}[1]{{#1}^{\textbf{T}}}
+  
+      %Matrix style
+        \newcommand{\mat}[1]{\pmb{\uwave{#1}}}
+  
+      %Norm style
+        \newcommand\norm[1]{\left\lVert#1\right\rVert}    
+  
+      %Referencing
+        \newcommand{\GenRef}[1]{see \ref{#1}, pp. \pageref{#1}}
+  
+        \newcommand{\CompRef}[1]{(Figure \ref{#1}, pp.\pageref{#1})}
