@@ -86,6 +86,37 @@
       \DeclareMathOperator{\diag}{diag}
   
     %Commands
+      %Vectors
+        \newcount\veccount
+        \newcommand*\vecList[2][col]{
+          \global\veccount#2
+          \begin{bmatrix}
+          \ifthenelse{\equal{#1}{col}}
+            {\colvecnext}
+            {\rowvecnext}
+        }
+        \def\colvecnext#2{
+          #2
+          \global\advance\colveccount-1
+          \ifnum\colveccount>0
+            \\
+            \expandafter\colvecnext
+          \else
+            \end{bmatrix}
+          \fi
+        }
+        \def\rowvecnext#2{
+          #2
+          \global\advance\rowveccount-1
+          \ifnum\rowveccount>0
+            &
+            \expandafter\colvecnext
+          \else
+            \\
+            \end{bmatrix}
+          \fi
+        }
+
   
       %Column Vectors
         \newcount\colveccount

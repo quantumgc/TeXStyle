@@ -1,23 +1,176 @@
 \ProvidesPackage{MyStyle}
+%--------------------------------------------------
+%Packages and package settings
 
-%Margin note styles
+% Margin note styles
 \usepackage{marginnote}
 
-%Document dimensions
-\usepackage{geometry}
+% Document dimensions
+\usepackage[a4paper]{geometry}
+
+% Encoding
+\usepackage[utf8]{inputenc}
+
+% Color control
+\usepackage{color}
+  \definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+  \definecolor{mylilas}{RGB}{170,55,241}
+
+% Driver independent
+\usepackage{xcolor}
+
+% Multicols environment
+\usepackage{multicol}
+
+% Code Listings
+  \usepackage{listings}  
+  
+  \lstset{language=Matlab,%
+    %basicstyle=\color{red},
+    breaklines=true,%
+    morekeywords={matlab2tikz},
+    keywordstyle=\color{blue},%
+    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+    identifierstyle=\color{black},%
+    stringstyle=\color{mylilas},
+    commentstyle=\color{mygreen},%
+    showstringspaces=false,%without this there will be a symbol in the places where there is a space
+    numbers=left,%
+    numberstyle={\tiny \color{black}},% size of the numbers
+    numbersep=9pt, % this defines how far the numbers are from the text
+    emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+    %emph=[2]{word1,word2}, emphstyle=[2]{style},    
+  }
+
+  \lstset{language=Matlab,%
+    %basicstyle=\color{red},
+    breaklines=true,%
+    morekeywords={matlab2tikz},
+    keywordstyle=\color{blue},%
+    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+    identifierstyle=\color{black},%
+    stringstyle=\color{mylilas},
+    commentstyle=\color{mygreen},%
+    showstringspaces=false,%without this there will be a symbol in the places where there is a space
+    numbers=left,%
+    numberstyle={\tiny \color{black}},% size of the numbers
+    numbersep=9pt, % this defines how far the numbers are from the text
+    emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+    %emph=[2]{word1,word2}, emphstyle=[2]{style},    
+  }
+
+% Files within files
+\usepackage{subfiles}
+
+% Referencing
+\usepackage{xr}
+\usepackage{zref}
+
+% Hyper-linking within latex
+\usepackage{hyperref}
+
+  \hypersetup
+  {
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+  }
+
+  \urlstyle{same}
+
+% Header control
+\usepackage{fancyhdr}
+
+% Paragraph indent and skip control
+\usepackage{parskip}
+  \setlength{\parskip}{1.5\baselineskip}
+  \setlength{\parindent}{5pt}
+
+% Figure and asset control
+\usepackage{graphicx}
+  \graphicspath{ {./Assets} }
+
+\usepackage{wrapfig}
+\usepackage{lscape}
+\usepackage{rotating}
+
+% Captions in floating environments
+\usepackage{caption}
+
+
+% symbols
+\usepackage{amsmath,amssymb,textcomp}
+\usepackage{amsthm}
+\usepackage{gensymb}
+\usepackage{mathbbol}
+
+% Extra underlines
+\usepackage{ulem}
+
+
+% Lists
+\usepackage{enumerate}
+
+% Graphics
+\usepackage{tikz}
+
+% Physics notation
+\usepackage{physics}
+
+%--------------------------------------------------
+%Document preparation
+
 
 \newif\if@draftVersion
 
-\DeclareOption{draft}{\@draftVersionTrue}
+\DeclareOption{draft}{\@draftVersiontrue}
 
 \ProcessOptions\relax
 
+
+
 %Distinguish between draft versions and non-draft versions
 \if@draftVersion
-  \newcommand{\empNote}[1]{#1\marginnote{\emph{#1}}}
+  % Paper sizes for draft versions
+  \geometry{top=2cm, bottom=1cm, outer=8cm, inner=2cm, heightrounded, marginparwidth=5cm, marginparsep=2cm}
+
+  % Emphasis and margin notes
+  \newcommand{\marEmp}[3]{#1\marginnote{\emph{#1}:#2}[#3]}
+  \newcommand{\marNote}[2]{\marginnote{#1}[#2]}
 \else
-  \newcommand{\empNote}[1]{%
+  \geometry{top=.5cm, bottom=0.5cm, outer=1cm, inner=.25cm, heightrounded, marginparwidth=0cm, marginparsep=0cm}
+  % Emphasis and margin notes are discouraged in non-draft versions
+  \newcommand{\empNote}[3]{
     #1
-    \PackageWarning{MyStyle}{Emphasis margin note on \"#1\" not removed, consider removing for final draft.}
+    \PackageWarning{MyStyle}{Emphasis margin note:\MessageBreak
+    \space \space \"#1: #2\" \MessageBreak
+    not removed, consider removing for final draft.}
   }
+
+  \newcommand{\marNote}[2]{
+    \PackageWarning{MyStyle}{Margin note:\MessageBreak
+    \space \space \"#1\" \MessageBreak
+    not removed, consider removing for final draft.}
+  }
+  
 \fi
+
+
+%--------------------------------------------------
+%Operators and Commands
+
+  % Other maths operators
+    \DeclareMathOperator{\diag}{diag}
+
+  %Matrix Notation style
+    \newcommand{\mat}[1]{\pmb{\uwave{#1}}}
+  
+  %Referencing
+    \newcommand{\GenRef}[1]{see \ref{#1}, pp. \pageref{#1}}
+  
+    \newcommand{\CompRef}[1]{(Figure \ref{#1}, pp.\pageref{#1})}
+  
+    
+
+  
