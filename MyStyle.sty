@@ -6,7 +6,7 @@
 \usepackage{marginnote}
 
 % Document dimensions
-\usepackage[a4paper]{geometry}
+\usepackage{geometry}
 
 % Encoding
 \usepackage[utf8]{inputenc}
@@ -23,10 +23,9 @@
 \usepackage{multicol}
 
 % Code Listings
-  \usepackage{listings}  
-  
+  \usepackage{listings}
+
   \lstset{
-    language=Matlab,
     basicstyle=\fontsize{8}{10}\ttfamily,
     aboveskip={1.0\baselineskip},
     belowskip={1.0\baselineskip},
@@ -36,23 +35,27 @@
     tabsize=4,
     prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
     frame=lines,
-    morekeywords={matlab2tikz},
-    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
-    identifierstyle=\color{black},%
-    keywordstyle=\color[rgb]{0.627,0.126,0.941},
-    commentstyle=\color[rgb]{0.133,0.545,0.133},
-    stringstyle=\color[rgb]{01,0,0},
     showtabs=false,
     showspaces=false,
     showstringspaces=false,
+    keywordstyle=\color[rgb]{0.627,0.126,0.941},
+    commentstyle=\color[rgb]{0.133,0.545,0.133},
+    stringstyle=\color[rgb]{01,0,0},
     numbers=left,
     numberstyle=\small,
     stepnumber=1,
     numbersep=10pt,
     captionpos=t,
-    emph=[1]{for,end,break},emphstyle=[1]\color{red},
-    escapeinside={\%*}{*)}
-  }  
+    numbers=left,
+    stepnumber=1,    
+    firstnumber=1,
+    numberfirstline=true
+  }
+
+  % MatLab code
+  \usepackage{matlab-prettifier}
+  
+  
 
 % Files within files
 \usepackage{subfiles}
@@ -84,7 +87,8 @@
 
 % Figure and asset control
 \usepackage{graphicx}
-  \graphicspath{ {./Assets} }
+\usepackage{svg}
+
 
 \usepackage{wrapfig}
 \usepackage{lscape}
@@ -128,13 +132,15 @@
 %Distinguish between draft versions and non-draft versions
 \if@draftVersion
   % Paper sizes for draft versions
-  \geometry{top=2cm, bottom=1cm, outer=8cm, inner=2cm, heightrounded, marginparwidth=5cm, marginparsep=2cm}
+  \geometry{b4paper, total={18cm,27cm}, inner=1.5cm, top=2cm, heightrounded, marginparsep=2cm}
+  %, outer=8cm, inner=2cm, heightrounded, marginparwidth=5cm, marginparsep=2cm
 
   % Emphasis and margin notes
   \newcommand{\marEmp}[3]{#1\marginnote{\emph{#1}:#2}[#3]}
   \newcommand{\marNote}[2]{\marginnote{#1}[#2]}
 \else
-  \geometry{top=.5cm, bottom=0.5cm, outer=1cm, inner=.25cm, heightrounded, marginparwidth=0cm, marginparsep=0cm}
+  %paper sizes for non-draft versions
+  \geometry{a4paper, total={18cm,27cm}, inner=1.5cm, top=2cm, heightrounded, marginparwidth=0cm, marginparsep=0cm}
   % Emphasis and margin notes are discouraged in non-draft versions
   \newcommand{\empNote}[3]{
     #1
