@@ -8,9 +8,6 @@
 % Document dimensions
 \usepackage{geometry}
 
-% Encoding
-\usepackage[utf8]{inputenc}
-
 % Color control
 \usepackage{color}
 
@@ -99,7 +96,12 @@
 
 
 % symbols
-\usepackage{amsmath,amssymb,textcomp,gensymb,amsthm,bbm,dsfont}
+\usepackage{amsmath,amssymb,textcomp,gensymb,amsthm,bbm,dsfont,fdsymbol}
+
+% Unicode within maths and font
+\usepackage{unicode-math}
+%\setmathfont{XITS Math}
+\setmathfont{xits-math.otf}
 
 % Extra underlines
 \usepackage{ulem}
@@ -170,6 +172,8 @@
     \newcommand{\LisRef}[1]{(Listing \ref{#1}, pp.\pageref{#1})}
     
     \newcommand{\QuikRef}[1]{\ref{#1}}
+
+    \newcommand{\nImplies}{\nLongrightarrow}
 
   % Header styles
 
