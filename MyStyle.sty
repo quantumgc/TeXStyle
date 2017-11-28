@@ -180,4 +180,11 @@
     \renewcommand\thesubsection{\arabic{section}.\arabic{subsection}}
     \renewcommand\thesection{\textsection\arabic{section}}
 
+  % Theorem styles
+
+    \newtheorem{theorem}{Theorem}[section]
+    \newtheorem{corollary}{Corollary}[theorem]
+    \newtheorem{lemma}[theorem]{Lemma}
+    \newtheorem*{theorem*}{Theorem}
+
   
