@@ -1,6 +1,7 @@
 \ProvidesPackage{MyStyle}
+
 %--------------------------------------------------
-%Packages and package settings
+%Packages and Package Settings
 
   % Margin note styles
     \usepackage{marginnote}
@@ -10,14 +11,14 @@
 
   % Color control
     \usepackage{color}
-    
+
     % Driver independent
     \usepackage{xcolor}
 
   % Multicols environment
     \usepackage{multicol}
 
-  % Code Listings
+  % Code listings
     \usepackage{listings}
     \lstset{
       basicstyle=\fontsize{8}{10}\ttfamily,
@@ -41,14 +42,14 @@
       numbersep=10pt,
       captionpos=t,
       numbers=left,
-      stepnumber=1,    
+      stepnumber=1,
       firstnumber=1,
       numberfirstline=true
     }
 
     % MatLab code
     \usepackage{matlab-prettifier}
-    
+
   % Files within files
     \usepackage{subfiles}
 
@@ -56,7 +57,7 @@
     \usepackage{xr}
     \usepackage{zref}
 
-  % Hyper-linking within latex
+  % Hyper-linking within LaTeX
     \usepackage{hyperref}
     \hypersetup
     {
@@ -86,7 +87,7 @@
   % Captions in floating environments
     \usepackage{caption}
 
-  % symbols
+  % Symbols
     \usepackage{amsmath,amssymb,textcomp,gensymb,amsthm,bbm,dsfont,fdsymbol}
 
   % Unicode within maths and font
@@ -109,8 +110,7 @@
 %--------------------------------------------------
 
 %--------------------------------------------------
-% Document preparation
-
+% Document Preparation
 
   % Draft version detection
   \newif\if@draftVersion
@@ -142,40 +142,33 @@
       \space \space \"#1\" \MessageBreak
       not removed, consider removing for final draft.}
     }
-    
+
   \fi
 
 %--------------------------------------------------
 
 %--------------------------------------------------
-%Operators and Commands
+%Operators, Commands and Styles
 
-  %Matrix Notation style
+  % Matrix Notation style
     \newcommand{\mat}[1]{\pmb{\uwave{#1}}}
-  
-  %Referencing
+
+  % Referencing
     \newcommand{\PagRef}[1]{\ref{#1}, pp.\pageref{#1}}
-    
     \newcommand{\FigRef}[1]{(Figure \ref{#1}, pp.\pageref{#1})}
-
     \newcommand{\TabRef}[1]{(Table \ref{#1}, pp.\pageref{#1})}
-
     \newcommand{\LisRef}[1]{(Listing \ref{#1}, pp.\pageref{#1})}
-    
     \newcommand{\QuikRef}[1]{\ref{#1}}
-
     \newcommand{\nImplies}{\nLongrightarrow}
 
-  % Header styles
-
+  % Section Title styles
     \renewcommand\thesubsection{\arabic{section}.\arabic{subsection}}
     \renewcommand\thesection{\textsection\arabic{section}}
 
   % Theorem styles
-
     \newtheorem{theorem}{Theorem}[section]
     \newtheorem{corollary}{Corollary}[theorem]
     \newtheorem{lemma}[theorem]{Lemma}
     \newtheorem*{theorem*}{Theorem}
 
-%-------------------------------------------------- 
+%--------------------------------------------------
