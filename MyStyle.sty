@@ -2,159 +2,150 @@
 %--------------------------------------------------
 %Packages and package settings
 
-% Margin note styles
-\usepackage{marginnote}
+  % Margin note styles
+    \usepackage{marginnote}
 
-% Document dimensions
-\usepackage{geometry}
+  % Document dimensions
+    \usepackage{geometry}
 
-% Color control
-\usepackage{color}
+  % Color control
+    \usepackage{color}
+    
+    % Driver independent
+    \usepackage{xcolor}
 
-% Driver independent
-\usepackage{xcolor}
+  % Multicols environment
+    \usepackage{multicol}
 
-% Multicols environment
-\usepackage{multicol}
+  % Code Listings
+    \usepackage{listings}
+    \lstset{
+      basicstyle=\fontsize{8}{10}\ttfamily,
+      aboveskip={1.0\baselineskip},
+      belowskip={1.0\baselineskip},
+      columns=fixed,
+      extendedchars=true,
+      breaklines=true,
+      tabsize=4,
+      prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+      frame=lines,
+      showtabs=false,
+      showspaces=false,
+      showstringspaces=false,
+      keywordstyle=\color[rgb]{0.627,0.126,0.941},
+      commentstyle=\color[rgb]{0.133,0.545,0.133},
+      stringstyle=\color[rgb]{01,0,0},
+      numbers=left,
+      numberstyle=\small,
+      stepnumber=1,
+      numbersep=10pt,
+      captionpos=t,
+      numbers=left,
+      stepnumber=1,    
+      firstnumber=1,
+      numberfirstline=true
+    }
 
-% Code Listings
-  \usepackage{listings}
+    % MatLab code
+    \usepackage{matlab-prettifier}
+    
+  % Files within files
+    \usepackage{subfiles}
 
-  \lstset{
-    basicstyle=\fontsize{8}{10}\ttfamily,
-    aboveskip={1.0\baselineskip},
-    belowskip={1.0\baselineskip},
-    columns=fixed,
-    extendedchars=true,
-    breaklines=true,
-    tabsize=4,
-    prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
-    frame=lines,
-    showtabs=false,
-    showspaces=false,
-    showstringspaces=false,
-    keywordstyle=\color[rgb]{0.627,0.126,0.941},
-    commentstyle=\color[rgb]{0.133,0.545,0.133},
-    stringstyle=\color[rgb]{01,0,0},
-    numbers=left,
-    numberstyle=\small,
-    stepnumber=1,
-    numbersep=10pt,
-    captionpos=t,
-    numbers=left,
-    stepnumber=1,    
-    firstnumber=1,
-    numberfirstline=true
-  }
+  % Referencing
+    \usepackage{xr}
+    \usepackage{zref}
 
-  % MatLab code
-  \usepackage{matlab-prettifier}
-  
-  
+  % Hyper-linking within latex
+    \usepackage{hyperref}
+    \hypersetup
+    {
+      colorlinks=true,
+      linkcolor=blue,
+      filecolor=magenta,
+      urlcolor=cyan,
+    }
+    \urlstyle{same}
 
-% Files within files
-\usepackage{subfiles}
+  % Header control
+    \usepackage{fancyhdr}
+    \pagestyle{fancy}
 
-% Referencing
-\usepackage{xr}
-\usepackage{zref}
+  % Paragraph indent and skip control
+    \usepackage{parskip}
+    \setlength{\parskip}{1.5\baselineskip}
+    \setlength{\parindent}{5pt}
 
-% Hyper-linking within latex
-\usepackage{hyperref}
+  % Figure and asset control
+    \usepackage{graphicx}
+    \usepackage{svg}
+    \usepackage{wrapfig}
+    \usepackage{lscape}
+    \usepackage{rotating}
 
-  \hypersetup
-  {
-    colorlinks=true,
-    linkcolor=blue,
-    filecolor=magenta,
-    urlcolor=cyan,
-  }
+  % Captions in floating environments
+    \usepackage{caption}
 
-  \urlstyle{same}
+  % symbols
+    \usepackage{amsmath,amssymb,textcomp,gensymb,amsthm,bbm,dsfont,fdsymbol}
 
-% Header control
-  \usepackage{fancyhdr}
+  % Unicode within maths and font
+    \usepackage{unicode-math}
+    %\setmathfont{XITS Math}
+    \setmathfont{xits-math.otf}
 
-  \pagestyle{fancy}
+  % Extra underlines
+    \usepackage{ulem}
 
-% Paragraph indent and skip control
-\usepackage{parskip}
-  \setlength{\parskip}{1.5\baselineskip}
-  \setlength{\parindent}{5pt}
+  % Lists
+    \usepackage[shortlabels]{enumitem}
 
-% Figure and asset control
-\usepackage{graphicx}
-\usepackage{svg}
+  % Drawn Graphics
+    \usepackage{tikz}
 
-
-\usepackage{wrapfig}
-\usepackage{lscape}
-\usepackage{rotating}
-
-% Captions in floating environments
-\usepackage{caption}
-
-
-% symbols
-\usepackage{amsmath,amssymb,textcomp,gensymb,amsthm,bbm,dsfont,fdsymbol}
-
-% Unicode within maths and font
-\usepackage{unicode-math}
-%\setmathfont{XITS Math}
-\setmathfont{xits-math.otf}
-
-% Extra underlines
-\usepackage{ulem}
-
-% Lists
-\usepackage[shortlabels]{enumitem}
-
-% Graphics
-\usepackage{tikz}
-
-% Physics notation
-\usepackage{physics}
+  % Physics notation
+    \usepackage{physics}
 
 %--------------------------------------------------
-%Document preparation
+
+%--------------------------------------------------
+% Document preparation
 
 
-\newif\if@draftVersion
+  % Draft version detection
+  \newif\if@draftVersion
+  \DeclareOption{draft}{\@draftVersiontrue}
+  \ProcessOptions\relax
 
-\DeclareOption{draft}{\@draftVersiontrue}
+  % Distinguish between draft versions and non-draft versions
+  \if@draftVersion
+    % Paper sizes for draft versions
+    \geometry{b4paper, total={18cm,26cm}, inner=1.5cm, top=2cm, heightrounded, marginparsep=2cm}
+    %, outer=8cm, inner=2cm, heightrounded, marginparwidth=5cm, marginparsep=2cm
 
-\ProcessOptions\relax
+    % Emphasis and margin notes
+    \newcommand{\marEmp}[3]{#1\marginnote{\emph{#1}:#2}[#3]}
+    \newcommand{\marNote}[2]{\marginnote{#1}[#2]}
+  \else
+    % Paper sizes for non-draft versions
+    \geometry{a4paper, total={18cm,25cm}, inner=1.5cm, top=2cm, heightrounded, marginparwidth=0cm, marginparsep=0cm}
+    % Emphasis and margin notes are discouraged in non-draft versions
+    \newcommand{\marEmp}[3]{
+      #1
+      \PackageWarning{MyStyle}{Emphasis margin note:\MessageBreak
+      \space \space \"#1: #2\" \MessageBreak
+      not removed, consider removing for final draft.}
+    }
 
+    \newcommand{\marNote}[2]{
+      \PackageWarning{MyStyle}{Margin note:\MessageBreak
+      \space \space \"#1\" \MessageBreak
+      not removed, consider removing for final draft.}
+    }
+    
+  \fi
 
-
-%Distinguish between draft versions and non-draft versions
-\if@draftVersion
-  % Paper sizes for draft versions
-  \geometry{b4paper, total={18cm,26cm}, inner=1.5cm, top=2cm, heightrounded, marginparsep=2cm}
-  %, outer=8cm, inner=2cm, heightrounded, marginparwidth=5cm, marginparsep=2cm
-
-  % Emphasis and margin notes
-  \newcommand{\marEmp}[3]{#1\marginnote{\emph{#1}:#2}[#3]}
-  \newcommand{\marNote}[2]{\marginnote{#1}[#2]}
-\else
-  %paper sizes for non-draft versions
-  \geometry{a4paper, total={18cm,25cm}, inner=1.5cm, top=2cm, heightrounded, marginparwidth=0cm, marginparsep=0cm}
-  % Emphasis and margin notes are discouraged in non-draft versions
-  \newcommand{\marEmp}[3]{
-    #1
-    \PackageWarning{MyStyle}{Emphasis margin note:\MessageBreak
-    \space \space \"#1: #2\" \MessageBreak
-    not removed, consider removing for final draft.}
-  }
-
-  \newcommand{\marNote}[2]{
-    \PackageWarning{MyStyle}{Margin note:\MessageBreak
-    \space \space \"#1\" \MessageBreak
-    not removed, consider removing for final draft.}
-  }
-  
-\fi
-
+%--------------------------------------------------
 
 %--------------------------------------------------
 %Operators and Commands
@@ -187,4 +178,4 @@
     \newtheorem{lemma}[theorem]{Lemma}
     \newtheorem*{theorem*}{Theorem}
 
-  
+%-------------------------------------------------- 

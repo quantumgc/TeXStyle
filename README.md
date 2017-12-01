@@ -6,3 +6,4 @@ This is a LaTeX style that I use for most of the documents I write. It contains 
 
 * Add bibliography support
 * Write Header/Footer customisation
+* Configure default graphics details
