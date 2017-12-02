@@ -3,7 +3,7 @@
 %--------------------------------------------------
 %Packages and Package Settings
 
-  % Margin note styles
+  % Margin notes
     \usepackage{marginnote}
 
   % Document dimensions
@@ -150,16 +150,25 @@
 %--------------------------------------------------
 %Operators, Commands and Styles
 
-  % Matrix Notation style
-    \newcommand{\mat}[1]{\pmb{\uwave{#1}}}
+  % Convenience Macros
+    % Matrix style (more for code clarity than anything else)
+    \newcommand{\mat}[1]{\pmb{#1}}
+    % Does not imply
+    \newcommand{\nImplies}{\nLongrightarrow}
+    % Is not implied by
+    \newcommand{\nImplied}{\nLongleftarrow}
+    % Not equivalent to
+    \newcommand{\nEquiv}{\nLeftrightarrow}
+    
 
   % Referencing
+    % Create a reference with a page number
     \newcommand{\PagRef}[1]{\ref{#1}, pp.\pageref{#1}}
+    % Create a reference to an internal document item
     \newcommand{\FigRef}[1]{(Figure \ref{#1}, pp.\pageref{#1})}
     \newcommand{\TabRef}[1]{(Table \ref{#1}, pp.\pageref{#1})}
     \newcommand{\LisRef}[1]{(Listing \ref{#1}, pp.\pageref{#1})}
     \newcommand{\QuikRef}[1]{\ref{#1}}
-    \newcommand{\nImplies}{\nLongrightarrow}
 
   % Section Title styles
     \renewcommand\thesubsection{\arabic{section}.\arabic{subsection}}
