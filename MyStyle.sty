@@ -175,9 +175,16 @@
     \renewcommand\thesection{\textsection\arabic{section}}
 
   % Theorem styles
+    % Refreshes every section
     \newtheorem{theorem}{Theorem}[section]
+    % Refreshes every theorem
     \newtheorem{corollary}{Corollary}[theorem]
-    \newtheorem{lemma}[theorem]{Lemma}
+    % Refreshes every theorem
+    \newtheorem{lemma}{Lemma}[theorem]
+    % Unumbered theorem
     \newtheorem*{theorem*}{Theorem}
+
+    % Include a proof
+    \newcommand{\IncludeProof}[1]{\subfile{#1}}
 
 %--------------------------------------------------
