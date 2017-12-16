@@ -176,7 +176,7 @@
     \renewcommand\thesubsection{\arabic{section}.\arabic{subsection}}
     \renewcommand\thesection{\textsection\arabic{section}}
 
-  % Theorem styles
+  % Theorem and example styles
     % Refreshes every section
     \newtheorem{theorem}{Theorem}[section]
     % Refreshes every theorem
@@ -185,6 +185,11 @@
     \newtheorem{lemma}{Lemma}[theorem]
     % Unumbered theorem
     \newtheorem*{theorem*}{Theorem}
+    
+    % Refreshes every section
+    \newtheorem{examples}{Examples}[subsection]
+    % Refreshes every example
+    \newtheorem{example}{}[examples]
 
     % Include a proof
     \newcommand{\IncludeProof}[1]{\subfile{#1}}
