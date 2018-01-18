@@ -59,6 +59,7 @@
 
   % Hyper-linking within LaTeX
     \usepackage{hyperref}
+    % Link design
     \hypersetup
     {
       colorlinks=true,
@@ -150,7 +151,7 @@
 %--------------------------------------------------
 %Operators, Commands and Styles
 
-  % Convenience Macros
+  % Macros
     % Matrix style (more for code clarity than anything else)
     \newcommand{\mat}[1]{\pmb{#1}}
     % Does not imply
@@ -175,10 +176,6 @@
   % Referencing
     % Create a reference with a page number
     \newcommand{\PagRef}[1]{\ref{#1}, pp.\pageref{#1}}
-    % Create a reference to an internal document item
-    \newcommand{\FigRef}[1]{(Figure \ref{#1}, pp.\pageref{#1})}
-    \newcommand{\TabRef}[1]{(Table \ref{#1}, pp.\pageref{#1})}
-    \newcommand{\LisRef}[1]{(Listing \ref{#1}, pp.\pageref{#1})}
     \newcommand{\QuikRef}[1]{\ref{#1}}
 
   % Section Title styles
@@ -190,13 +187,7 @@
     \newtheorem{theorem}{Theorem}[section]
     % Refreshes every theorem
     \newtheorem{corollary}{Corollary}[theorem]
-    % Refreshes every theorem
-    \newtheorem{lemma}{Lemma}[theorem]
-    
-    % Unumbered theorem
-    \newtheorem*{theorem*}{Theorem}
-    % Unumbered corollary
-    \newtheorem*{corollary*}{Corollary}
+    \newtheorem{lemma}{Lemma}[theorem]    
     
     % Refreshes every section
     \newtheorem{examples}{Examples}[section]
@@ -204,7 +195,6 @@
     \newtheorem{example}{}[examples]
 
     % Unumbered example
-    \newtheorem*{example*}{Example}
 
     % Refreshes every section
     \newtheorem{definition}{Definition}[section]
@@ -216,8 +206,12 @@
     % Refreshes every proposition
     \newtheorem{subProp}{}[proposition]
     
-
-    % Include a proof
-    \newcommand{\IncludeProof}[1]{\subfile{#1}}
+    % Unumbered variants
+    \newtheorem*{theorem*}{Theorem}
+    \newtheorem*{corollary*}{Corollary}
+    \newtheorem*{lemma*}{Lemma}
+    \newtheorem*{example*}{Example}
+    \newtheorem*{definition*}{Definition}
+    \newtheorem*{proposition*}{Proposition}
 
 %--------------------------------------------------
