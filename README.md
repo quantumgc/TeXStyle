@@ -2,6 +2,12 @@
 
 This is a LaTeX style that I use for most of the documents I write. While this mostly consists of several packages that I've often used brought together into one. There are some modifications to make them work well together/look acceptable.
 
+## How to use the style
+
++ Download the file MyStyle.sty, either by cloning the git repository entirely or just downloading the file on its own.
++ Place it somewhere on your latex path, your project folder should work in most cases.
++ Include the command `\usepackage{MyStyle}` somewhere in the preamble.
+
 ## Additional Macros/Tweaks
 
 ### Draft Mode
