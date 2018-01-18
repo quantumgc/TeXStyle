@@ -1,9 +1,44 @@
 # TeXStyle
 
-This is a LaTeX style that I use for most of the documents I write. It contains a few packages that I find useful in day to day writing and isn't intended to be fit for any particular purpose.
+This is a LaTeX style that I use for most of the documents I write. While this mostly consists of several packages that I've often used brought together into one. There are some modifications to make them work well together/look acceptable.
+
+## Additional Macros/Tweaks
+
+### Draft Mode
+
++ A4 page set in B4 paper with the extra space allocated to margin comments.
++ `\marEmp{emphasis}{note}{size}` emphasise a piece of text at the start of the note.
++ `\marNote{note}{size}` a note to the side of the page.
+
+### Math Mode
+
++ `\mat{arg}` formats arg in bold, for code legibility when dealing with matrices.
++ `\nImplies`, `\nImplied` and `\nEquiv` for negated right, left and double-headed arrows respectively. For succinctness.
++ `\Cont` adds a text reference mark to represent a contradiction for proofs.
++ Inverse hyperbolic functions
+
+### Referencing Labels
+
++ `\PagRef{arg}` provides a reference to a label with the page it can be found on.
++ `\QuickRef{arg}` provides a reference to just the label.
+
+### Environments
+
++ Theorems
+  + Corollaries
+  + Lemmas
++ Examples
+  + Example
++ Definitions
+  + Sub-definitions (`subDef`)
++ Propositions
+  + Sub-propositions (`subProp`)
+
+and unnumbered variants thereof.
 
 ## To-Do
 
-* Add bibliography support
-* Write Header/Footer customisation
-* Configure default graphics details
++ Add bibliography support
++ Write Header/Footer customisation
++ Configure default graphics details
++ Add template files
