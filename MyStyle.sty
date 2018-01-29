@@ -27,8 +27,8 @@
       columns=fixed,
       extendedchars=true,
       breaklines=true,
-      tabsize=4,
-      prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+      tabsize=2,
+      prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}}, % linebreak symbols
       frame=lines,
       showtabs=false,
       showspaces=false,
@@ -103,7 +103,9 @@
     \usepackage[shortlabels]{enumitem}
 
   % Drawn Graphics
-    \usepackage{tikz}
+    \usepackage{tikz, tkz-euclide}
+    \usetkzobj{all}
+    \usetikzlibrary{arrows.meta,intersections,calc}
 
   % Physics notation
     \usepackage{physics}
