@@ -19,7 +19,7 @@ This is a LaTeX style that I use for most of the documents I write. While this m
 ### Math Mode
 
 + `\mat{arg}` formats arg in bold, for code legibility when dealing with matrices.
-+ `\nImplies`, `\nImplied` and `\nEquiv` for negated right, left and double-headed arrows respectively. For succinctness.
++ `\implied`, `\nImplies`, `\nImplied` and `\nEquiv` for left, negated right, negated left and negated double-headed arrows respectively. For succinctness.
 + `\Cont` adds a text reference mark to represent a contradiction for proofs.
 + Inverse hyperbolic functions
 
