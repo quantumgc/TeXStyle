@@ -1,6 +1,6 @@
 # TeXStyle
 
-This is a LaTeX style that I use for most of the documents I write. While this mostly consists of several packages that I've often used brought together into one. There are some modifications to make them work well together/look acceptable.
+This is a LaTeX style that I use for most of the documents I write. While this mostly consists of several packages that I've often used brought together into one, there are some modifications to make them work well together/look acceptable.
 
 ## How to use the style
 
@@ -40,11 +40,11 @@ This is a LaTeX style that I use for most of the documents I write. While this m
 + Propositions
   + Sub-propositions (`subProp`)
 
-and unnumbered variants thereof.
+and unnumbered variants thereof. Also included is a semi-customised listings environment.
 
 ## To-Do
 
 + Add bibliography support
-+ Write Header/Footer customisation
++ Write more Header/Footer customisation
 + Configure default graphics details
 + Add template files
