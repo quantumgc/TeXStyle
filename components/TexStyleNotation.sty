@@ -1,0 +1,36 @@
+\ProvidesPackage{TexStyleNotation.sty}
+\RequirePackage{../TeXStyleBase}
+\RequirePackage{physics}
+
+%--------------------------------------------------
+% This file contains personal notation macros, because of that it isn't included in a default TeXStyle-Full install.
+% To use this package, either download and reference it separately (recommended) or pass the "--gautam" flag to the installer to completely replicate my personal install when creating your own install.
+%--------------------------------------------------
+
+%--------------------------------------------------
+% Vectors, Matrices, Transformations, etc.
+
+  % Matrix style (more for code clarity than anything else)
+  \newcommand{\mat}[1]{\vb{#1}}
+
+  % Nth basis vector in a canonical basis for F^n
+  \newcommand{\bvec}[1]{\vu{e}_[#1]}
+
+  % Resolving in a basis
+  \newcommand{\basis}[2]{\qty[#1]_{#2}}
+
+%--------------------------------------------------
+
+%--------------------------------------------------
+% Mechanics
+  % Resolving in a frame
+  \newcommand{\frame}[2]{\qty[#1]^{#2}}
+
+  % Relative velocity of a frame
+  \newcommand{\vrel}[2]{\frame{\vb{v}_{#1}}{#2}}
+  
+  % Relative acceleration of a frame
+  \newcommand{\arel}[2]{\frame{\vb{a}_{#1}}{#2}}
+
+%--------------------------------------------------
+
