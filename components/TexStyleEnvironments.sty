@@ -1,2 +1,40 @@
 \ProvidesPackage{TexStyleEnvironments.sty}
 
+%--------------------------------------------------
+% Dependencies
+  % Theorem styles
+  \RequirePackage{amsthm}
+%--------------------------------------------------
+
+%--------------------------------------------------
+% Environments
+
+  % Theorems
+    \newtheorem{theorem}{Theorem}[section]
+    % Refreshes every theorem
+    \newtheorem{corollary}{Corollary}[theorem]
+    \newtheorem{lemma}{Lemma}[theorem]    
+  
+  % Examples
+    \newtheorem{examples}{Examples}[section]
+    % Refreshes every example
+    \newtheorem{example}{}[examples]  
+
+  % definitions
+    \newtheorem{definition}{Definition}[section]
+    % Refreshes every definition
+    \newtheorem{subDef}{}[definition]
+
+  % propositions
+    \newtheorem{proposition}{Proposition}[section]
+    % Refreshes every proposition
+    \newtheorem{subProp}{}[proposition]
+  
+  % Unumbered variants
+    \newtheorem*{theorem*}{Theorem}
+    \newtheorem*{corollary*}{Corollary}
+    \newtheorem*{lemma*}{Lemma}
+    \newtheorem*{example*}{Example}
+    \newtheorem*{definition*}{Definition}
+    \newtheorem*{proposition*}{Proposition}
+%--------------------------------------------------
