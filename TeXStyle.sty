@@ -1,7 +1,20 @@
-\ProvidesPackage{TeXStyleBase}
+\ProvidesPackage{TeXStyle}
 
 %--------------------------------------------------
-%Packages and Package Settings
+% Option parsing
+
+
+  % Use notation
+  \DeclareOption{notation}{
+    \RequirePackage{./components/TexStyleNotation.sty}
+  }
+
+
+%--------------------------------------------------
+
+
+%--------------------------------------------------
+% Packages and Package Settings
 
   % Margin notes
     \usepackage{marginnote}
@@ -89,7 +102,7 @@
     \usepackage{caption}
 
   % Symbols
-    \usepackage{amsmath,amssymb,textcomp,gensymb,amsthm,bbm,dsfont,fdsymbol}
+    \usepackage{textcomp,gensymb,amsthm,bbm,dsfont,fdsymbol}
 
   % Unicode within maths and font
     %\usepackage{unicode-math}
@@ -154,8 +167,6 @@
 %Operators, Commands and Styles
 
   % Macros
-    % Matrix style (more for code clarity than anything else)
-    \newcommand{\mat}[1]{\vb{#1}}
     % Implied by
     \newcommand{\implied}{\Longleftarrow}
     % Does not imply
