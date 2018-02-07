@@ -23,5 +23,38 @@
     \pagestyle{fancy}
 %--------------------------------------------------
 
+%--------------------------------------------------
+% Option Parsing
+  % Draft version behaviour
+    \DeclareOption{draft}{
 
-% Document control (might be moved into a class)
+      % Emphasis and margin notes
+      \newcommand{\marEmp}[3]{#1\marginnote{\emph{#1}:#2}[#3]}
+      \newcommand{\marNote}[2]{\marginnote{#1}[#2]}
+
+    \OptionNotUsed
+
+      % Emphasis and margin notes are discouraged in non-draft versions
+      \newcommand{\marEmp}[3]{
+        #1
+        \PackageWarning{MyStyle}{Emphasis margin note:\MessageBreak
+        \space \space \"#1: #2\" \MessageBreak
+        not removed, consider removing for final draft.}
+      }
+
+      \newcommand{\marNote}[2]{
+        \PackageWarning{MyStyle}{Margin note:\MessageBreak
+        \space \space \"#1\" \MessageBreak
+        not removed, consider removing for final draft.}
+      }
+
+    }
+    \ProcessOptions\relax
+%--------------------------------------------------
+
+
+
+
+
+
+
