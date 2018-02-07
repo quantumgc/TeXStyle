@@ -2,13 +2,26 @@
 
 %--------------------------------------------------
 % Dependencies
-  % Paragraph indent and skip control
-    \usepackage{parskip}
-    
 
+  % Paragraph indent and skip control
+    \RequirePackage{parskip}
+
+  % Margin notes
+    \RequirePackage{marginnote}
+
+  % Document dimensions
+    \RequirePackage{geometry}
+
+  % Color control
+    \RequirePackage{color}
+
+    % Driver independent
+    \RequirePackage{xcolor}
+
+  % Header control
+    \RequirePackage{fancyhdr}
+    \pagestyle{fancy}
 %--------------------------------------------------
 
 
 % Document control (might be moved into a class)
-\setlength{\parskip}{1.5\baselineskip}
-    \setlength{\parindent}{5pt}
