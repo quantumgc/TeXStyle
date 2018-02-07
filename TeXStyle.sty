@@ -5,10 +5,11 @@
 
 
   % Use notation
-  \DeclareOption{notation}{
-    \RequirePackage{./components/TexStyleNotation.sty}
-  }
+    \DeclareOption{notation}{
+      \RequirePackage{./components/TexStyleNotation.sty}
+    }
 
+  
   \ProcessOptions\relax
 %--------------------------------------------------
 
@@ -33,17 +34,7 @@
 %--------------------------------------------------
 % Packages and Package Settings
 
-  % Margin notes
-    \usepackage{marginnote}
-
-  % Document dimensions
-    \usepackage{geometry}
-
-  % Color control
-    \usepackage{color}
-
-    % Driver independent
-    \usepackage{xcolor}
+  
 
   % Multicols environment
     \usepackage{multicol}
@@ -86,31 +77,13 @@
 
   
 
-  % Header control
-    \usepackage{fancyhdr}
-    \pagestyle{fancy}
+  
 
   
 
-  % Figure and asset control
-    \usepackage{graphicx}
-    \usepackage{svg}
-    \usepackage{wrapfig}
-    \usepackage{lscape}
-    \usepackage{rotating}
+  
 
-  % Captions in floating environments
-    \usepackage{caption}
-
-  % Symbols
-    % General Symbols
-    \RequirePackage{gensymb}
-
-    % Extended math symbols
-    \RequirePackage{fdsymbol}
-
-    % Blackboard Bold fonts
-    \RequirePackage{bbm}
+  
 
     
 
@@ -122,10 +95,7 @@
   % Lists
     \usepackage[shortlabels]{enumitem}
 
-  % Drawn Graphics
-    \usepackage{tikz, tkz-euclide}
-    \usetkzobj{all}
-    \usetikzlibrary{arrows.meta,intersections,calc}
+  
 %--------------------------------------------------
 
 %--------------------------------------------------
