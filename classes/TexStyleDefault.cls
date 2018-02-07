@@ -1,4 +1,4 @@
-\ProvidesClass{Default.cls}
+\ProvidesClass{TeXStyle-Default}
 
 \RequirePackage{TexStyle}
 
