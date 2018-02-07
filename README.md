@@ -48,3 +48,4 @@ and unnumbered variants thereof. Also included is a semi-customised listings env
 + Write more Header/Footer customisation
 + Configure default graphics details
 + Add template files
++ Add multicols configured environment
