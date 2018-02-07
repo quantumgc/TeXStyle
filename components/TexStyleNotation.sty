@@ -6,8 +6,12 @@
 %--------------------------------------------------
 
 %--------------------------------------------------
-% Dependencies
-  \RequirePackage{physics}
+  % Dependencies
+    \RequirePackage{physics}
+
+  % Extra underlines
+    \RequirePackage{ulem}
+
 %--------------------------------------------------
 
 %--------------------------------------------------
@@ -22,6 +26,10 @@
   % Resolving in a basis
   \newcommand{\basis}[2]{\qty[#1]_{#2}}
 
+  % Take a span
+  \newcommand{\span}[1]{\langle #1 \rangle}
+
+
 %--------------------------------------------------
 
 %--------------------------------------------------
@@ -31,7 +39,7 @@
 
   % Relative velocity of a frame
   \newcommand{\vrel}[2]{\frame{\vb{v}_{#1}}{#2}}
-  
+
   % Relative acceleration of a frame
   \newcommand{\arel}[2]{\frame{\vb{a}_{#1}}{#2}}
 
