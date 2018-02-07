@@ -3,7 +3,7 @@
 \RequirePackage{TexStyle}
 
 %--------------------------------------------------
-% Settings
+% Document Settings
 
   % Paragraph sizing
     \setlength{\parskip}{1.5\baselineskip}
@@ -18,4 +18,6 @@
       urlcolor=cyan,
     }
     \urlstyle{same}
+
+    
 %--------------------------------------------------
