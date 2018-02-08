@@ -5,27 +5,32 @@
 
 
   % Use notation
+    \newif\ifnotationused
     \DeclareOption{notation}{
-      \RequirePackage{./components/TexStyleNotation.sty}
+      \notationusedtrue
     }
   \ProcessOptions\relax
+
+  \ifnotationused
+    \RequirePackage{TeXStyle-Notation}
+  \fi
 %--------------------------------------------------
 
 %--------------------------------------------------
 % Dependencies
 
   % Basic package dependencies
-  \RequirePackage{./components/TexStyleBase.sty}
+  \RequirePackage{TeXStyle-Base}
 
   % Document Management
-  \RequirePackage{./components/TexStyleDocument.sty}
+  \RequirePackage{TeXStyle-Document}
 
   % Section Environments
-  \RequirePackage{./components/TexStyleEnvironments.sty}
+  \RequirePackage{TeXStyle-Environments}
 
   % Graphics
-  \RequirePackage{./components/TexStyleGraphics.sty}
+  \RequirePackage{TeXStyle-Graphics}
 
   % Macros
-  \RequirePackage{./components/TexStyleMacros.sty}
+  \RequirePackage{TeXStyle-Macros}
 %--------------------------------------------------
