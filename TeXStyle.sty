@@ -5,13 +5,13 @@
 
 
   % Use notation
-    \newif\ifnotationused
+    \newif\ifNotationUsed
     \DeclareOption{notation}{
-      \notationusedtrue
+      \NotationUsedtrue
     }
   \ProcessOptions\relax
 
-  \ifnotationused
+  \ifNotationUsed
     \RequirePackage{TeXStyle-Notation}
   \fi
 %--------------------------------------------------

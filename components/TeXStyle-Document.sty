@@ -26,14 +26,15 @@
 %--------------------------------------------------
 % Option Parsing
   % Draft version behaviour
-    \DeclareOption{draft}{
+    \newif\ifDraftOn
+    \DeclareOption{draft}{\DraftOntrue}
+    \ProcessOptions\relax
 
+    \ifDraftOn
       % Emphasis and margin notes
       \newcommand{\marEmp}[3]{#1\marginnote{\emph{#1}:#2}[#3]}
       \newcommand{\marNote}[2]{\marginnote{#1}[#2]}
-
-    \OptionNotUsed
-
+    \else
       % Emphasis and margin notes are discouraged in non-draft versions
       \newcommand{\marEmp}[3]{
         #1
@@ -47,9 +48,8 @@
         \space \space \"#1\" \MessageBreak
         not removed, consider removing for final draft.}
       }
-
-    }
-    \ProcessOptions\relax
+    \fi
+    
 %--------------------------------------------------
 
 
