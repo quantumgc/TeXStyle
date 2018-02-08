@@ -2,6 +2,9 @@
 
 \RequirePackage{TexStyle}
 
+\LoadClassWithOptions{article}
+
+
 %--------------------------------------------------
 % Document Settings
 
