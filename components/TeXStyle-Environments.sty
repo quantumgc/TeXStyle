@@ -13,30 +13,85 @@
 %--------------------------------------------------
 
 %--------------------------------------------------
+% Theorem Styles
+  \newtheoremstyle{NoBreak}
+    {1pt}% measure of space to leave above the theorem. E.g.: 3pt
+    {}% measure of space to leave below the theorem. E.g.: 3pt
+    {\itshape}% name of font to use in the body of the theorem
+    {\parindent}% measure of space to indent
+    {}% name of head font
+    {}% punctuation between head and body
+    {.5em}% space after theorem head; " " = normal interword space
+    {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}% Manually specify head
+
+
+  \newtheoremstyle{Break}
+    {5pt}% measure of space to leave above the theorem. E.g.: 3pt
+    {5pt}% measure of space to leave below the theorem. E.g.: 3pt
+    {\itshape}% name of font to use in the body of the theorem
+    {\parindent}% measure of space to indent
+    {}% name of head font
+    {}% punctuation between head and body
+    {\newline}% space after theorem head; " " = normal interword space
+    {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}% Manually specify head
+
+  \newtheoremstyle{BreakBold}% name of the style to be used
+    {5pt}% measure of space to leave above the theorem. E.g.: 3pt
+    {5pt}% measure of space to leave below the theorem. E.g.: 3pt
+    {\itshape}% name of font to use in the body of the theorem
+    {\parindent}% measure of space to indent
+    {\bfseries}% name of head font
+    {}% punctuation between head and body
+    {\newline}% space after theorem head; " " = normal interword space
+    {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}% Manually specify head
+
+  \newtheoremstyle{NoBreakBold}% name of the style to be used
+    {1pt}% measure of space to leave above the theorem. E.g.: 3pt
+    {}% measure of space to leave below the theorem. E.g.: 3pt
+    {\itshape}% name of font to use in the body of the theorem
+    {\parindent}% measure of space to indent
+    {\bfseries}% name of head font
+    {}% punctuation between head and body
+    {.5em}% space after theorem head; " " = normal interword space
+    {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}% Manually specify head
+%--------------------------------------------------
+
+
+%--------------------------------------------------
 % Environments
 
   % Theorems
+    \theoremstyle{BreakBold}
     \newtheorem{theorem}{Theorem}[section]
     % Refreshes every theorem
+    \theoremstyle{NoBreak}  
     \newtheorem{corollary}{Corollary}[theorem]
+    \theoremstyle{NoBreakBold}
     \newtheorem{lemma}{Lemma}[theorem]
 
   % Examples
+    \theoremstyle{BreakBold}  
     \newtheorem{examples}{Examples}[section]
     % Refreshes every example
+    \theoremstyle{NoBreak}  
     \newtheorem{example}{}[examples]
 
   % definitions
+    \theoremstyle{BreakBold}
     \newtheorem{definition}{Definition}[section]
     % Refreshes every definition
+    \theoremstyle{NoBreakBold}
     \newtheorem{subDef}{}[definition]
 
   % propositions
+    \theoremstyle{BreakBold}
     \newtheorem{proposition}{Proposition}[section]
     % Refreshes every proposition
+    \theoremstyle{NoBreak}
     \newtheorem{subProp}{}[proposition]
 
   % Unumbered variants
+    \theoremstyle{Break}
     \newtheorem*{theorem*}{Theorem}
     \newtheorem*{corollary*}{Corollary}
     \newtheorem*{lemma*}{Lemma}
