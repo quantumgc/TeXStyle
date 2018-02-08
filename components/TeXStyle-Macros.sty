@@ -1,0 +1,48 @@
+\ProvidesPackage{TeXStyle-Macros}
+
+%--------------------------------------------------
+% Dependencies
+  % Symbols
+    % General non-math symbols
+    \RequirePackage{gensymb}
+
+    % Extended math symbols
+    \RequirePackage{fdsymbol}
+
+    % Blackboard bold fonts
+    \RequirePackage{bbm}
+
+  % Referencing support
+    \RequirePackage{xr}
+    \RequirePackage{zref}
+%--------------------------------------------------
+
+
+%--------------------------------------------------
+% Macros
+  % Referencing
+    % Create a reference with a page number
+    \newcommand{\PagRef}[1]{\ref{#1}, pp.\pageref{#1}}
+    \newcommand{\QuikRef}[1]{\ref{#1}}
+
+  % Logic and proof symbols
+    % Implied by
+    \newcommand{\implied}{\Longleftarrow}
+    % Does not imply
+    \newcommand{\nImplies}{\nLongrightarrow}
+    % Is not implied by
+    \newcommand{\nImplied}{\nLongleftarrow}
+    % Not equivalent to
+    \newcommand{\nEquiv}{\nLeftrightarrow}
+    % Contradiction
+    \newcommand{\Cont}{\text{\textreferencemark}}
+
+  % Math Operators
+    % Inverse Hyperbolic functions
+    \DeclareMathOperator{\arcosh}{arcosh}
+    \DeclareMathOperator{\arsinh}{arsinh}
+    \DeclareMathOperator{\artanh}{artanh}
+    \DeclareMathOperator{\arsech}{arsech}
+    \DeclareMathOperator{\arcsch}{arCsch}
+    \DeclareMathOperator{\arcoth}{arCoth}
+%--------------------------------------------------

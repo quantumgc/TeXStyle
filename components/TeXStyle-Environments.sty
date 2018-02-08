@@ -1,0 +1,80 @@
+\ProvidesPackage{TeXStyle-Environments}
+
+%--------------------------------------------------
+% Dependencies
+  % Theorem styles
+    \RequirePackage{amsthm}
+
+  % Code listings
+    \RequirePackage{listings}
+
+  % MatLab code
+    \RequirePackage{matlab-prettifier}
+%--------------------------------------------------
+
+%--------------------------------------------------
+% Environments
+
+  % Theorems
+    \newtheorem{theorem}{Theorem}[section]
+    % Refreshes every theorem
+    \newtheorem{corollary}{Corollary}[theorem]
+    \newtheorem{lemma}{Lemma}[theorem]
+
+  % Examples
+    \newtheorem{examples}{Examples}[section]
+    % Refreshes every example
+    \newtheorem{example}{}[examples]
+
+  % definitions
+    \newtheorem{definition}{Definition}[section]
+    % Refreshes every definition
+    \newtheorem{subDef}{}[definition]
+
+  % propositions
+    \newtheorem{proposition}{Proposition}[section]
+    % Refreshes every proposition
+    \newtheorem{subProp}{}[proposition]
+
+  % Unumbered variants
+    \newtheorem*{theorem*}{Theorem}
+    \newtheorem*{corollary*}{Corollary}
+    \newtheorem*{lemma*}{Lemma}
+    \newtheorem*{example*}{Example}
+    \newtheorem*{definition*}{Definition}
+    \newtheorem*{proposition*}{Proposition}
+%--------------------------------------------------
+
+%--------------------------------------------------
+% Code Environments
+
+  % Default
+    \lstset{
+      basicstyle=\fontsize{8}{10}\ttfamily,
+      aboveskip={1.0\baselineskip},
+      belowskip={1.0\baselineskip},
+      columns=fixed,
+      extendedchars=true,
+      breaklines=true,
+      tabsize=2,
+      prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}}, % linebreak symbols
+      frame=lines,
+      showtabs=false,
+      showspaces=false,
+      showstringspaces=false,
+      keywordstyle=\color[rgb]{0.627,0.126,0.941},
+      commentstyle=\color[rgb]{0.133,0.545,0.133},
+      stringstyle=\color[rgb]{01,0,0},
+      numbers=left,
+      numberstyle=\small,
+      stepnumber=1,
+      numbersep=10pt,
+      captionpos=t,
+      numbers=left,
+      stepnumber=1,
+      firstnumber=1,
+      numberfirstline=true
+    }
+
+%--------------------------------------------------
+

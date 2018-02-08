@@ -1,0 +1,37 @@
+\ProvidesPackage{TeXStyle}
+
+%--------------------------------------------------
+% Option parsing
+
+
+  % Use notation
+    \newif\ifNotationUsed
+    \DeclareOption{notation}{
+      \NotationUsedtrue
+    }
+    \DeclareOption{draft}{}
+  \ProcessOptions\relax
+
+  \ifNotationUsed
+    \RequirePackage{TeXStyle-Notation}
+  \fi
+%--------------------------------------------------
+
+%--------------------------------------------------
+% Dependencies
+
+  % Basic package dependencies
+  \RequirePackage{TeXStyle-Base}
+
+  % Document Management
+  \RequirePackage{TeXStyle-Document}
+
+  % Section Environments
+  \RequirePackage{TeXStyle-Environments}
+
+  % Graphics
+  \RequirePackage{TeXStyle-Graphics}
+
+  % Macros
+  \RequirePackage{TeXStyle-Macros}
+%--------------------------------------------------

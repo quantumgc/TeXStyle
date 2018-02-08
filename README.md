@@ -1,25 +1,25 @@
 # TeXStyle
 
-This is a LaTeX style that I use for most of the documents I write. While this mostly consists of several packages that I've often used brought together into one, there are some modifications to make them work well together/look acceptable.
+This is a LaTeX style that I use for most of the documents I write. While this mostly consists of several packages that I've often used brought together into one, there are some slight modifications to make them work well together/look acceptable.
 
 ## How to use the style
 
-+ Download the file MyStyle.sty, either by cloning the git repository entirely or just downloading the file on its own.
-+ Place it somewhere on your latex path, your project folder should work in most cases.
-+ Include the command `\usepackage{MyStyle}` somewhere in the preamble.
+TeXStyle is a single style split across several files, as a result you might need to do some fiddling to get it to work correctly.
+
+### Linux/TeXLive
+
+Create the directory `~/texmf/tex/latex/TeXStyle` and copy/symlink `TeXStyle.sty` as well as the folders `classes` and `components` to it. I may add a script to automate this in the future.
 
 ## Additional Macros/Tweaks
 
 ### Draft Mode
 
-+ A4 page set in B4 paper with the extra space allocated to margin comments.
 + `\marEmp{emphasis}{note}{size}` emphasise a piece of text at the start of the note.
 + `\marNote{note}{size}` a note to the side of the page.
 
 ### Math Mode
 
-+ `\mat{arg}` formats arg in bold, for code legibility when dealing with matrices.
-+ `\nImplies`, `\nImplied` and `\nEquiv` for negated right, left and double-headed arrows respectively. For succinctness.
++ `\implied`, `\nImplies`, `\nImplied` and `\nEquiv` for left, negated right, negated left and negated double-headed arrows respectively. For succinctness.
 + `\Cont` adds a text reference mark to represent a contradiction for proofs.
 + Inverse hyperbolic functions
 
@@ -42,9 +42,14 @@ This is a LaTeX style that I use for most of the documents I write. While this m
 
 and unnumbered variants thereof. Also included is a semi-customised listings environment.
 
+## Classes
+
+Currently, only a default class with customised spacing and an A4 page set in B4 paper with the extra space allocated to margin comments when draft mode is turned on.
+
 ## To-Do
 
 + Add bibliography support
 + Write more Header/Footer customisation
 + Configure default graphics details
 + Add template files
++ Add multicols configured environment

@@ -1,0 +1,47 @@
+\ProvidesPackage{TeXStyle-Notation}
+
+%--------------------------------------------------
+% This file contains personal notation macros, because of that it isn't included by default or when 'full' is passed as a package option.
+% To enable this pass notation as a package option
+%--------------------------------------------------
+
+%--------------------------------------------------
+  % Dependencies
+    \RequirePackage{physics}
+
+  % Extra underlines
+    \RequirePackage{ulem}
+
+%--------------------------------------------------
+
+%--------------------------------------------------
+% Vectors, Matrices, Transformations, etc.
+
+  % Matrix style (more for code clarity than anything else)
+  \newcommand{\mat}[1]{\vb{#1}}
+
+  % Nth basis vector in a canonical basis for F^n
+  \newcommand{\bvec}[1]{\vu{e}_[#1]}
+
+  % Resolving in a basis
+  \newcommand{\basis}[2]{\qty[#1]_{#2}}
+
+  % Take a span
+  \newcommand{\vSpan}[1]{\langle #1 \rangle}
+
+
+%--------------------------------------------------
+
+%--------------------------------------------------
+% Mechanics
+  % Resolving in a frame
+  \newcommand{\rFrame}[2]{\qty[#1]^{#2}}
+
+  % Relative velocity of a frame
+  \newcommand{\vRel}[2]{\frame{\vb{v}_{#1}}{#2}}
+
+  % Relative acceleration of a frame
+  \newcommand{\aRel}[2]{\frame{\vb{a}_{#1}}{#2}}
+
+%--------------------------------------------------
+
