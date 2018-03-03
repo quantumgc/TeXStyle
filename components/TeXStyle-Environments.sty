@@ -105,16 +105,16 @@
     \theoremstyle{BreakBold}
     \newtheorem{theorem}{Theorem}[section]
     % Refreshes every theorem
-    \theoremstyle{Break}  
+    \theoremstyle{Break}
     \newtheorem{corollary}{Corollary}[theorem]
     \theoremstyle{Break}
     \newtheorem{lemma}{Lemma}[theorem]
 
   % Examples
-    \theoremstyle{BreakBold}  
+    \theoremstyle{BreakBold}
     \newtheorem{examples}{Examples}[section]
     % Refreshes every example
-    \theoremstyle{NoBreak}  
+    \theoremstyle{NoBreak}
     \newtheorem{example}{}[examples]
 
   % definitions
@@ -161,21 +161,18 @@
       tabsize=2,
       prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}}, % linebreak symbols
       frame=lines,
-      showtabs=false,
-      showspaces=false,
-      showstringspaces=false,
-      keywordstyle=\color[rgb]{0.627,0.126,0.941},
-      commentstyle=\color[rgb]{0.133,0.545,0.133},
-      stringstyle=\color[rgb]{01,0,0},
+      % showtabs=false,
+      % showspaces=false,
+      % showstringspaces=true,
+      keywordstyle=\color[HTML]{092140},
+      identifierstyle=\color[HTML]{024959},
+      commentstyle=\color[HTML]{F2C777},
+      stringstyle=\color[HTML]{BF2A2A},
       numbers=left,
-      numberstyle=\small,
-      stepnumber=1,
+      numberstyle=\small\ttfamily,
+      stepnumber=2,
       numbersep=10pt,
-      captionpos=t,
-      numbers=left,
-      stepnumber=1,
-      firstnumber=1,
-      numberfirstline=true
+      captionpos=t
     }
 
 %--------------------------------------------------
