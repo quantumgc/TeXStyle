@@ -8,8 +8,8 @@
   % Code listings
     \RequirePackage{listings}
 
-  % MatLab code
-    \RequirePackage{matlab-prettifier}
+  % Lists
+    \RequirePackage[shortlabels]{enumitem}
 %--------------------------------------------------
 
 %--------------------------------------------------
@@ -95,7 +95,6 @@
     {\thmname{#1}:\thmnote{ #3}}% Manually specify head
 %--------------------------------------------------
 
-
 %--------------------------------------------------
 % Environments
 
@@ -105,16 +104,16 @@
     \theoremstyle{BreakBold}
     \newtheorem{theorem}{Theorem}[section]
     % Refreshes every theorem
-    \theoremstyle{Break}  
+    \theoremstyle{Break}
     \newtheorem{corollary}{Corollary}[theorem]
     \theoremstyle{Break}
     \newtheorem{lemma}{Lemma}[theorem]
 
   % Examples
-    \theoremstyle{BreakBold}  
+    \theoremstyle{BreakBold}
     \newtheorem{examples}{Examples}[section]
     % Refreshes every example
-    \theoremstyle{NoBreak}  
+    \theoremstyle{NoBreak}
     \newtheorem{example}{}[examples]
 
   % definitions
@@ -179,4 +178,3 @@
     }
 
 %--------------------------------------------------
-
