@@ -1,0 +1,26 @@
+\ProvidesPackage{TeXStyle-Referencing}
+%--------------------------------------------------
+% Referencing styles and hyperlinking functionality
+%--------------------------------------------------
+
+%--------------------------------------------------
+% Dependencies
+  % Hyper-linking within LaTeX
+    \RequirePackage{hyperref}
+
+  % Referencing support
+    \RequirePackage{xr}
+    \RequirePackage{zref}
+
+  % Bibtex support
+    \RequirePackage{bibtex}
+%--------------------------------------------------
+
+%--------------------------------------------------
+% Macros
+  % In file referencing 
+    % Create a reference with a page number
+    \newcommand{\PagRef}[1]{\ref{#1}, pp.\pageref{#1}}
+    % Create a reference without
+    \newcommand{\QuikRef}[1]{\ref{#1}}
+%--------------------------------------------------
