@@ -3,7 +3,6 @@
 %--------------------------------------------------
 % Option parsing
 
-
   % Use notation
     \newif\ifNotationUsed
     \DeclareOption{notation}{
@@ -23,15 +22,15 @@
   % Basic package dependencies
   \RequirePackage{TeXStyle-Base}
 
-  % Document Management
-  \RequirePackage{TeXStyle-Document}
-
   % Section Environments
   \RequirePackage{TeXStyle-Environments}
-
+  
+  % Glyphs, fonts and macros
+  \RequirePackage{TeXStyle-Glyphs}
+  
   % Graphics
   \RequirePackage{TeXStyle-Graphics}
-
-  % Macros
-  \RequirePackage{TeXStyle-Macros}
+  
+  % Reference management
+  \RequirePackage{TeXStyle-Referencing}
 %--------------------------------------------------
