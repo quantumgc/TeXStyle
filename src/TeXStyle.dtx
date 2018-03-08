@@ -19,6 +19,27 @@
 % \fi
 %
 % \section{TeXStyle.sty}
+%   \subsection{Base dependencies}
+%
+%     These packages are used across practically all of TeXStyle, including the various sub-sections of the main package.
+%     They are used for:
+%     \begin{itemize}
+%       \item |subfiles|: Assembling documents from multiple files.
+%       \item |color|: Control over the colour of various elements.
+%       \item |xcolor|: A driver-independent implementation of color.
+%     \end{itemize}
+% \iffalse
+%<*package>
+% \fi
+%    \begin{macrocode}
+\RequirePackage{subfiles}
+\RequirePackage{color}
+\RequirePackage{xcolor}
+%    \end{macrocode}
+% \iffalse
+%</package>
+% \fi
+%
 %   \subsection{TeXStyle options}
 %
 %     Currently, the only options available when loading TeXStyle are draft and notation.
@@ -26,8 +47,11 @@
 %     Notation enables the use of certain macros that are intended for use by myself.
 %     These are covered later in the documentation.
 %
-%    \begin{macrocode}
+% \iffalse
 %<*package>
+% \fi
+%    \begin{macrocode}
+
     \newif\ifNotationUsed
     \newif\ifDraftModeOn
     \DeclareOption{notation}{
@@ -37,18 +61,7 @@
       \DraftModeOntrue
     }
   \ProcessOptions\relax
-%</package>
 %    \end{macrocode}
-%
-%   \subsection{Base dependencies}
-%
-%     These packages are used across practically all of TeXStyle, including the various sub-sections of the main package.
-%     They are used for:
-%     \begin{itemize}
-%       \item Assembling documents from multiple files:
-%<package>\RequirePackage{subfiles}
-%       \item Control over the colour of various elements:
-%<package>\RequirePackage{color}
-%       \item A driver-independent implementation of color:
-%<package>\RequirePackage{xcolor}
-%     \end{itemize}
+% \iffalse
+%</package>
+% \fi
