@@ -1,106 +1,74 @@
 %   \subsection{Environments}
-%     
-%     TeXStyle comes with a number of predefined environments that are intended 
-%--------------------------------------------------
-% Dependencies
-  % Theorem styles
-    \RequirePackage{amsthm}
+%     TeXStyle comes with a number of predefined environments that are intended to improve clarity in documents.
+%     As of the current release, theorem environments don't have fully customised styles.
+%     These should be included in a release in the near future.
+%
+%     \subsubsection{Dependencies}
+%       The following packages are required in order to generate and style the environments.
+%       \begin{itemize}
+%         \item \verb{amsthm} provides the base for generating and configuring theorem environments.
+%         \item \verb{listings} provides environments for including source code.
+%         \item \verb{enumitem} with the \verb{shortlabels} option allows short specifiers for the bullets on enumerated lists.
+%
+%    \begin{macrocode}
+%<*package>
+\RequirePackage{amsthm}
+\RequirePackage{listings}
+\RequirePackage[shortlabels]{enumitem}
+%</package>
+%    \end{macrocode}
+  %
+%     \subsubsection{Rough Theorem Styles}
+%       These styles are used to roughly define how each theorem should look.
+%       They are then further refined for each individual type.
+%       The arguments are:
+%
+%    \begin{macrocode}
+%<*package>
+\newtheoremstyle{NoBreak}
+  {1pt}% measure of space to leave above the theorem. E.g.: 3pt
+  {}% measure of space to leave below the theorem. E.g.: 3pt
+  {\itshape}% name of font to use in the body of the theorem
+  {\parindent}% measure of space to indent
+  {}% name of head font
+  {}% punctuation between head and body
+  {.5em}% space after theorem head; " " = normal interword space
+  {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}% Manually specify theorem head
+%</package>
+%    \end{macrocode}
+%
+%       The other styles are defined similarly
+%    \begin{macrocode}
+%<*package>
+\newtheoremstyle{NoBreakNoNumber}{1pt}{}{\itshape}{\parindent}{}{}
+  {.5em}{\thmname{#1}:\thmnote{ #3}}
 
-  % Code listings
-    \RequirePackage{listings}
+\newtheoremstyle{Break}{5pt}{5pt}{\itshape}{\parindent}{}{}
+  {\newline}{\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
 
-  % Lists
-    \RequirePackage[shortlabels]{enumitem}
-%--------------------------------------------------
+\newtheoremstyle{BreakNoNumber}{5pt}{5pt}{\itshape}{\parindent}
+  {}{}{\newline}{\thmname{#1}:\thmnote{ #3}}
 
-%--------------------------------------------------
-% Theorem Styles
-  \newtheoremstyle{NoBreak}
-    {1pt}% measure of space to leave above the theorem. E.g.: 3pt
-    {}% measure of space to leave below the theorem. E.g.: 3pt
-    {\itshape}% name of font to use in the body of the theorem
-    {\parindent}% measure of space to indent
-    {}% name of head font
-    {}% punctuation between head and body
-    {.5em}% space after theorem head; " " = normal interword space
-    {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}% Manually specify head
+\newtheoremstyle{BreakBold}{5pt}{5pt}{\itshape}{\parindent}
+  {\bfseries}{}{\newline}{\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
 
-  \newtheoremstyle{NoBreakNoNumber}
-    {1pt}% measure of space to leave above the theorem. E.g.: 3pt
-    {}% measure of space to leave below the theorem. E.g.: 3pt
-    {\itshape}% name of font to use in the body of the theorem
-    {\parindent}% measure of space to indent
-    {}% name of head font
-    {}% punctuation between head and body
-    {.5em}% space after theorem head; " " = normal interword space
-    {\thmname{#1}:\thmnote{ #3}}% Manually specify head
+\newtheoremstyle{BreakBoldNoNumber}{5pt}{5pt}{\itshape}{\parindent}
+  {\bfseries}{}{\newline}{\thmname{#1}:\thmnote{ #3}}
 
-  \newtheoremstyle{Break}
-    {5pt}% measure of space to leave above the theorem. E.g.: 3pt
-    {5pt}% measure of space to leave below the theorem. E.g.: 3pt
-    {\itshape}% name of font to use in the body of the theorem
-    {\parindent}% measure of space to indent
-    {}% name of head font
-    {}% punctuation between head and body
-    {\newline}% space after theorem head; " " = normal interword space
-    {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}% Manually specify head
+\newtheoremstyle{NoBreakBold}{1pt}{}{\itshape}{\parindent}
+  {\bfseries}{}{.5em}{\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
 
-  \newtheoremstyle{BreakNoNumber}
-    {5pt}% measure of space to leave above the theorem. E.g.: 3pt
-    {5pt}% measure of space to leave below the theorem. E.g.: 3pt
-    {\itshape}% name of font to use in the body of the theorem
-    {\parindent}% measure of space to indent
-    {}% name of head font
-    {}% punctuation between head and body
-    {\newline}% space after theorem head; " " = normal interword space
-    {\thmname{#1}:\thmnote{ #3}}% Manually specify head
-
-  \newtheoremstyle{BreakBold}% name of the style to be used
-    {5pt}% measure of space to leave above the theorem. E.g.: 3pt
-    {5pt}% measure of space to leave below the theorem. E.g.: 3pt
-    {\itshape}% name of font to use in the body of the theorem
-    {\parindent}% measure of space to indent
-    {\bfseries}% name of head font
-    {}% punctuation between head and body
-    {\newline}% space after theorem head; " " = normal interword space
-    {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}% Manually specify head
-
-  \newtheoremstyle{BreakBoldNoNumber}% name of the style to be used
-    {5pt}% measure of space to leave above the theorem. E.g.: 3pt
-    {5pt}% measure of space to leave below the theorem. E.g.: 3pt
-    {\itshape}% name of font to use in the body of the theorem
-    {\parindent}% measure of space to indent
-    {\bfseries}% name of head font
-    {}% punctuation between head and body
-    {\newline}% space after theorem head; " " = normal interword space
-    {\thmname{#1}:\thmnote{ #3}}% Manually specify head
-
-  \newtheoremstyle{NoBreakBold}% name of the style to be used
-    {1pt}% measure of space to leave above the theorem. E.g.: 3pt
-    {}% measure of space to leave below the theorem. E.g.: 3pt
-    {\itshape}% name of font to use in the body of the theorem
-    {\parindent}% measure of space to indent
-    {\bfseries}% name of head font
-    {}% punctuation between head and body
-    {.5em}% space after theorem head; " " = normal interword space
-    {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}% Manually specify head
-
-  \newtheoremstyle{NoBreakBoldNoNumber}% name of the style to be used
-    {1pt}% measure of space to leave above the theorem. E.g.: 3pt
-    {}% measure of space to leave below the theorem. E.g.: 3pt
-    {\itshape}% name of font to use in the body of the theorem
-    {\parindent}% measure of space to indent
-    {\bfseries}% name of head font
-    {}% punctuation between head and body
-    {.5em}% space after theorem head; " " = normal interword space
-    {\thmname{#1}:\thmnote{ #3}}% Manually specify head
-%--------------------------------------------------
-
-%--------------------------------------------------
-% Environments
-
-  \renewcommand{\qedsymbol}{$\lgblksquare$}
-
+\newtheoremstyle{NoBreakBoldNoNumber}{1pt}{}{\itshape}{\parindent}
+  {\bfseries}{}{.5em}{\thmname{#1}:\thmnote{ #3}}
+%</package>
+%    \end{macrocode}
+% 
+%       An additional stylistic choice is the use of a filled black square to mark the end of a proof as opposed to an unfilled white one.
+%
+%<package>\renewcommand{\qedsymbol}{$\lgblksquare$}
+%
+%     \subsubsection{\verb{Amsthm} Environments}
+% 
   % Theorems
     \theoremstyle{BreakBold}
     \newtheorem{theorem}{Theorem}[section]
