@@ -1,8 +1,79 @@
 % \iffalse
-% ^^A Beginning of meta-package description, regular latex will process everything hence, docstrip w
+% ^^A Beginning of meta-package description
+% ^^A Regular latex will ignore comments as usual
+% ^^A Docstrip will read the iffalse and ignore everything up to a corresponding fi
 %
-% Test build ins file for Gautam Chaudhuri's TeXStyle
+% Test build file for Gautam Chaudhuri's TeXStyle
 %
 %<*internal>
+% ^^A Internal tag: not exactly sure what they do but they seem to be
+% ^^A  another distinguishing mark. I'll have to experiment a bit to see exactly 
+% ^^A  what they are used for.
+%
+% ^^A Thought: perhaps they serve to deter the meta-processor or docstrip?
+%
 \iffalse
 %</internal>
+%<*readme>
+--------------------
+Build.dtx
+
+A test build file for the entire TeXStyle package.
+Running 'latex Build.dtx' should generate this ReadMe,
+the .ins file for this package and the appropriate
+.(sty|cls) files
+--------------------
+%</readme>
+%<*internal>
+\fi
+\begingroup
+% ^^A Groups settings together apparently
+%</internal>
+%
+%<*batchfile>
+\input docstrip.tex
+\keepsilent\askforoverwritefalse
+\nopreamble\nopostamble
+% ^^A I genuinely have no clue why these are here
+%
+\generate{\file{TeXStyle.sty}{
+  \from{TeXStyle.dtx}{package}
+  \from{components/TeXStyle-Base.dtx}{package}
+  \from{components/TeXStyle-Environments.dtx}{package}
+  \from{components/TeXStyle-Glyphs.dtx}{package}
+  \from{components/TeXStyle-Graphics.dtx}{package}
+  \from{components/TeXStyle-Notation.dtx}{package}
+  \from{components/TeXStyle-Referencing.dtx}{package}
+  }}
+% ^^A Must remember to package the files properly
+%</batchfile>
+%<batchfile>\endbatchfile
+%
+%<*internal>
+\generate{\file{TeXStyle.ins}{\from{Build.dtx}{batchfile}}}
+\generate{\file{Build.readme}{\from{Build.dtx}{readme}}}
+\endgroup
+%</internal>
+%
+%<*driver>
+% ^^A This is the group of statements that tell docstrip what to do
+\documentclass{ltxdoc}
+\usepackage{TeXStyle}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+% ^^A Again, mostly stuff I don't know about
+\title{TeXStyle - Documentation}
+\author{Gautam Chaudhuri}
+\begin{document}
+  \maketitle
+  \DocInput{TeXStyle.dtx}
+  \DocInput{components/TeXStyle-Base.dtx}
+  \DocInput{components/TeXStyle-Environments.dtx}
+  \DocInput{components/TeXStyle-Glyphs.dtx}
+  \DocInput{components/TeXStyle-Graphics.dtx}
+  \DocInput{components/TeXStyle-Notation.dtx}
+  \DocInput{components/TeXStyle-Referencing.dtx}  
+\end{document}
+%</driver>
+% \fi
