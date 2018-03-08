@@ -11,7 +11,7 @@
 %
 % and version 1.3 or later is part of all distributions of
 % LaTeX version 2005/12/01 or later.
-% 
+%
 % \fi
 % \iffalse
 %<package>\NeedsTeXFormat{LaTeX2e}
@@ -20,21 +20,35 @@
 %
 % \section{TeXStyle.sty}
 %   \subsection{TeXStyle options}
-%     
+%
 %     Currently, the only options available when loading TeXStyle are draft and notation.
 %     Draft mode enables features such as extended margins and margin comments.
 %     Notation enables the use of certain macros that are intended for use by myself.
 %     These are covered later in the documentation.
-%     
+%
 %
 %<*package>
     \newif\ifNotationUsed
-    \newif\ifDraftModeOn    
+    \newif\ifDraftModeOn
     \DeclareOption{notation}{
       \NotationUsedtrue
     }
     \DeclareOption{draft}{
       \DraftModeOntrue
     }
-  \ProcessOptions\relax  
+  \ProcessOptions\relax
 %</package>
+%
+%
+%  \subsection{Base dependencies}
+%
+%    These packages are used across practically all of TeXStyle, including the various sub-sections of the main package.
+%    They are used for:
+%    \begin{itemize}
+%      \item Assembling documents from multiple files:
+%<package>\RequirePackage{subfiles}
+%      \item Control over the colour of various elements:
+%<package>\RequirePackage{color}
+%      \item A driver-independent implementation of color:
+%<package>\RequirePackage{xcolor}
+%    \end{itemize}
