@@ -1,0 +1,77 @@
+%   \subsection{Symbols}
+%
+%
+%
+%     \subsubsection{Dependencies}
+%       \begin{itemize}
+%         \item |gensymb|: For general non-maths symbols
+%         \item |fdsymbol|: Extended maths symbols
+%         \item |bbm|: Blackboard bold fonts
+%         \item |physics|: Physics symbols
+%       \end{itemize}
+%
+
+% \iffalse
+%<*package>
+% \fi
+%    \begin{macrocode}
+  \RequirePackage{gensymb}
+  \RequirePackage{fdsymbol}
+  \RequirePackage{bbm}
+  \RequirePackage{physics}
+%    \end{macrocode}
+% \iffalse
+%</package?
+% \fi
+%       \subsubsection{Macros}
+%         \paragraph{Logic and proof symbols}
+%
+% \begin{macro}{\implies}
+% Renews the command for implication to better fit the rest of the implication symbols, outputs $\implies$.
+%<*package>
+%    \begin{macrocode}
+    \renewcommand{\implies}{\Longrightarrow}
+%    \end{macrocode}
+%</package>
+% \end{macro}
+%
+% \begin{macro}{\implied}
+% Renews the command for implication to better fit the rest of the implication symbols, outputs $\implied$.
+%< * package >
+%    \begin{ macrocode }
+    \newcommand{\implied}{\Longleftarrow}
+%    \end{macrocode}
+%</package>
+% \end{macro}
+
+
+    % Implied by
+    \newcommand{\implied}{\Longleftarrow}
+    % Does not imply
+    \newcommand{\nImplies}{\nLongrightarrow}
+    % Is not implied by
+    \newcommand{\nImplied}{\nLongleftarrow}
+    % Not equivalent to
+    \newcommand{\nEquiv}{\nLeftrightarrow}
+    % Contradiction
+    \newcommand{\contra}{\text{\textreferencemark}}
+
+  % Math Operators
+    % Inverse Hyperbolic functions
+    \DeclareMathOperator{\arcosh}{arcosh}
+    \DeclareMathOperator{\arsinh}{arsinh}
+    \DeclareMathOperator{\artanh}{artanh}
+    \DeclareMathOperator{\arsech}{arsech}
+    \DeclareMathOperator{\arcsch}{arcsch}
+    \DeclareMathOperator{\arcoth}{arcoth}
+
+  % Common sets
+    \DeclareMathOperator{\Z}{\mathbb{Z}}
+    \DeclareMathOperator{\Znn}{\mathbb{Z}_{\geq0}}
+    \DeclareMathOperator{\Znz}{\mathbb{Z}_{\neq0}}
+    \DeclareMathOperator{\Zpl}{\mathbb{Z}^+}
+
+    \DeclareMathOperator{\R}{\mathbb{R}}
+    \DeclareMathOperator{\Rnn}{\mathbb{R}_{\geq0}}
+    \DeclareMathOperator{\Rnz}{\mathbb{R}_{\neq0}}
+    \DeclareMathOperator{\Rpl}{\mathbb{R}^+}
