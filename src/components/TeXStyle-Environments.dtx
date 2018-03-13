@@ -6,114 +6,173 @@
 %     \subsubsection{Dependencies}
 %       The following packages are required in order to generate and style the environments.
 %       \begin{itemize}
-%         \item \verb{amsthm} provides the base for generating and configuring theorem environments.
-%         \item \verb{listings} provides environments for including source code.
-%         \item \verb{enumitem} with the \verb{shortlabels} option allows short specifiers for the bullets on enumerated lists.
+%         \item |amsthm| provides the base for generating and configuring theorem environments.
+%         \item |listings| provides environments for including source code.
+%         \item |enumitem| with the |shortlabels| option allows short specifiers for the bullets on enumerated lists.
+%         \item |mdframed| with the |framemethod=tikz| option allows theorem environments to be framed with lines.
+%       \end{itemize}
 %
-%    \begin{macrocode}
+% \iffalse
 %<*package>
+% \fi
+%    \begin{macrocode}
 \RequirePackage{amsthm}
 \RequirePackage{listings}
 \RequirePackage[shortlabels]{enumitem}
-%</package>
+\usepackage[framemethod=tikz]{mdframed}
 %    \end{macrocode}
-  %
-%     \subsubsection{Rough Theorem Styles}
-%       These styles are used to roughly define how each theorem should look.
-%       They are then further refined for each individual type.
-%       The arguments are:
+% \iffalse
+%</package>
+% \fi
 %
-%    \begin{macrocode}
+%     \subsubsection{Theorem Styles}
+%
+%       \paragraph{Rough Styles}
+%         These styles are used to roughly define how each theorem should look.
+%         They are then further refined for each individual type.
+%         The arguments are:
+%
+% \iffalse
 %<*package>
-\newtheoremstyle{NoBreak}
-  {1pt}% measure of space to leave above the theorem. E.g.: 3pt
-  {}% measure of space to leave below the theorem. E.g.: 3pt
-  {\itshape}% name of font to use in the body of the theorem
-  {\parindent}% measure of space to indent
-  {}% name of head font
-  {}% punctuation between head and body
-  {.5em}% space after theorem head; " " = normal interword space
-  {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}% Manually specify theorem head
-%</package>
+% \fi
+%    \begin{macrocode}
+  \newtheoremstyle{NoBreak}
+    {1pt}% measure of space to leave above the theorem. E.g.: 3pt
+    {}% measure of space to leave below the theorem. E.g.: 3pt
+    {\itshape}% name of font to use in the body of the theorem
+    {\parindent}% measure of space to indent
+    {}% name of head font
+    {}% punctuation between head and body
+    {.5em}% space after theorem head; " " = normal inter-word space
+    {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}% Manually specify theorem head
 %    \end{macrocode}
-%
+% \iffalse
+%</package>
+% \fi
 %       The other styles are defined similarly
-%    \begin{macrocode}
+% \iffalse
 %<*package>
-\newtheoremstyle{NoBreakNoNumber}{1pt}{}{\itshape}{\parindent}{}{}
-  {.5em}{\thmname{#1}:\thmnote{ #3}}
-
-\newtheoremstyle{Break}{5pt}{5pt}{\itshape}{\parindent}{}{}
-  {\newline}{\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
-
-\newtheoremstyle{BreakNoNumber}{5pt}{5pt}{\itshape}{\parindent}
-  {}{}{\newline}{\thmname{#1}:\thmnote{ #3}}
-
-\newtheoremstyle{BreakBold}{5pt}{5pt}{\itshape}{\parindent}
-  {\bfseries}{}{\newline}{\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
-
-\newtheoremstyle{BreakBoldNoNumber}{5pt}{5pt}{\itshape}{\parindent}
-  {\bfseries}{}{\newline}{\thmname{#1}:\thmnote{ #3}}
-
-\newtheoremstyle{NoBreakBold}{1pt}{}{\itshape}{\parindent}
-  {\bfseries}{}{.5em}{\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
-
-\newtheoremstyle{NoBreakBoldNoNumber}{1pt}{}{\itshape}{\parindent}
-  {\bfseries}{}{.5em}{\thmname{#1}:\thmnote{ #3}}
-%</package>
+% \fi
+%    \begin{macrocode}
+  \newtheoremstyle{NoBreakNoNumber}{1pt}{}{\itshape}{\parindent}{}{}{.5em}{\thmname{#1}:\thmnote{ #3}}
+  \newtheoremstyle{Break}{5pt}{5pt}{\itshape}{\parindent}{}{}{\newline}{\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
+  \newtheoremstyle{BreakNoNumber}{5pt}{5pt}{\itshape}{\parindent}{}{}{\newline}{\thmname{#1}:\thmnote{ #3}}
+  \newtheoremstyle{BreakBold}{5pt}{5pt}{\itshape}{\parindent}{\bfseries}{}{\newline}{\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
+  \newtheoremstyle{BreakBoldNoNumber}{5pt}{5pt}{\itshape}{\parindent}{\bfseries}{}{\newline}{\thmname{#1}:\thmnote{ #3}}
+  \newtheoremstyle{NoBreakBold}{1pt}{}{\itshape}{\parindent}{\bfseries}{}{.5em}{\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
+  \newtheoremstyle{NoBreakBoldNoNumber}{1pt}{}{\itshape}{\parindent}{\bfseries}{}{.5em}{\thmname{#1}:\thmnote{ #3}}
 %    \end{macrocode}
-% 
+% \iffalse
+%</package>
+% \fi
+%
 %       An additional stylistic choice is the use of a filled black square to mark the end of a proof as opposed to an unfilled white one.
 %
+%    \begin{macrocode}
 %<package>\renewcommand{\qedsymbol}{$\lgblksquare$}
+%    \end{macrocode}
 %
-%     \subsubsection{\verb{Amsthm} Environments}
-% 
-  % Theorems
-    \theoremstyle{BreakBold}
-    \newtheorem{theorem}{Theorem}[section]
-    % Refreshes every theorem
-    \theoremstyle{Break}
-    \newtheorem{corollary}{Corollary}[theorem]
+%     \subsubsection{|amsthm| Environments}
+%       |amsthm| environments serve to delineate theorems, lemmas and proofs so that greater clarity is achieved across the document.
+%
+%    \begin{macrocode}
+%<package>\newcounter{TheoremProposition}[section]
+%    \end{macrocode}
+%
+%       \paragraph{Theorems, Lemmas and Corollaries}
+%         Defined here are the themes for the environments meant to be used in 
+%
+% \iffalse
+%<*package>
+% \fi
+%    \begin{environment}{Theorem}
+  \mdfdefinestyle{theorem}
+  {
+    skipabove=5pt, skipbelow=5pt, % space above and below the theorem
+    leftmargin=0pt, innerleftmargin=5pt, % indent to the left
+    hidealllines=true, topline=true, bottomline=true, linecolor=line-blue % lines above and below
+  }
+  \theoremstyle{BreakBold}
+  \newmetheoremenv[style=theorem]{theorem}{Theorem}[section]
+%    \end{environment}
+% \iffalse
+%</package>
+% \fi
+%
+%
+%    \begin{environment}{Corollary}
+  \mdfdefinestyle{corollary}
+  {
+
+  }
+  \theoremstyle{Break}
+  \newtheorem{corollary}{Corollary}[theorem]
+%    \end{environment}
+
+
     \theoremstyle{Break}
     \newtheorem{lemma}{Lemma}[theorem]
+%    \end{environment}
+
 
   % Examples
     \theoremstyle{BreakBold}
     \newtheorem{examples}{Examples}[section]
+%    \end{environment}
+
     % Refreshes every example
     \theoremstyle{NoBreak}
     \newtheorem{example}{}[examples]
+%    \end{environment}
 
   % definitions
     \theoremstyle{BreakBold}
     \newtheorem{definition}{Definition}[section]
+%    \end{environment}
+
     % Refreshes every definition
     \theoremstyle{NoBreakBold}
     \newtheorem{subDef}{}[definition]
+%    \end{environment}
 
   % propositions
     \theoremstyle{BreakBold}
     \newtheorem{proposition}{Proposition}[section]
+%    \end{environment}
+
     % Refreshes every proposition
     \theoremstyle{NoBreak}
     \newtheorem{subProp}{}[proposition]
+%    \end{environment}
 
   % remarks/facts
     \theoremstyle{BreakNoNumber}
     \newtheorem{remarks}{Remarks}
+%    \end{environment}
+
     \theoremstyle{NoBreakNoNumber}
     \newtheorem{remark}{Remark}
+%    \end{environment}
 
   % Unumbered variants
     \theoremstyle{BreakNoNumber}
     \newtheorem*{theorem*}{Theorem}
+%    \end{environment}
+
     \newtheorem*{corollary*}{Corollary}
+%    \end{environment}
+
     \newtheorem*{lemma*}{Lemma}
+%    \end{environment}
+
     \newtheorem*{example*}{Example}
+%    \end{environment}
+
     \newtheorem*{definition*}{Definition}
+%    \end{environment}
+
     \newtheorem*{proposition*}{Proposition}
-%--------------------------------------------------
+%    \end{environment}
 
 %--------------------------------------------------
 % Code Environments
