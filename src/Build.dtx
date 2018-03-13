@@ -19,9 +19,8 @@
 Build.dtx
 
 A test build file for the entire TeXStyle package.
-Running 'latex Build.dtx' should generate this ReadMe,
-the .ins file for this package and the appropriate
-.(sty|cls) files
+Running '(pdf)?latex Build.dtx' should generate this readme,
+the .ins file for this package and the appropriate .(sty|cls) files
 --------------------
 %</readme>
 %<*internal>
@@ -38,6 +37,7 @@ the .ins file for this package and the appropriate
 %
 \generate{\file{TeXStyle.sty}{
   \from{TeXStyle.dtx}{package}
+  \from{components/TeXStyle-Environments.dtx}{package}
   }}
 % ^^A Must remember to package the files properly
 %</batchfile>
