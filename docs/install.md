@@ -19,6 +19,7 @@ This should contain:
 + TeXStyle-article.cls
 + TeXStyle-Documentation.pdf
 
-If you just want the style and nothing else copy 
+If you just want the style and nothing else copy TeXStyle.sty into your project folder.
+Include the line `\usepackage{TeXStyle}` somewhere in the preamble and 
 
 ## Compiling from source

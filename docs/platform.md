@@ -14,4 +14,5 @@ While this guide is intended to be pertinent to TeXStyle alone, I've included li
 ## Browser based
 
 Browser based TeX editors rely on a web browser to edit the TeX source and use a server to compile the source into a document.
-As such, they are somewhat limited when it comes to 
+As such, they are somewhat limited when it comes to installing packages.
+One method that is guaranteed of making a package visible to 
