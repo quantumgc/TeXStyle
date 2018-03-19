@@ -1,0 +1,291 @@
+%   \subsection{Symbols}
+%     \subsubsection{Dependencies}
+%       \begin{itemize}
+%         \item |gensymb|: For general non-maths symbols
+%         \item |fdsymbol|: Extended maths symbols
+%         \item |bbm|: Blackboard bold fonts
+%         \item |physics|: Physics symbols
+%       \end{itemize}
+%
+% \iffalse
+%<*package>
+% \fi
+%    \begin{macrocode}
+  \RequirePackage{gensymb}
+  \RequirePackage{fdsymbol}
+  \RequirePackage{bbm}
+  \RequirePackage{physics}
+
+%    \end{macrocode}
+% \iffalse
+%</package>
+% \fi
+%       \subsubsection{Macros}
+%         \paragraph{Logic and proof symbols}
+%
+% \begin{macro}{\implies}
+% Renews the command for implication to better fit the rest of the implication symbols, outputs $\implies$.
+% \iffalse
+%<*package>
+% \fi
+%    \begin{macrocode}
+\renewcommand{\implies}{\Longrightarrow}
+%    \end{macrocode}
+% \iffalse
+%</package>
+% \fi
+% \end{macro}
+%
+% \begin{macro}{\implied}
+% Renews the command for implication to better fit the rest of the implication symbols, outputs $\implied$.
+% \iffalse
+%<*package>
+% \fi
+%    \begin{macrocode}
+\newcommand{\implied}{\Longleftarrow}
+%    \end{macrocode}
+% \iffalse
+%</package>
+% \fi
+% \end{macro}
+%
+% \begin{macro}{\nImplies}
+% Negated right implication, outputs $\nImplies$.
+% \iffalse
+%<*package>
+% \fi
+%    \begin{macrocode}
+\newcommand{\nImplies}{\nLongrightArrow}
+%    \end{macrocode}
+% \iffalse
+%</package>
+% \fi
+% \end{macro}
+%
+% \begin{macro}{\nImplied}
+% Negated left implication, outputs $\nImplied$.
+% \iffalse
+%<*package>
+% \fi
+%    \begin{macrocode}
+\newcommand{\nImplied}{\nLongleftarrow}
+%    \end{macrocode}
+% \iffalse
+%</package>
+% \fi
+% \end{macro}
+%
+% \begin{macro}{\nEquiv}
+% Negated equivalence, outputs $\nEquiv$.
+% \iffalse
+%<*package>
+% \fi
+%    \begin{macrocode}
+\newcommand{\nEquiv}{\nLeftrightarrow}
+%    \end{macrocode}
+% \iffalse
+%</package>
+% \fi
+% \end{macro}
+%
+% \begin{macro}{\contra}
+% Symbol for a contradiction, outputs $\text{\textreferencemark}$.
+% \iffalse
+%<*package>
+% \fi
+%    \begin{macrocode}
+\newcommand{\contra}{\text{\textreferencemark}}
+
+%    \end{macrocode}
+% \iffalse
+%</package>
+% \fi
+% \end{macro}
+%
+%         \paragraph{Operators}
+%
+% \begin{macro}{\arcosh}
+% Inverse hyperbolic cosine, outputs $\arcosh$.
+% \iffalse
+%<*package>
+% \fi
+%    \begin{macrocode}
+\DeclareMathOperator{\arcosh}{arcosh}
+%    \end{macrocode}
+% \iffalse
+%</package>
+% \fi
+% \end{macro}
+%
+% \begin{macro}{\arsinh}
+% Inverse hyperbolic sine, outputs $\arsinh$.
+% \iffalse
+%<*package>
+% \fi
+% \begin{macrocode}
+\DeclareMathOperator{\arsinh}{arsinh}
+%    \end{macrocode}
+% \iffalse
+%</package>
+% \fi
+% \end{macro}
+%
+% \begin{macro}{\artanh}
+% Inverse hyperbolic tangent, outputs $\artanh$.
+% \iffalse
+%<*package>
+% \fi
+%    \begin{macrocode}
+\DeclareMathOperator{\artanh}{artanh}
+%    \end{macrocode}
+% \iffalse
+%</package>
+% \fi
+% \end{macro}
+%
+% \begin{macro}{\arsech}
+% Inverse hyperbolic secant, outputs $\arsech$.
+% \iffalse
+%<*package>
+% \fi
+%    \begin{macrocode}
+\DeclareMathOperator{\arsech}{arsech}
+%    \end{macrocode}
+% \iffalse
+%</package>
+% \fi
+% \end{macro}
+%
+% \begin{macro}{\arcsch}
+% Inverse hyperbolic cosecant, outputs $\arcsch$.
+% \iffalse
+%<*package>
+% \fi
+%    \begin{macrocode}
+\DeclareMathOperator{\arcsch}{arcsch}
+%    \end{macrocode}
+% \iffalse
+%</package>
+% \fi
+% \end{macro}
+%
+% \begin{macro}{\arcoth}
+% Inverse hyperbolic cotangent, outputs $\arcoth$.
+% \iffalse
+%<*package>
+% \fi
+%    \begin{macrocode}
+\DeclareMathOperator{\arcoth}{arcoth}
+
+%    \end{macrocode}
+% \iffalse
+%</package>
+% \fi
+% \end{macro}
+%
+%         \paragraph{Common Sets}
+%
+% \begin{macro}{\Z}
+% Integers, outputs $\mathbb{Z}$.
+% \iffalse
+%<*package>
+% \fi
+%    \begin{macrocode}
+\newcommand{\Z}{\mathbb{Z}}
+%    \end{macrocode}
+% \iffalse
+%</package>
+% \fi
+% \end{macro}
+%
+% \begin{macro}{\Znn}
+% Non-negative integers, outputs $\mathbb{Z}_{\geq0}$.
+% \iffalse
+%<*package>
+% \fi
+%    \begin{macrocode}
+\newcommand{\Znn}{\mathbb{Z}_{\geq0}}
+%    \end{macrocode}
+% \iffalse
+%</package>
+% \fi
+% \end{macro}
+%
+% \begin{macro}{\Znz}
+% Non-zero integers, outputs $\mathbb{Z}_{\neq0}$.
+% \iffalse
+%<*package>
+% \fi
+%    \begin{macrocode}
+\newcommand{\Znz}{\mathbb{Z}_{\neq0}}
+%    \end{macrocode}
+% \iffalse
+%</package>
+% \fi
+% \end{macro}
+%
+% \begin{macro}{\Zpl}
+% Positive integers, outputs $\mathbb{Z}^+$.
+% \iffalse
+%<*package>
+% \fi
+%    \begin{macrocode}
+\newcommand{\Zpl}{\mathbb{Z}^+}
+
+%    \end{macrocode}
+% \iffalse
+%</package>
+% \fi
+% \end{macro}
+%
+% \begin{macro}{\R}
+% Real numbers, outputs $\mathbb{R}$.
+% \iffalse
+%<*package>
+% \fi
+%    \begin{macrocode}
+\newcommand{\R}{\mathbb{R}}
+%    \end{macrocode}
+% \iffalse
+%</package>
+% \fi
+% \end{macro}
+%
+% \begin{macro}{\Rnn}
+% Non-negative real numbers, outputs $\mathbb{R}_{\geq0}$.
+% \iffalse
+%<*package>
+% \fi
+%    \begin{macrocode}
+\newcommand{\Rnn}{\mathbb{R}_{\geq0}}
+%    \end{macrocode}
+% \iffalse
+%</package>
+% \fi
+% \end{macro}
+%
+% \begin{macro}{\Rnz}
+% Non-zero real numbers, outputs $\mathbb{R}_{\neq0}$.
+% \iffalse
+%<*package>
+% \fi
+%    \begin{macrocode}
+\newcommand{\Rnz}{\mathbb{R}_{\neq0}}
+%    \end{macrocode}
+% \iffalse
+%</package>
+% \fi
+% \end{macro}
+%
+% \begin{macro}{\Rpl}
+% Positive real numbers, outputs $\mathbb{R}^+$.
+% \iffalse
+%<*package>
+% \fi
+%    \begin{macrocode}
+\newcommand{\Rpl}{\mathbb{R}^+}
+%    \end{macrocode}
+% \iffalse
+%</package>
+% \fi
+% \end{macro}
