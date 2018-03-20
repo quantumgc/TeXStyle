@@ -1,0 +1,90 @@
+% \iffalse meta-comment
+%
+% Copyright (C) 2018 by Gautam Chaudhuri
+%
+% This file may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either
+% version 1.3 of this license or (at your option) any later
+% version. The latest version of this license is in:
+%
+%   http://www.latex-project.org/lppl.txt
+%
+% and version 1.3 or later is part of all distributions of
+% LaTeX version 2005/12/01 or later.
+%
+% \fi
+% \iffalse
+%<package>\NeedsTeXFormat{LaTeX2e}
+%<package>\ProvidesPackage{TeXStyle}
+% \fi
+%
+% \section{TeXStyle.sty}
+%   \subsection{Base dependencies}
+%
+%     These packages are used across practically all of TeXStyle, including the various sub-sections of the main package.
+%     They are used for:
+%     \begin{itemize}
+%       \item |subfiles|: Assembling documents from multiple files.
+%       \item |color|: Control over the colour of various elements.
+%       \item |xcolor|: A driver-independent implementation of color.
+%     \end{itemize}
+%
+% \iffalse
+%<*package>
+% \fi
+%    \begin{macrocode}
+\RequirePackage{subfiles}
+\RequirePackage{color}
+\RequirePackage{xcolor}
+%    \end{macrocode}
+% \iffalse
+%</package>
+% \fi
+%
+%   \subsection{TeXStyle options}
+%
+%     Currently, the only options available when loading TeXStyle are draft and notation.
+%     Draft mode enables features such as extended margins and margin comments.
+%     Notation enables certain macros that are mainly for my own use.
+%     These are covered later in the documentation.
+%
+% \iffalse
+%<*package>
+% \fi
+%    \begin{macrocode}
+    \newif\ifNotationUsed
+    \newif\ifDraftModeOn
+    \DeclareOption{notation}{
+      \NotationUsedtrue
+    }
+    \DeclareOption{draft}{
+      \DraftModeOntrue
+    }
+  \ProcessOptions\relax
+%    \end{macrocode}
+% \iffalse
+%</package>
+% \fi
+%
+%   \subsection{Colours}
+%
+%     The following colours are named to provide some consistency across the style.
+%
+% \iffalse
+%<*package>
+% \fi
+%    \begin{macrocode}
+  \definecolor{accent-red}{HTML}{EF2D56} %#EF2D56
+  \definecolor{accent-green}{HTML}{7DDF64} %#7DDF64
+  \definecolor{accent-blue}{HTML}{5BC0EB} %#5BC0EB
+
+  \definecolor{line-blue}{HTML}{1D2951} %#1D2951
+  \definecolor{line-grey}{HTML}{1D2951} %#90909A
+  \definecolor{line-black}{HTML}{02111B} %#02111B
+
+  \definecolor{back-grey}{HTML}{403F4C} %#403F4C
+  \definecolor{back-blue}{HTML}{C6E0FF} %#C6E0FF
+%    \end{macrocode}
+% \iffalse
+%<*package>
+% \fi

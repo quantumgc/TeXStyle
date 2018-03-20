@@ -1,0 +1,67 @@
+% \iffalse
+% ^^A Beginning of meta-package description
+% ^^A Regular latex will ignore comments as usual
+% ^^A Docstrip will read the iffalse and ignore everything up to a corresponding fi
+%
+% Test build file for Gautam Chaudhuri's TeXStyle
+%
+%<*internal>
+% ^^A Internal tag: not exactly sure what they do but they seem to be
+% ^^A  another distinguishing mark. I'll have to experiment a bit to see exactly
+% ^^A  what they are used for.
+%
+% ^^A Thought: perhaps they serve to deter the meta-processor or docstrip?
+%
+\iffalse
+%</internal>
+%<*readme>
+--------------------
+Build.dtx
+
+A test build file for the entire TeXStyle package.
+Running '(pdf)?latex Build.dtx' should generate this readme,
+the .ins file for this package and the appropriate .(sty|cls) files
+--------------------
+%</readme>
+%<*internal>
+\fi
+\begingroup
+% ^^A Groups settings together apparently
+%</internal>
+%
+%<*batchfile>
+\input docstrip.tex
+\keepsilent\askforoverwritefalse
+\nopreamble\nopostamble
+\generate{%
+  \file{tmp/TeXStyle.sty}{%
+    \from{TeXStyle.dtx}{package}%
+    \from{components/TeXStyle-Glyphs.dtx}{package}%
+    \from{components/TeXStyle-Environments.dtx}{package}%
+    }%
+  }%
+%</batchfile>
+%<batchfile>\endbatchfile
+%<*internal>
+\generate{\file{tmp/TeXStyle.ins}{\from{Build.dtx}{batchfile}}}
+\generate{\file{tmp/Build.readme}{\from{Build.dtx}{readme}}}
+\endgroup
+%</internal>
+%
+%<*driver>
+% ^^A This is the group of statements that tell docstrip what to do
+\documentclass{ltxdoc}
+\usepackage{TeXStyle}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+\title{TeXStyle - Documentation}
+\author{Gautam Chaudhuri}
+\begin{document}
+  \maketitle
+  \DocInput{TeXStyle.dtx}
+  \DocInput{./components/TeXStyle-Glyphs.dtx}
+  \DocInput{./components/TeXStyle-Environments.dtx}
+\end{document}
+%</driver>
+% \fi
