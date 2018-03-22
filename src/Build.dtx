@@ -38,11 +38,11 @@ To build the source, use 'xelatex -jobname=tmp/TestBuild Build.dtx'.
 
 \generate{%
   \file{tmp/TeXStyle.sty}{%
-    \from{TeXStyle.dtx}{package}%
-    \from{components/TeXStyle-Glyphs.dtx}{package}%
-    \from{components/TeXStyle-Environments.dtx}{package}%
-    \from{components/TeXStyle-Graphics.dtx}{package}%
-    \from{components/TeXStyle-Referencing.dtx}{package}%
+    \from{./TeXStyle/TeXStyle.dtx}{package}%
+    \from{./TeXStyle/TeXStyle-Glyphs.dtx}{package}%
+    \from{./TeXStyle/TeXStyle-Environments.dtx}{package}%
+    \from{./TeXStyle/TeXStyle-Graphics.dtx}{package}%
+    \from{./TeXStyle/TeXStyle-Referencing.dtx}{package}%
     }%  
   }%
 %</package_batchfile>
@@ -57,7 +57,7 @@ To build the source, use 'xelatex -jobname=tmp/TestBuild Build.dtx'.
 
 \generate{%
   \file{tmp/TeXStyle-article.cls}{%
-    \from{./classes/article/TeXStyle-article.dtx}{class}%
+    \from{./TeXStyle-article/TeXStyle-article.dtx}{class}%
     }
   }
 % \iffalse
@@ -84,11 +84,11 @@ To build the source, use 'xelatex -jobname=tmp/TestBuild Build.dtx'.
 
 \begin{document}
   \maketitle
-  \DocInput{TeXStyle.dtx}
-    \DocInput{./components/TeXStyle-Glyphs.dtx}
-    \DocInput{./components/TeXStyle-Environments.dtx}
-    \DocInput{./components/TeXStyle-Graphics.dtx}
-    \DocInput{./components/TeXStyle-Referencing.dtx}  
+  \DocInput{./TeXStyle/TeXStyle.dtx}
+    \DocInput{./TeXStyle/TeXStyle-Glyphs.dtx}
+    \DocInput{./TeXStyle/TeXStyle-Environments.dtx}
+    \DocInput{./TeXStyle/TeXStyle-Graphics.dtx}
+    \DocInput{./TeXStyle/TeXStyle-Referencing.dtx}  
 \end{document}
 %</driver>
 % \fi
