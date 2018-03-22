@@ -1,8 +1,7 @@
 # TeXStyle
 
-This is a `/(Xe|pdf)?LaTeX/` style that I use for most of the documents I write.
+This is a `/(Xe|pdf)?LaTeX/` style that I use for most of the documents I write, along with a few classes that make use of and extend it.
 While this mostly consists of several packages that I've often used brought together into one, there are some slight modifications to make them work well together/look acceptable.
-Also contained are several classes that further refine the style.
 
 ## Installation
 
@@ -15,23 +14,27 @@ For platform specific instructions on where this might be, see the [platform gui
 
 ### Compiling from Source
 
-Currently only verified for linux users, I'll distribute a dockerfile later if I get round to it.
+Currently, compiling from source is only supported for linux users.
 
-Clone the repository and navigate to the `src` directory.
-Make a new directory named `tmp`.
-Execute the command `xelatex -jobname=tmp/TestBuild Build.dtx` and check that `tmp` contains, among other things, the files:
+#### Styles and Classes
 
-+ Build.readme
-+ TestBuild.log
-+ TestBuild.pdf
-+ TeXStyle.ins
-+ TeXStyle.sty
-+ some files matching `/^TeXStyle-[A-z]+\.cls$/`
+This will generate the `TeXStyle.sty` package file, the associated documentation for `TeXStyle.sty` and the `TeXStyle-*.cls` class files.
+It will not generate the documentation for the class files.
 
-If this is the case, the build was successful and all files matching `/^TeXStyle(-[A-z]+\.cls|\.sty)$/` can be moved into a directory visible to your TeXCompiler.
 
-## Documentation
+1. Clone the repository and navigate to the `src` directory.
+1. Make a new directory named `tmp`.
+1. Execute the command `xelatex -jobname=tmp/TestBuild Build.dtx` and check that `tmp` contains, among other things, the files:
+    * `Build.readme`
+    * `TestBuild.log`
+    * `TestBuild.pdf`
+    * `TeXStyle.ins`
+    * `TeXStyle.sty`
+    * `TeXStyle-*.cls`
+1. If this is the case, the build was successful and TeXStyle.sty and any of the class files you want can be moved into a directory visible to your TeXCompiler.
 
-TeXStyle comes with documentation generated using the `docstrip` utility.
-This should be included as `TeXStyle-Documentation.pdf` with an up to date build.
-For those compiling the source themselves, this is the `TestBuild.pdf` file.
+#### Documentation for classes
+
+Due to the nature of `docstrip`, the classes need a separate build file for their documentation.
+This hasn't been put into the repository at the time of writing, but to those versed in the ways of `docstrip` it shouldn't be too difficult to write one.
+If you need an example, [`Build.dtx`](./src/Build.dtx) is a good start.
