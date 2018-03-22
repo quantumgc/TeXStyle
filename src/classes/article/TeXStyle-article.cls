@@ -9,16 +9,16 @@
 
   % Paragraph indent and skip control
     \RequirePackage{parskip}
-
-  % Margin notes
     \RequirePackage{marginnote}
-
-  % Document dimensions
     \RequirePackage{geometry}  
-
-  % Header control
     \RequirePackage{fancyhdr}
     \pagestyle{fancy}
+
+  % Margin notes
+
+  % Document dimensions
+
+  % Header control
 %--------------------------------------------------
 
 %--------------------------------------------------
