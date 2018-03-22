@@ -1,6 +1,5 @@
 %   \subsection{Environments}
-%     TeXStyle comes with a number of predefined environments that are intended to improve clarity in documents.
-%     As of the current release, theorem environments don't have fully customised styles.
+%     TeXStyle comes with a number of predefined visual environments e.g. Theorems and Definitions.
 %     These should be included in a release in the near future.
 %
 %     \subsubsection{Dependencies}
@@ -16,10 +15,12 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
-\RequirePackage{amsthm}
-\RequirePackage{listings}
-\RequirePackage[shortlabels]{enumitem}
-\usepackage[framemethod=tikz]{mdframed}
+%%------------------------------------------------------------
+%% Environments
+  \RequirePackage{amsthm}
+  \RequirePackage{listings}
+  \RequirePackage[shortlabels]{enumitem}
+  \usepackage[framemethod=tikz]{mdframed}
 
 %    \end{macrocode}
 % \iffalse
@@ -75,12 +76,18 @@
 %</package>
 % \fi
 %
-%       An additional stylistic choice is the use of a filled black square to mark the end of a proof as opposed to an unfilled white one.
+%       Additionally, a filled black square marks the end of a proof as opposed to an empty one.
 %
+% \iffalse
+%<*package>
+% \fi
 %    \begin{macrocode}
-%<package>\renewcommand{\qedsymbol}{$\lgblksquare$}
-%<package>
+  \renewcommand{\qedsymbol}{$\lgblksquare$}
+
 %    \end{macrocode}
+% \iffalse
+%</package>
+% \fi
 %
 %     \subsubsection{Detailed Theorem Environments}
 %       The following |amsthm| environments are defined within TeXStyle.
@@ -90,15 +97,14 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
-  \mdfdefinestyle{theorem}
-  {
+  \mdfdefinestyle{theorem}{
     skipabove=5pt, skipbelow=5pt,
     % space above and below the theorem
     leftmargin=0pt, innerleftmargin=5pt,
     % indent to the left without an intermediate border
     hidealllines=true, topline=true, bottomline=true, linecolor=line-blue
     % lines above and below
-  }
+    }
   \theoremstyle{BreakBold}
   \newmdtheoremenv[style=theorem]{theorem}{Theorem}[section]
 
@@ -113,12 +119,11 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
-  \mdfdefinestyle{proposition}
-  {
+  \mdfdefinestyle{proposition}{
     skipabove=5pt, skipbelow=5pt,
     leftmargin=5pt, innerleftmargin=0pt,
     hidealllines=true
-  }
+    }
   \theoremstyle{BreakBold}
   \newmdtheoremenv[style=theorem][theorem]{proposition}{Proposition}
 
@@ -133,12 +138,11 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
-  \mdfdefinestyle{definition}
-  {
+  \mdfdefinestyle{definition}{
     skipabove=5pt, skipbelow=5pt,
     leftmargin=1pt, innerleftmargin=4pt,
     hidealllines=true, topline=true, bottomline=true, linecolor=line-black
-  }
+    }
   \theoremstyle{BreakBold}
   \newmdtheoremenv[style=definition][theorem]{definition}{Definition}
 
@@ -153,12 +157,11 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
-  \mdfdefinestyle{example}
-  {
+  \mdfdefinestyle{example}{
     skipabove=5pt, skipbelow=5pt,
     leftmargin=0pt, innerleftmargin=1pt,
     hidealllines=true, leftline=true, linecolor=line-black
-  }
+    }
   \theoremstyle{BreakBold}
   \newtheorem{example}{Example}[section]
 
@@ -213,12 +216,11 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
-  \mdfdefinestyle{remark}
-  {
+  \mdfdefinestyle{remark}{
     skipabove=5pt, skipbelow=5pt,
     leftmargin=0pt, innerleftmargin=1pt,
     hidealllines=true, leftline=true, linecolor=line-black
-  }
+    }
   \theoremstyle{BreakNoNumber}
   \newtheorem[style=remark]{remark}{Remark}
 
@@ -231,10 +233,10 @@
 %       \paragraph{sub-Environments}
 %         These environments are intended to be used within those defined above, as such they don't have any particular style associated with them.
 %
-%    \begin{macrocode}
 % \iffalse
 %<*package>
 % \fi
+%    \begin{macrocode}
   \theoremstyle{NoBreakBold}
   \newtheorem{subDef}{}[definition] % Refreshes every definition
   \theoremstyle{NoBreak}
@@ -244,63 +246,64 @@
   \theoremstyle{NoBreakNoNumber}
   \newtheorem{subRem}{}[remark] % Refreshes every remark
 
+%    \end{macrocode}
 % \iffalse
 %</package>
 % \fi
-%    \end{macrocode}
 
 %       \paragraph{Unumbered Environments}
 %
-%    \begin{macrocode}
 % \iffalse
 %<*package>
 % \fi
-\theoremstyle{BreakBoldNoNumber}
-\newmdtheoremenv[style=theorem]{theorem*}{Theorem}
-\newmdtheoremenv[style=proposition]{proposition*}{Proposition}
-\newmdtheoremenv[style=definition]{definition*}{Definition}
-\theoremstyle{BreakNoNumber}
-\newmdtheoremenv[style=lemma]{lemma*}{Lemma}
-\newmdtheoremenv[style=corollary]{corollary*}{Corollary}
-\newmdtheoremenv[style=example]{example*}{Example}
+%    \begin{macrocode}
+  \theoremstyle{BreakBoldNoNumber}
+  \newmdtheoremenv[style=theorem]{theorem*}{Theorem}
+  \newmdtheoremenv[style=proposition]{proposition*}{Proposition}
+  \newmdtheoremenv[style=definition]{definition*}{Definition}
+  \theoremstyle{BreakNoNumber}
+  \newmdtheoremenv[style=lemma]{lemma*}{Lemma}
+  \newmdtheoremenv[style=corollary]{corollary*}{Corollary}
+  \newmdtheoremenv[style=example]{example*}{Example}
 
+%    \end{macrocode}
 % \iffalse
 %</package>
 % \fi
-%    \end{macrocode}
 %
 %   \subsection{Code Environments}
-%    \begin{macrocode}
 % \iffalse
 %<*package>
 % \fi
-\lstset{
-      basicstyle=\fontsize{8}{10}\ttfamily,
-      aboveskip={1.0\baselineskip},
-      belowskip={1.0\baselineskip},
-      columns=fixed,
-      extendedchars=true,
-      breaklines=true,
-      tabsize=2,
-      prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
-      frame=lines,
-      showtabs=false,
-      showspaces=false,
-      showstringspaces=false,
-      keywordstyle=\color[rgb]{0.627,0.126,0.941},
-      commentstyle=\color[rgb]{0.133,0.545,0.133},
-      stringstyle=\color[rgb]{01,0,0},
-      numbers=left,
-      numberstyle=\small,
-      stepnumber=1,
-      numbersep=10pt,
-      captionpos=t,
-      numbers=left,
-      stepnumber=1,
-      firstnumber=1,
-      numberfirstline=true
+%    \begin{macrocode}
+  \lstset{
+    basicstyle=\fontsize{8}{10}\ttfamily,
+    aboveskip={1.0\baselineskip},
+    belowskip={1.0\baselineskip},
+    columns=fixed,
+    extendedchars=true,
+    breaklines=true,
+    tabsize=2,
+    prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+    frame=lines,
+    showtabs=false,
+    showspaces=false,
+    showstringspaces=false,
+    keywordstyle=\color[rgb]{0.627,0.126,0.941},
+    commentstyle=\color[rgb]{0.133,0.545,0.133},
+    stringstyle=\color[rgb]{01,0,0},
+    numbers=left,
+    numberstyle=\small,
+    stepnumber=1,
+    numbersep=10pt,
+    captionpos=t,
+    numbers=left,
+    stepnumber=1,
+    firstnumber=1,
+    numberfirstline=true
     }
+
+%    \end{macrocode}
 % \iffalse
 %</package>
 % \fi
-%    \end{macrocode}

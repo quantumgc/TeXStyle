@@ -36,31 +36,28 @@
 \RequirePackage{subfiles}
 \RequirePackage{color}
 \RequirePackage{xcolor}
+
 %    \end{macrocode}
 % \iffalse
 %</package>
 % \fi
 %
 %   \subsection{TeXStyle options}
+%     This section covers the options available on loading the TeXStyle package.     
 %
-%     Currently, the only options available when loading TeXStyle are draft and notation.
+%
 %     Draft mode enables features such as extended margins and margin comments.
-%     Notation enables certain macros that are mainly for my own use.
 %     These are covered later in the documentation.
-%
 % \iffalse
 %<*package>
 % \fi
 %    \begin{macrocode}
-    \newif\ifNotationUsed
-    \newif\ifDraftModeOn
-    \DeclareOption{notation}{
-      \NotationUsedtrue
-    }
-    \DeclareOption{draft}{
-      \DraftModeOntrue
+  \newif\ifDraftModeOn
+  \DeclareOption{draft}{
+    \DraftModeOntrue
     }
   \ProcessOptions\relax
+
 %    \end{macrocode}
 % \iffalse
 %</package>
@@ -84,6 +81,7 @@
 
   \definecolor{back-grey}{HTML}{403F4C} %#403F4C
   \definecolor{back-blue}{HTML}{C6E0FF} %#C6E0FF
+
 %    \end{macrocode}
 % \iffalse
 %<*package>

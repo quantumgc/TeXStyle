@@ -20,7 +20,8 @@ Build.dtx
 
 A test build file for the entire TeXStyle package.
 Running '(pdf)?latex Build.dtx' should generate this readme,
-the .ins file for this package and the appropriate .(sty|cls) files
+the .ins file for this package and the appropriate .(sty|cls) files.
+To build the source, use 'xelatex -jobname=tmp/TestBuild Build.dtx'.
 --------------------
 %</readme>
 %<*internal>
@@ -29,21 +30,43 @@ the .ins file for this package and the appropriate .(sty|cls) files
 % ^^A Groups settings together apparently
 %</internal>
 %
-%<*batchfile>
+% ^^A Batchfile for the package
+%<*package_batchfile>
 \input docstrip.tex
 \keepsilent\askforoverwritefalse
 \nopreamble\nopostamble
+
 \generate{%
   \file{tmp/TeXStyle.sty}{%
-    \from{TeXStyle.dtx}{package}%
-    \from{components/TeXStyle-Glyphs.dtx}{package}%
-    \from{components/TeXStyle-Environments.dtx}{package}%
-    }%
+    \from{./TeXStyle/TeXStyle.dtx}{package}%
+    \from{./TeXStyle/TeXStyle-Glyphs.dtx}{package}%
+    \from{./TeXStyle/TeXStyle-Environments.dtx}{package}%
+    \from{./TeXStyle/TeXStyle-Graphics.dtx}{package}%
+    \from{./TeXStyle/TeXStyle-Referencing.dtx}{package}%
+    }%  
   }%
-%</batchfile>
-%<batchfile>\endbatchfile
+%</package_batchfile>
+%<package_batchfile>\endbatchfile
+%
+% \iffalse
+%<*article_batchfile>
+% \fi
+\input docstrip.tex
+\keepsilent\askforoverwritefalse
+\nopreamble\nopostamble
+
+\generate{%
+  \file{tmp/TeXStyle-article.cls}{%
+    \from{./TeXStyle-article/TeXStyle-article.dtx}{class}%
+    }
+  }
+% \iffalse
+%</article_batchfile>
+% \fi
+%<article_batchfile>\endbatchfile
 %<*internal>
-\generate{\file{tmp/TeXStyle.ins}{\from{Build.dtx}{batchfile}}}
+\generate{\file{tmp/TeXStyle.ins}{\from{Build.dtx}{package_batchfile}}}
+\generate{\file{tmp/TeXStyle-article.ins}{\from{Build.dtx}{article_batchfile}}}
 \generate{\file{tmp/Build.readme}{\from{Build.dtx}{readme}}}
 \endgroup
 %</internal>
@@ -55,13 +78,17 @@ the .ins file for this package and the appropriate .(sty|cls) files
 \EnableCrossrefs
 \CodelineIndex
 \RecordChanges
+
 \title{TeXStyle - Documentation}
 \author{Gautam Chaudhuri}
+
 \begin{document}
   \maketitle
-  \DocInput{TeXStyle.dtx}
-  \DocInput{./components/TeXStyle-Glyphs.dtx}
-  \DocInput{./components/TeXStyle-Environments.dtx}
+  \DocInput{./TeXStyle/TeXStyle.dtx}
+    \DocInput{./TeXStyle/TeXStyle-Glyphs.dtx}
+    \DocInput{./TeXStyle/TeXStyle-Environments.dtx}
+    \DocInput{./TeXStyle/TeXStyle-Graphics.dtx}
+    \DocInput{./TeXStyle/TeXStyle-Referencing.dtx}  
 \end{document}
 %</driver>
 % \fi

@@ -1,0 +1,36 @@
+%   \subsection{Referencing}
+%     \subsubsection{Dependencies}
+%       The following packages are needed for the referencing support
+%
+%
+% \iffalse
+%<*package>
+% \fi
+%    \begin{macrocode}
+%%------------------------------------------------------------
+%% Referencing
+  \RequirePackage{hyperref}
+  \RequirePackage{xr}
+  \RequirePackage{zref}
+  \RequirePackage{bibtex}
+%    \end{macrocode}
+% \iffalse
+%</package>
+% \fi
+%
+%
+%     \subsubsection{Referencing Macros}
+%
+% \begin{macro}{\PagRef}
+%  Inserts a reference to a label giving the page it is on.
+% \iffalse
+%<*package>
+% \fi
+%    \begin{macrocode}
+\newcommand{\PagRef}[1]{\ref{#1}, pp.\pageref{#1}}
+
+%    \end{macrocode}
+% \iffalse
+%</package>
+% \fi
+% \end{macro}
