@@ -1,24 +1,15 @@
 % \iffalse
-% ^^A Beginning of meta-package description
-% ^^A Regular latex will ignore comments as usual
-% ^^A Docstrip will read the iffalse and ignore everything up to a corresponding fi
 %
 % Test build file for Gautam Chaudhuri's TeXStyle
 %
 %<*internal>
-% ^^A Internal tag: not exactly sure what they do but they seem to be
-% ^^A  another distinguishing mark. I'll have to experiment a bit to see exactly
-% ^^A  what they are used for.
-%
-% ^^A Thought: perhaps they serve to deter the meta-processor or docstrip?
-%
 \iffalse
 %</internal>
 %<*readme>
 --------------------
 Build.dtx
 
-A test build file for the entire TeXStyle package.
+A test build file for the entire TeXStyle package, including the various classes.
 Running '(pdf)?latex Build.dtx' should generate this readme,
 the .ins file for this package and the appropriate .(sty|cls) files.
 To build the source, use 'xelatex -jobname=tmp/TestBuild Build.dtx'.
@@ -27,10 +18,8 @@ To build the source, use 'xelatex -jobname=tmp/TestBuild Build.dtx'.
 %<*internal>
 \fi
 \begingroup
-% ^^A Groups settings together apparently
 %</internal>
 %
-% ^^A Batchfile for the package
 %<*package_batchfile>
 \input docstrip.tex
 \keepsilent\askforoverwritefalse
@@ -39,8 +28,8 @@ To build the source, use 'xelatex -jobname=tmp/TestBuild Build.dtx'.
 \generate{%
   \file{tmp/TeXStyle.sty}{%
     \from{./TeXStyle/TeXStyle.dtx}{package}%
-    \from{./TeXStyle/TeXStyle-Glyphs.dtx}{package}%
     \from{./TeXStyle/TeXStyle-Environments.dtx}{package}%
+    \from{./TeXStyle/TeXStyle-Glyphs.dtx}{package}%
     \from{./TeXStyle/TeXStyle-Graphics.dtx}{package}%
     \from{./TeXStyle/TeXStyle-Referencing.dtx}{package}%
     }%  
@@ -72,9 +61,8 @@ To build the source, use 'xelatex -jobname=tmp/TestBuild Build.dtx'.
 %</internal>
 %
 %<*driver>
-% ^^A This is the group of statements that tell docstrip what to do
 \documentclass{ltxdoc}
-\usepackage{TeXStyle}
+\usepackage{tmp/TeXStyle}
 \EnableCrossrefs
 \CodelineIndex
 \RecordChanges
