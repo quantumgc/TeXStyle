@@ -59,24 +59,3 @@ To build the source, use 'xelatex -jobname=tmp/TestBuild Build.dtx'.
 \generate{\file{tmp/Build.readme}{\from{Build.dtx}{readme}}}
 \endgroup
 %</internal>
-%
-%<*driver>
-\documentclass{ltxdoc}
-\usepackage{tmp/TeXStyle}
-\EnableCrossrefs
-\CodelineIndex
-\RecordChanges
-
-\title{TeXStyle - Documentation}
-\author{Gautam Chaudhuri}
-
-\begin{document}
-  \maketitle
-  \DocInput{./TeXStyle/TeXStyle.dtx}
-    \DocInput{./TeXStyle/TeXStyle-Glyphs.dtx}
-    \DocInput{./TeXStyle/TeXStyle-Environments.dtx}
-    \DocInput{./TeXStyle/TeXStyle-Graphics.dtx}
-    \DocInput{./TeXStyle/TeXStyle-Referencing.dtx}  
-\end{document}
-%</driver>
-% \fi

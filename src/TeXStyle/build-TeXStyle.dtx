@@ -7,17 +7,17 @@
 %</internal>
 %<*readme>
 --------------------
-build-TeXStyle.dtx
+# build-TeXStyle.dtx
 
 A build file for the TeXStyle package.
-Running '(pdf)?latex Build.dtx' should generate:
+Running '(pdf)?latex build-TeXStyle.dtx' should generate:
 
 + This readme
 + TeXStyle.ins
 + TeXStyle.sty
 + TeXStyle.pdf
 
-To build the source, use 'xelatex -jobname=../tmp/TeXStyle Build-TeXStyle.dtx'.
+To build the source, use 'xelatex -jobname=./out/TeXStyle build-TeXStyle.dtx'.
 --------------------
 %</readme>
 %<*internal>
@@ -31,7 +31,7 @@ To build the source, use 'xelatex -jobname=../tmp/TeXStyle Build-TeXStyle.dtx'.
 \nopreamble\nopostamble
 
 \generate{%
-  \file{../tmp/TeXStyle.sty}{%
+  \file{./out/TeXStyle.sty}{%
     \from{./TeXStyle.dtx}{package}%
     \from{./TeXStyle-Environments.dtx}{package}%
     \from{./TeXStyle-Glyphs.dtx}{package}%
@@ -43,14 +43,14 @@ To build the source, use 'xelatex -jobname=../tmp/TeXStyle Build-TeXStyle.dtx'.
 %<package_batchfile>\endbatchfile
 %
 %<*internal>
-\generate{\file{tmp/TeXStyle.ins}{\from{Build.dtx}{package_batchfile}}}
-\generate{\file{tmp/Build.readme}{\from{Build.dtx}{readme}}}
+\generate{\file{./out/TeXStyle.ins}{\from{build-TeXStyle.dtx}{package_batchfile}}}
+\generate{\file{./out/build-TeXStyle.md}{\from{build-TeXStyle.dtx}{readme}}}
 \endgroup
 %</internal>
 %
 %<*driver>
 \documentclass{ltxdoc}
-\usepackage{tmp/TeXStyle}
+\usepackage{out/TeXStyle}
 \EnableCrossrefs
 \CodelineIndex
 \RecordChanges
@@ -60,11 +60,11 @@ To build the source, use 'xelatex -jobname=../tmp/TeXStyle Build-TeXStyle.dtx'.
 
 \begin{document}
   \maketitle
-  \DocInput{./TeXStyle/TeXStyle.dtx}
-    \DocInput{./TeXStyle/TeXStyle-Glyphs.dtx}
-    \DocInput{./TeXStyle/TeXStyle-Environments.dtx}
-    \DocInput{./TeXStyle/TeXStyle-Graphics.dtx}
-    \DocInput{./TeXStyle/TeXStyle-Referencing.dtx}  
+  \DocInput{./TeXStyle.dtx}
+    \DocInput{./TeXStyle-Glyphs.dtx}
+    \DocInput{./TeXStyle-Environments.dtx}
+    \DocInput{./TeXStyle-Graphics.dtx}
+    \DocInput{./TeXStyle-Referencing.dtx}  
 \end{document}
 %</driver>
 % \fi
