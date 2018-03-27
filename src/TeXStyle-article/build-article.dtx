@@ -1,0 +1,64 @@
+% \iffalse
+%
+% Test build file for Gautam Chaudhuri's TeXStyle
+%
+%<*internal>
+\iffalse
+%</internal>
+%<*readme>
+--------------------
+# build-article.dtx
+
+A build file for the TeXStyle-article class.
+Running '(pdf|xe)?latex buildarticle.dtx' should generate:
+
++ This readme
++ TeXStyle-article.ins
++ TeXStyle-article.cls
++ TeXStyle-article.pdf
+
+To build the source, use 'xelatex -jobname=./out/TeXStyle-article build-articles.dtx'.
+--------------------
+%</readme>
+%<*internal>
+\fi
+\begingroup
+%</internal>
+%
+% \iffalse
+%<*article_batchfile>
+% \fi
+\input docstrip.tex
+\keepsilent\askforoverwritefalse
+\nopreamble\nopostamble
+
+\generate{%
+  \file{./out/TeXStyle-article.cls}{%
+    \from{./TeXStyle-article.dtx}{class}%
+    }
+  }
+% \iffalse
+%</article_batchfile>
+% \fi
+%<article_batchfile>\endbatchfile
+%<*internal>
+\generate{\file{./out/TeXStyle-article.ins}{\from{build-article.dtx}{article_batchfile}}}
+\generate{\file{./out/build-article.md}{\from{build-article.dtx}{readme}}}
+\endgroup
+%</internal>
+%
+%<*driver>
+\documentclass{ltxdoc}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+
+\title{TeXStyle-article : Documentation}
+\author{Gautam Chaudhuri}
+
+\begin{document}
+  \maketitle
+  \DocInput{./TeXStyle-article.dtx}    
+\end{document}
+%</driver>
+% \fi

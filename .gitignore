@@ -1,4 +1,5 @@
 batch.sh
 src/tmp/**
 themeinfo/**
+**/out/**
 Builds/**

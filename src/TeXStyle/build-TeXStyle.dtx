@@ -1,0 +1,70 @@
+% \iffalse
+%
+% Build file for Gautam Chaudhuri's TeXStyle
+%
+%<*internal>
+\iffalse
+%</internal>
+%<*readme>
+--------------------
+# build-TeXStyle.dtx
+
+A build file for the TeXStyle package.
+Running '(pdf)?latex build-TeXStyle.dtx' should generate:
+
++ This readme
++ TeXStyle.ins
++ TeXStyle.sty
++ TeXStyle.pdf
+
+To build the source, use 'xelatex -jobname=./out/TeXStyle build-TeXStyle.dtx'.
+--------------------
+%</readme>
+%<*internal>
+\fi
+\begingroup
+%</internal>
+%
+%<*package_batchfile>
+\input docstrip.tex
+\keepsilent\askforoverwritefalse
+\nopreamble\nopostamble
+
+\generate{%
+  \file{./out/TeXStyle.sty}{%
+    \from{./TeXStyle.dtx}{package}%
+    \from{./TeXStyle-Environments.dtx}{package}%
+    \from{./TeXStyle-Glyphs.dtx}{package}%
+    \from{./TeXStyle-Graphics.dtx}{package}%
+    \from{./TeXStyle-Referencing.dtx}{package}%
+    }%  
+  }%
+%</package_batchfile>
+%<package_batchfile>\endbatchfile
+%
+%<*internal>
+\generate{\file{./out/TeXStyle.ins}{\from{build-TeXStyle.dtx}{package_batchfile}}}
+\generate{\file{./out/build-TeXStyle.md}{\from{build-TeXStyle.dtx}{readme}}}
+\endgroup
+%</internal>
+%
+%<*driver>
+\documentclass{ltxdoc}
+\usepackage{out/TeXStyle}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+
+\title{TeXStyle - Documentation}
+\author{Gautam Chaudhuri}
+
+\begin{document}
+  \maketitle
+  \DocInput{./TeXStyle.dtx}
+    \DocInput{./TeXStyle-Glyphs.dtx}
+    \DocInput{./TeXStyle-Environments.dtx}
+    \DocInput{./TeXStyle-Graphics.dtx}
+    \DocInput{./TeXStyle-Referencing.dtx}  
+\end{document}
+%</driver>
+% \fi
