@@ -6,19 +6,16 @@
 \iffalse
 %</internal>
 %<*readme>
---------------------
-# build-TeXStyle.dtx
+# build.dtx
 
 A build file for the TeXStyle package.
-Running '(pdf)?latex build-TeXStyle.dtx' should generate:
+To build the source, use '(pdf|xe)?latex -jobname=./out/TeXStyle build.dtx'.
+This should generate:
 
 + This readme
 + TeXStyle.ins
 + TeXStyle.sty
 + TeXStyle.pdf
-
-To build the source, use 'xelatex -jobname=./out/TeXStyle build-TeXStyle.dtx'.
---------------------
 %</readme>
 %<*internal>
 \fi
@@ -33,18 +30,18 @@ To build the source, use 'xelatex -jobname=./out/TeXStyle build-TeXStyle.dtx'.
 \generate{%
   \file{./out/TeXStyle.sty}{%
     \from{./TeXStyle.dtx}{package}%
-    \from{./TeXStyle-Environments.dtx}{package}%
-    \from{./TeXStyle-Glyphs.dtx}{package}%
-    \from{./TeXStyle-Graphics.dtx}{package}%
-    \from{./TeXStyle-Referencing.dtx}{package}%
+    \from{./Environments.dtx}{package}%
+    \from{./Glyphs.dtx}{package}%
+    \from{./Graphics.dtx}{package}%
+    \from{./Referencing.dtx}{package}%
     }%  
   }%
 %</package_batchfile>
 %<package_batchfile>\endbatchfile
 %
 %<*internal>
-\generate{\file{./out/TeXStyle.ins}{\from{build-TeXStyle.dtx}{package_batchfile}}}
-\generate{\file{./out/build-TeXStyle.md}{\from{build-TeXStyle.dtx}{readme}}}
+\generate{\file{./out/TeXStyle.ins}{\from{build.dtx}{package_batchfile}}}
+\generate{\file{./out/README.md}{\from{build.dtx}{readme}}}
 \endgroup
 %</internal>
 %
@@ -61,10 +58,10 @@ To build the source, use 'xelatex -jobname=./out/TeXStyle build-TeXStyle.dtx'.
 \begin{document}
   \maketitle
   \DocInput{./TeXStyle.dtx}
-    \DocInput{./TeXStyle-Glyphs.dtx}
-    \DocInput{./TeXStyle-Environments.dtx}
-    \DocInput{./TeXStyle-Graphics.dtx}
-    \DocInput{./TeXStyle-Referencing.dtx}  
+    \DocInput{./Glyphs.dtx}
+    \DocInput{./Environments.dtx}
+    \DocInput{./Graphics.dtx}
+    \DocInput{./Referencing.dtx}  
 \end{document}
 %</driver>
 % \fi

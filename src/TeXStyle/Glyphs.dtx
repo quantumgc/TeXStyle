@@ -29,7 +29,7 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
-  \renewcommand{\implies}{\Longrightarrow}
+  \renewcommand{\implies}{\>\Longrightarrow\>}
 %    \end{macrocode}
 % \iffalse
 %</package>
@@ -42,7 +42,7 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
-  \newcommand{\implied}{\Longleftarrow}
+  \newcommand{\implied}{\>\Longleftarrow\>}
 %    \end{macrocode}
 % \iffalse
 %</package>
@@ -55,7 +55,7 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
-  \newcommand{\nImplies}{\nLongrightarrow}
+  \newcommand{\nImplies}{\>\nLongrightarrow\>}
 %    \end{macrocode}
 % \iffalse
 %</package>
@@ -68,20 +68,33 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
-  \newcommand{\nImplied}{\nLongleftarrow}
+  \newcommand{\nImplied}{\>\nLongleftarrow\>}
 %    \end{macrocode}
 % \iffalse
 %</package>
 % \fi
 % \end{macro}
 %
-% \begin{macro}{\nEquiv}
-% Negated equivalence, outputs $\nEquiv$.
+% \begin{macro}{\iff}
+% Renewed equivalence arrow, outputs $\iff$
 % \iffalse
 %<*package>
 % \fi
 %    \begin{macrocode}
-  \newcommand{\nEquiv}{\nLeftrightarrow}
+  \renewcommand{\iff}{\>\Longleftrightarrow\>}
+%    \end{macrocode}
+% \iffalse
+%</package>
+% \fi
+% \end{macro}
+%
+% \begin{macro}{\nIff}
+% Negated equivalence, outputs $\nIff$.
+% \iffalse
+%<*package>
+% \fi
+%    \begin{macrocode}
+  \newcommand{\nIff}{\>\nLongleftrightarrow\>}
 %    \end{macrocode}
 % \iffalse
 %</package>
@@ -94,7 +107,7 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
-  \newcommand{\contra}{\text{\textreferencemark}}
+  \newcommand{\contra}{\>\text{\textreferencemark}\>}
 
 %    \end{macrocode}
 % \iffalse

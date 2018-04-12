@@ -6,19 +6,16 @@
 \iffalse
 %</internal>
 %<*readme>
---------------------
-# build-article.dtx
+# build.dtx
 
 A build file for the TeXStyle-article class.
-Running '(pdf|xe)?latex buildarticle.dtx' should generate:
+To build the source, use '(pdf|xe)?latex -jobname=./out/TeXStyle-article build-articles.dtx'.
+This should generate:
 
 + This readme
 + TeXStyle-article.ins
 + TeXStyle-article.cls
 + TeXStyle-article.pdf
-
-To build the source, use 'xelatex -jobname=./out/TeXStyle-article build-articles.dtx'.
---------------------
 %</readme>
 %<*internal>
 \fi
@@ -42,8 +39,8 @@ To build the source, use 'xelatex -jobname=./out/TeXStyle-article build-articles
 % \fi
 %<article_batchfile>\endbatchfile
 %<*internal>
-\generate{\file{./out/TeXStyle-article.ins}{\from{build-article.dtx}{article_batchfile}}}
-\generate{\file{./out/build-article.md}{\from{build-article.dtx}{readme}}}
+\generate{\file{./out/TeXStyle-article.ins}{\from{build.dtx}{article_batchfile}}}
+\generate{\file{./out/README.md}{\from{build.dtx}{readme}}}
 \endgroup
 %</internal>
 %

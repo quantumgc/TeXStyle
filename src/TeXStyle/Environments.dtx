@@ -100,9 +100,9 @@
   \mdfdefinestyle{theorem}{
     skipabove=1cm, skipbelow=1cm,
     innertopmargin=0cm, innerbottommargin=.05cm,
-    leftmargin=0cm, innerleftmargin=0cm,
+    leftmargin=0cm, innerleftmargin=.1cm,
     linecolor=line-blue,
-    linewidth=.05cm, backgroundcolor=back-blue!20        
+    linewidth=.05cm, backgroundcolor=back-blue!20
     }
   \theoremstyle{BreakBold}
   \newmdtheoremenv[style=theorem]{theorem}{Theorem}[section]
@@ -113,10 +113,19 @@
 % \fi
 %
 %   \begin{theorem}[Theorem Title]
-%     This is a theorem.
+%     This is a theorem, this is the theorem sub-title
+%
+%     $\forall x \in S, x \in S$,
+%     normal text looks like this.
 %
 %     \begin{proof}
-%       This is a proof.
+%       This is a proof, this is the proof heading.
+%
+%       This is now a multi-line proof, this is how normal text looks.
+%     \end{proof}
+%
+%     \begin{proof}[Alternative proof title]
+%       This is a proof with an alternate title.
 %     \end{proof}
 %   \end{theorem}
 %
@@ -130,7 +139,8 @@
   \mdfdefinestyle{proposition}{
     skipabove=.5cm, skipbelow=.5cm,
     innertopmargin=0cm, innerbottommargin=.05cm,
-    leftmargin=.25cm, innerleftmargin=0pt,
+    leftmargin=.24cm, innerleftmargin=.1cm,
+    backgroundcolor=back-grey!20,
     hidealllines=true
     }
   \theoremstyle{BreakBold}
@@ -141,6 +151,7 @@
     skipabove=0cm, skipbelow=.01cm,
     innertopmargin=0cm, innerbottommargin=0cm,
     leftmargin=0cm, innerleftmargin=.01cm,
+    backgroundcolor=back-grey!20,
     hidealllines=true,
     leftline=true, linecolor=line-grey,
     linewidth=.05cm
@@ -154,10 +165,17 @@
 % \fi
 %
 %   \begin{proposition}[Proposition Title]
-%     This is a proposition.
+%     This is a proposition, this is the proposition sub-title.
+%
+%     Let $S \subset \R$.
+%     This is what normal text looks like.
 %
 %     \begin{subPro}
-%       This is a sub-proposition.
+%       This is a sub-proposition, this is the sub-proposition title.
+%       
+%       $\forall x \in S, x \in S$,
+%       this is how normal text looks.
+%
 %     \end{subPro}
 %   \end{proposition}
 %
@@ -196,11 +214,17 @@
 %</package>
 % \fi
 %
-%   \begin{definition}
-%     This is a definition.
+%   \begin{definition}[Definition Title]
+%     This is a definition, this is the definition sub-title.
+%
+%     Let $S \subset \R$.
+%     This is what normal text looks like.
 %
 %     \begin{subDef}
-%       This is a sub-definition.
+%       This is a sub-definition, this is the sub-definition title.
+%       
+%       $\forall x \in S, x \in S$,
+%       this is how normal text looks.
 %     \end{subDef}
 %   \end{definition}
 %
@@ -223,7 +247,7 @@
 
   \mdfdefinestyle{subExa}
   {
-    skipabove=0cm, skipbelow=.15cm,
+    skipabove=.1cm, skipbelow=.15cm,
     innertopmargin=0cm, innerbottommargin=0cm,
     leftmargin=0.01cm, innerleftmargin=0cm,
     hidealllines=true,
@@ -239,11 +263,18 @@
 %</package>
 % \fi
 %
-%   \begin{example}
-%     This is an example.
+%   \begin{example}[Example Title]
+%     This is an example, this is the example sub-title.
+%
+%     Let $S \subset \R$.
+%     This is what normal text looks like.
 %
 %     \begin{subExa}
-%       This is a sub-example.
+%       This is a sub-example. This is the sub-example title.
+%       
+%       $\forall x \in S, x \in S$,
+%       this is how normal text looks.
+%
 %     \end{subExa}
 %   \end{example}
 %
@@ -271,8 +302,12 @@
 %</package>
 % \fi
 %
-%   \begin{lemma}
-%     This is a Lemma
+%   \begin{lemma}[Lemma title]
+%     This is a Lemma, this is the lemma sub-title.
+%
+%     $\forall x \in S, x \in S$,
+%     normal text looks like this.
+%
 %   \end{lemma}
 %
 % \end{environment}
@@ -298,8 +333,12 @@
 %</package>
 % \fi
 %
-%   \begin{corollary}
-%     This is a Corollary
+%   \begin{corollary}[Corollary title]
+%     This is a Corollary, this is the corollary sub-title.
+%
+%     $\forall x \in S, x \in S$,
+%     normal text looks like this.
+%
 %   \end{corollary}
 %
 % \end{environment}
@@ -323,8 +362,12 @@
 %</package>
 % \fi
 %
-%   \begin{remark}
-%     This is a remark
+%   \begin{remark}[Remark title]
+%     This is a remark, this is the remark sub-title.
+%
+%     $\forall x \in S, x \in S$,
+%     normal text looks like this.
+%
 %   \end{remark}
 %
 % \end{environment}
@@ -366,9 +409,9 @@
     showtabs=false,
     showspaces=false,
     showstringspaces=false,
-    keywordstyle=\color[rgb]{0.627,0.126,0.941},
-    commentstyle=\color[rgb]{0.133,0.545,0.133},
-    stringstyle=\color[rgb]{01,0,0},
+    keywordstyle=line-blue,
+    commentstyle=accent-green,
+    stringstyle=accent-red,
     numbers=left,
     numberstyle=\small,
     stepnumber=1,
