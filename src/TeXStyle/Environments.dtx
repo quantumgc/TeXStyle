@@ -1,14 +1,15 @@
 %   \subsection{Environments}
 %     TeXStyle comes with a number of predefined visual environments e.g. Theorems and Definitions.
-%     These should be included in a release in the near future.
+%     They are intended as more of a visual demarcation and there isn't very much restriction on their use within one.
+%     It is however recommended that the sub<X> environments are used within their respective parent group.
 %
 %     \subsubsection{Dependencies}
 %       The following packages are required in order to generate and style the environments.
 %       \begin{itemize}
 %         \item |amsthm| provides the base for generating and configuring theorem environments.
+%         \item |mdframed| with the |framemethod=tikz| option allows theorem environments to be framed with lines.
 %         \item |listings| provides environments for including source code.
 %         \item |enumitem| with the |shortlabels| option allows short specifiers for the bullets on enumerated lists.
-%         \item |mdframed| with the |framemethod=tikz| option allows theorem environments to be framed with lines.
 %       \end{itemize}
 %
 % \iffalse
@@ -172,7 +173,7 @@
 %
 %     \begin{subPro}
 %       This is a sub-proposition, this is the sub-proposition title.
-%       
+%
 %       $\forall x \in S, x \in S$,
 %       this is how normal text looks.
 %
@@ -222,7 +223,7 @@
 %
 %     \begin{subDef}
 %       This is a sub-definition, this is the sub-definition title.
-%       
+%
 %       $\forall x \in S, x \in S$,
 %       this is how normal text looks.
 %     \end{subDef}
@@ -271,7 +272,7 @@
 %
 %     \begin{subExa}
 %       This is a sub-example. This is the sub-example title.
-%       
+%
 %       $\forall x \in S, x \in S$,
 %       this is how normal text looks.
 %
@@ -392,6 +393,9 @@
 % \end{environment}
 %
 %   \subsection{Code Environments}
+%     The listings environment is given in order to typeset source code for various languages.
+%     For more information, read the documentation of the listings environment.
+%
 % \iffalse
 %<*package>
 % \fi
@@ -409,9 +413,9 @@
     showtabs=false,
     showspaces=false,
     showstringspaces=false,
-    keywordstyle=line-blue,
-    commentstyle=accent-green,
-    stringstyle=accent-red,
+    keywordstyle=\color{line-blue},
+    commentstyle=\color{accent-green},
+    stringstyle=\color{accent-red},
     numbers=left,
     numberstyle=\small,
     stepnumber=1,
@@ -427,3 +431,7 @@
 % \iffalse
 %</package>
 % \fi
+%
+%
+%     Given below is an example of the output with the default options:
+%     \lstinputlisting[language=Ruby,title=An example of the listings environment]{./Example.rb}
