@@ -47,4 +47,3 @@ As of 2018-03-26, these instructions will generate the files:
 
 For those using Visual Studio Code, you can use custom build actions to automate the above steps.
 A minimal example is given [here](./docs/customBuild.json).
-
