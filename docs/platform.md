@@ -7,8 +7,8 @@ If the instructions in this document are followed, the command `\usepackage{TeXS
 
 1. [Browser based](#browser-based)
 1. [Windows](#windows)
-1. [Linux](#linux)
-1. Mac
+1. [Linux/*BSD](#linux/*BSD)
+1. [Mac](#mac)
 
 ## Browser based
 
@@ -31,14 +31,20 @@ Those who are using MiKTeX should read up on the `texmf` folder and what it's us
 A good start is [this SE thread](https://tex.stackexchange.com/questions/420620/what-is-texmf-and-what-is-its-relation-to-tex/420623) (don't worry about the fact that it's for Linux, this applies to most TeX distributions).
 Once you've understood that, [this](https://tex.stackexchange.com/questions/69483/create-a-local-texmf-tree-in-miktex#69484) thread should tell you how to create a local tree.
 
-In your local `texmf` tree place `TeXStyle.sty` and whatever class files you want in an appropriate subdirectory.
+In your local `texmf` tree place `TeXStyle.sty` and whatever class files you want in an appropriate subdirectory.  
+MiKTeX downloads packages on request, so when using TeXStyle for the first time you may have to download a large number of them at once.
+If you don't like this, try using the options interface to limit the parts of TeXStyle that are loaded.
+By removing some of the particularly 'heavy' parts, TeXStyle can become noticeably leaner.
 
-## Linux
+## Linux/*BSD
 
 A default install of TeXLive generates a `~/texmf` directory which should be used to install local packages.
 Read [the thread](https://tex.stackexchange.com/questions/420620/what-is-texmf-and-what-is-its-relation-to-tex/420623) mentioned earlier and place `TeXStyle.sty` and whatever class files you want in an appropriate subdirectory.
 
+To my knowledge TeXStyle doesn't depend on any packages not included in a standard TeXLive install.
+If there are indeed packages that need to be installed, please let me know as soon as possible so I can either list them or find a workaround for them.
+
 ## Mac
 
-MacTeX is literally repackaged LaTeX.
-Since macOS is also a *NIX at a [core](https://www.opengroup.org/openbrand/register/brand3632.htm "officially, macOS can be called UNIX compliant while Linux can't") level, the installation instructions shouldn't be too different from those for Linux.
+MacTeX is literally repackaged TeXLive.
+Since macOS is also a *NIX at a [core](https://www.opengroup.org/openbrand/register/brand3632.htm "officially, macOS can be called UNIX while Linux can't") level, the installation instructions shouldn't be too different from those for Linux.
