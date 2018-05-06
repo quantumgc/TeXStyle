@@ -7,8 +7,8 @@ If the instructions in this document are followed, the command `\usepackage{TeXS
 
 1. [Browser based](#browser-based)
 1. [Windows](#windows)
-1. [Linux](#linux)
-1. Mac
+1. [Linux](#linux/*BSD)
+1. [Mac](#mac)
 
 ## Browser based
 
@@ -33,12 +33,12 @@ Once you've understood that, [this](https://tex.stackexchange.com/questions/6948
 
 In your local `texmf` tree place `TeXStyle.sty` and whatever class files you want in an appropriate subdirectory.
 
-## Linux
+## Linux/*BSD
 
 A default install of TeXLive generates a `~/texmf` directory which should be used to install local packages.
 Read [the thread](https://tex.stackexchange.com/questions/420620/what-is-texmf-and-what-is-its-relation-to-tex/420623) mentioned earlier and place `TeXStyle.sty` and whatever class files you want in an appropriate subdirectory.
 
 ## Mac
 
-MacTeX is literally repackaged LaTeX.
-Since macOS is also a *NIX at a [core](https://www.opengroup.org/openbrand/register/brand3632.htm "officially, macOS can be called UNIX compliant while Linux can't") level, the installation instructions shouldn't be too different from those for Linux.
+MacTeX is literally repackaged TeXLive.
+Since macOS is also a *NIX at a [core](https://www.opengroup.org/openbrand/register/brand3632.htm "officially, macOS can be called UNIX while Linux can't") level, the installation instructions shouldn't be too different from those for Linux.
