@@ -28,14 +28,14 @@ This should generate:
 \nopreamble\nopostamble
 
 \generate{%
-  \file{./out/TeXStyle.sty}{%
-    \from{./TeXStyle.dtx}{package}%
-    \from{./Environments.dtx}{package}%
-    \from{./Glyphs.dtx}{package}%
-    \from{./Graphics.dtx}{package}%
-    \from{./Referencing.dtx}{package}%
-    }%  
-  }%
+    \file{./out/TeXStyle.sty}{%
+        \from{./TeXStyle.dtx}{package}%
+        \from{./Environments.dtx}{package}%
+        \from{./Glyphs.dtx}{package}%
+        \from{./Graphics.dtx}{package}%
+        \from{./Referencing.dtx}{package}%
+        }%  
+    }%
 %</package_batchfile>
 %<package_batchfile>\endbatchfile
 %
@@ -56,12 +56,12 @@ This should generate:
 \author{Gautam Chaudhuri}
 
 \begin{document}
-  \maketitle
-  \DocInput{./TeXStyle.dtx}
-    \DocInput{./Glyphs.dtx}
-    \DocInput{./Environments.dtx}
-    \DocInput{./Graphics.dtx}
-    \DocInput{./Referencing.dtx}  
+    \maketitle
+    \DocInput{./TeXStyle.dtx}
+        \DocInput{./Glyphs.dtx}
+        \DocInput{./Environments.dtx}
+        \DocInput{./Graphics.dtx}
+        \DocInput{./Referencing.dtx}  
 \end{document}
 %</driver>
 % \fi
