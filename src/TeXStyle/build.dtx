@@ -33,7 +33,6 @@ This should generate:
         \from{Environments.dtx}{package}%
         \from{Glyphs.dtx}{package}%
         \from{Graphics.dtx}{package}%
-%^^A        \from{Referencing.dtx}{package}%
         }%  
     }%
 %</package_batchfile>
@@ -58,10 +57,9 @@ This should generate:
 \begin{document}
     \maketitle
     \DocInput{TeXStyle.dtx}
-        \DocInput{Glyphs.dtx}
-        \DocInput{Environments.dtx}
-        \DocInput{Graphics.dtx}
-%^^A        \DocInput{Referencing.dtx}  
+    \DocInput{Glyphs.dtx}
+    \DocInput{Environments.dtx}
+    \DocInput{Graphics.dtx}
 \end{document}
 %</driver>
 % \fi
