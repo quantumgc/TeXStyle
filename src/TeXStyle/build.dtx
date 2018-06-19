@@ -28,20 +28,20 @@ This should generate:
 \nopreamble\nopostamble
 
 \generate{%
-    \file{./out/TeXStyle.sty}{%
-        \from{./TeXStyle.dtx}{package}%
-        \from{./Environments.dtx}{package}%
-        \from{./Glyphs.dtx}{package}%
-        \from{./Graphics.dtx}{package}%
-        \from{./Referencing.dtx}{package}%
+    \file{TeXStyle.sty}{%
+        \from{TeXStyle.dtx}{package}%
+        \from{Environments.dtx}{package}%
+        \from{Glyphs.dtx}{package}%
+        \from{Graphics.dtx}{package}%
+%^^A        \from{Referencing.dtx}{package}%
         }%  
     }%
 %</package_batchfile>
 %<package_batchfile>\endbatchfile
 %
 %<*internal>
-\generate{\file{./out/TeXStyle.ins}{\from{build.dtx}{package_batchfile}}}
-\generate{\file{./out/README.md}{\from{build.dtx}{readme}}}
+\generate{\file{TeXStyle.ins}{\from{build.dtx}{package_batchfile}}}
+\generate{\file{README.md}{\from{build.dtx}{readme}}}
 \endgroup
 %</internal>
 %
@@ -57,11 +57,11 @@ This should generate:
 
 \begin{document}
     \maketitle
-    \DocInput{./TeXStyle.dtx}
-        \DocInput{./Glyphs.dtx}
-        \DocInput{./Environments.dtx}
-        \DocInput{./Graphics.dtx}
-        \DocInput{./Referencing.dtx}  
+    \DocInput{TeXStyle.dtx}
+        \DocInput{Glyphs.dtx}
+        \DocInput{Environments.dtx}
+        \DocInput{Graphics.dtx}
+%^^A        \DocInput{Referencing.dtx}  
 \end{document}
 %</driver>
 % \fi
