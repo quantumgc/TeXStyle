@@ -59,12 +59,12 @@
 %    \begin{macrocode}
   \newtheoremstyle{NoBreakNoNumber}{}{}{\itshape}%
     {}{}{}{.5em}{\thmname{#1}:\thmnote{ #3}}
+  \newtheoremstyle{BreakBold}{}{}{\itshape}
+  {}{\bfseries}{}{\newline}{\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
   \newtheoremstyle{Break}{}{}{\itshape}%
     {}{}{}{\newline}{\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
   \newtheoremstyle{BreakNoNumber}{}{}{\itshape}%
     {}{}{}{\newline}{\thmname{#1}:\thmnote{ #3}}
-  \newtheoremstyle{BreakBold}{}{}{\itshape}
-  {}{\bfseries}{}{\newline}{\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
   \newtheoremstyle{BreakBoldNoNumber}{}{}{\itshape}%
     {}{\bfseries}{}{\newline}{\thmname{#1}:\thmnote{ #3}}
   \newtheoremstyle{NoBreakBold}{}{}{\itshape}
@@ -98,6 +98,8 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
+  \newtheoremstyle{Theorem}{}{}{}
+  {}{\bfseries}{}{\newline}{\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
   \mdfdefinestyle{theorem}{
     skipabove=1cm, skipbelow=1cm,
     innertopmargin=0cm, innerbottommargin=.05cm,
@@ -105,7 +107,7 @@
     linecolor=line-blue,
     linewidth=.05cm, backgroundcolor=back-blue!20
     }
-  \theoremstyle{BreakBold}
+  \theoremstyle{Theorem}
   \newmdtheoremenv[style=theorem]{theorem}{Theorem}[section]
 
 %    \end{macrocode}
@@ -137,14 +139,16 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
+  \newtheoremstyle{Proposition}{}{}{\itshape}
+  {}{\bfseries}{}{\newline}{\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
   \mdfdefinestyle{proposition}{
     skipabove=.5cm, skipbelow=.5cm,
     innertopmargin=0cm, innerbottommargin=.05cm,
     leftmargin=.24cm, innerleftmargin=.1cm,
     backgroundcolor=back-grey!20,
-    hidealllines=true
+    linecolor=line-grey, theoremtitlefont=\sffamily\bfseries
     }
-  \theoremstyle{BreakBold}
+  \theoremstyle{Proposition}
   \newmdtheoremenv[style=proposition]{proposition}[theorem]{Proposition}
 
   \mdfdefinestyle{subPro}
@@ -187,6 +191,8 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
+  \newtheoremstyle{Definition}{}{}{\sffamily}
+  {}{\sffamily\bfseries}{}{\newline}{\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
   \mdfdefinestyle{definition}{
     skipabove=.5cm, skipbelow=.5cm,
     innertopmargin=0cm, innerbottommargin=.05cm,
@@ -194,9 +200,11 @@
     linecolor=line-black,
     linewidth=.05cm
     }
-  \theoremstyle{BreakBold}
+  \theoremstyle{Definition}
   \newmdtheoremenv[style=definition]{definition}[theorem]{Definition}
 
+  \newtheoremstyle{SubDefinition}{}{}{\sffamily}%
+    {}{\bfseries}{}{.5em}{\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
   \mdfdefinestyle{subDef}
   {
     skipabove=0cm, skipbelow=.01cm,
@@ -207,7 +215,7 @@
     linecolor=line-black,
     linewidth=.01cm
   }
-  \theoremstyle{NoBreakBold}
+  \theoremstyle{SubDefinition}
   \newmdtheoremenv[style=subDef]{subDef}{}[theorem] % Refreshes every definition
 
 %    \end{macrocode}
@@ -373,22 +381,22 @@
 %
 % \end{environment}
 %
-% \begin{environment}{note}
+% \begin{environment}{ThrmNote}
 % \iffalse
 %<*package>
 % \fi
 %    \begin{macrocode}
   \theoremstyle{NoBreakNoNumber}
-  \newtheorem{note}{Note}
+  \newtheorem{ThrmNote}{Note}
 
 %    \end{macrocode}
 % \iffalse
 %</package>
 % \fi
 %
-%   \begin{note}
+%   \begin{ThrmNote}
 %     This is a note
-%   \end{note}
+%   \end{ThrmNote}
 %
 % \end{environment}
 %
