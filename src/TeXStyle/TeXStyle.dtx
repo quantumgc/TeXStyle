@@ -66,6 +66,13 @@
   \DeclareOption{draft}{
     \DraftModeOntrue
     }
+  \newif\ifUseDefaultFonts
+  \DeclareOption{defaultFonts}{
+    \UseDefaultFontstrue
+  }
+  \DeclareOption*{
+    \PackageWarning{TeXStyle}{Unknown Option '\CurrentOption'}
+    }
   \ProcessOptions\relax
 
 %    \end{macrocode}
