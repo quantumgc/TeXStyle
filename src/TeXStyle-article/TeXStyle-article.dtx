@@ -33,11 +33,14 @@
 %     \section{Dependencies}
 %       The following packages are required:
 %       \begin{itemize}
-%         \item |TeXStyle|: Any option specified in loading the class will be passed onto TeXStyle.
-%         \item |parskip|: paragraph and indent control.
-%         \item |marginnote|: margin note control.
-%         \item |geometry|: page sizing and control.
-%         \item |fancyhdr|: header control.
+%         \item {\ttfamily TeXStyle}: any option specified in loading the class will be passed onto TeXStyle.
+%         \item {\ttfamily parskip}: paragraph and indent control.
+%         \item {\ttfamily marginnote}: margin note control.
+%         \item {\ttfamily geometry}: page sizing and control.
+%         \item {\ttfamily fancyhdr}: header control.
+%         \item {\ttfamily hyperref}: hyperlinked referencing.
+%         \item {\ttfamily xr}: external referencing.
+%         \item {\ttfamily zref}: flexible referencing.
 %       \end{itemize}
 %
 % \iffalse
@@ -51,7 +54,9 @@
 \RequirePackage{marginnote}
 \RequirePackage{geometry}  
 \RequirePackage{fancyhdr}
-\pagestyle{fancy}
+\RequirePackage{hyperref}
+\RequirePackage{xr}
+\RequirePackage{zref}
 
 %    \end{macrocode}
 % \iffalse
@@ -68,6 +73,9 @@
 \newif\ifDraftOn
 
 \DeclareOption{draft}{\DraftOntrue}
+\DeclareOption*{
+  \PackageWarning{TeXStyle-article}{Unknown Option '\CurrentOption'}
+  }
 \ProcessOptions\relax
 
 %    \end{macrocode}
@@ -96,11 +104,26 @@
   %% Page Size
   \ifDraftOn
     % Paper sizes for draft versions
-    \geometry{b4paper, total={18cm,26cm}, inner=1.5cm, top=2cm, heightrounded, marginparsep=2cm}
-    %, outer=8cm, inner=2cm, heightrounded, marginparwidth=5cm, marginparsep=2cm
+    \geometry{b4paper,%
+      total={18cm,26cm},&
+      inner=1.5cm, top=2cm,%
+      heightrounded,%
+      marginparsep=2cm%,
+      %outer=8cm,
+      %inner=2cm,
+      %heightrounded,
+      %marginparwidth=5cm,
+      %marginparsep=2cm
+      }
   \else
     % Paper sizes for non-draft versions
-    \geometry{a4paper, total={18cm,25cm}, inner=1.5cm, top=2cm, heightrounded, marginparwidth=0cm, marginparsep=0cm}
+    \geometry{a4paper,%
+      total={18cm,25cm},%
+      inner=1.5cm,%
+      top=2cm,%
+      heightrounded,%
+      marginparwidth=0cm,%
+      marginparsep=0cm}
   \fi
 
 %    \end{macrocode}
@@ -139,4 +162,22 @@
 %    \end{macrocode}
 % \iffalse
 %</class>
+% \fi
+%
+%     \section{Headers}
+%
+%       Headers are styled using |fancyhdr|, the base style is fancy but some
+%       additions are made.
+% \iffalse
+%<*class>
+% \fi
+%    \begin{macrocode}
+  \pagestyle{fancy}
+
+%    \end{macrocode}
+% \iffalse
+%<*class>
+% \fi
+% \iffalse
+%<*class>
 % \fi
