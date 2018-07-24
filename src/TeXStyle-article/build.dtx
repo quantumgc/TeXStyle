@@ -30,8 +30,8 @@ This should generate:
 \nopreamble\nopostamble
 
 \generate{%
-  \file{./out/TeXStyle-article.cls}{%
-    \from{./TeXStyle-article.dtx}{class}%
+  \file{TeXStyle-article.cls}{%
+    \from{TeXStyle-article.dtx}{class}%
     }
   }
 % \iffalse
@@ -39,23 +39,26 @@ This should generate:
 % \fi
 %<article_batchfile>\endbatchfile
 %<*internal>
-\generate{\file{./out/TeXStyle-article.ins}{\from{build.dtx}{article_batchfile}}}
-\generate{\file{./out/README.md}{\from{build.dtx}{readme}}}
+\generate{\file{TeXStyle-article.ins}{\from{build.dtx}{article_batchfile}}}
+\generate{\file{README.md}{\from{build.dtx}{readme}}}
 \endgroup
 %</internal>
 %
 %<*driver>
-\documentclass{ltxdoc}
+\documentclass{TeXStyle-article}
+\usepackage{doc}
 \DisableCrossrefs
 \CodelineIndex
 \RecordChanges
 
 \title{TeXStyle-article : Documentation}
 \author{Gautam Chaudhuri}
+\graphicspath{{./}}
+\headerGraphic{.1\textwidth}{test}
 
 \begin{document}
   \maketitle
-  \docinput{./TeXStyle-article.dtx}    
+  \DocInput{TeXStyle-article.dtx}    
 \end{document}
 %</driver>
 % \fi
