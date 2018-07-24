@@ -4,6 +4,8 @@
 %         \item |gensymb|: For general non-maths symbols
 %         \item |fdsymbol|: Extended maths symbols
 %         \item |bbm|: Blackboard bold fonts
+%         \item |fontspec|: General font specification, no-math passed so as to
+%         not interfere with the math font
 %       \end{itemize}
 %
 % \iffalse
@@ -15,6 +17,8 @@
   \RequirePackage{gensymb}
   \RequirePackage{fdsymbol}
   \RequirePackage{bbm}
+  \RequirePackage[no-math]{fontspec}
+  \RequirePackage{dtk-logos}
 
 %    \end{macrocode}
 % \iffalse
@@ -297,9 +301,44 @@
 % \fi
 %    \begin{macrocode}
   \newcommand{\Rpl}{\mathbb{R}^+}
-
 %    \end{macrocode}
 % \iffalse
 %</package>
 % \fi
 % \end{macro}
+%
+% \begin{macro}{\CC}
+% Complex numbers, outputs $\CC$.
+% \iffalse
+%<*package>
+% \fi
+%    \begin{macrocode}
+  \newcommand{\CC}{\mathbb{C}}
+%    \end{macrocode}
+% \iffalse
+%</package>
+% \fi
+% \end{macro}
+%
+%       \subsection{Fonts}
+%         TeXStyle uses the following fonts:
+%         \begin{itemize}
+%           \item Linux Biolinum as the serif font
+%           \item {\sffamily Fira Sans as the regular and {\itshape italicised} sans serif font}
+%           \item {\sffamily\bfseries Free Sans Bold as the bold sans serif font}
+%           \item {\ttfamily Noto Mono as the monospace font}
+%         \end{itemize}
+%
+%         Please verify that each font is installed and visible to
+%         \textbf{xelatex} before using the style.
+% \iffalse
+%<*package>
+% \fi
+%    \begin{macrocode}
+  \setromanfont{Linux Biolinum O}
+  \setsansfont{Fira Sans}[BoldFont={FreeSansBold}]
+  \setmonofont{Noto Mono}
+%    \end{macrocode}
+% \iffalse
+%</package>
+% \fi
