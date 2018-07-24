@@ -10,9 +10,9 @@
 Build.dtx
 
 A test build file for the entire TeXStyle package, including the various classes.
-Running '(pdf)?latex Build.dtx' should generate this readme,
+Running 'xelatex Build.dtx' should generate this readme,
 the .ins file for this package and the appropriate .(sty|cls) files.
-To build the source, use 'xelatex -jobname=tmp/TestBuild Build.dtx'.
+To build the source, use 'xelatex -output-directory=tmp -jobname=TestBuild Build.dtx'.
 --------------------
 %</readme>
 %<*internal>
@@ -26,12 +26,12 @@ To build the source, use 'xelatex -jobname=tmp/TestBuild Build.dtx'.
 \nopreamble\nopostamble
 
 \generate{%
-  \file{tmp/TeXStyle.sty}{%
-    \from{./TeXStyle/TeXStyle.dtx}{package}%
-    \from{./TeXStyle/TeXStyle-Environments.dtx}{package}%
-    \from{./TeXStyle/TeXStyle-Glyphs.dtx}{package}%
-    \from{./TeXStyle/TeXStyle-Graphics.dtx}{package}%
-    \from{./TeXStyle/TeXStyle-Referencing.dtx}{package}%
+  \file{TeXStyle.sty}{%
+    \from{TeXStyle/TeXStyle.dtx}{package}%
+    \from{TeXStyle/Environments.dtx}{package}%
+    \from{TeXStyle/Glyphs.dtx}{package}%
+    \from{TeXStyle/Graphics.dtx}{package}%
+    \from{TeXStyle/Referencing.dtx}{package}%
     }%  
   }%
 %</package_batchfile>
@@ -45,8 +45,8 @@ To build the source, use 'xelatex -jobname=tmp/TestBuild Build.dtx'.
 \nopreamble\nopostamble
 
 \generate{%
-  \file{tmp/TeXStyle-article.cls}{%
-    \from{./TeXStyle-article/TeXStyle-article.dtx}{class}%
+  \file{TeXStyle-article.cls}{%
+    \from{TeXStyle-article/TeXStyle-article.dtx}{class}%
     }
   }
 % \iffalse
@@ -54,8 +54,8 @@ To build the source, use 'xelatex -jobname=tmp/TestBuild Build.dtx'.
 % \fi
 %<article_batchfile>\endbatchfile
 %<*internal>
-\generate{\file{tmp/TeXStyle.ins}{\from{Build.dtx}{package_batchfile}}}
-\generate{\file{tmp/TeXStyle-article.ins}{\from{Build.dtx}{article_batchfile}}}
-\generate{\file{tmp/Build.readme}{\from{Build.dtx}{readme}}}
+\generate{\file{TeXStyle.ins}{\from{Build.dtx}{package_batchfile}}}
+\generate{\file{TeXStyle-article.ins}{\from{Build.dtx}{article_batchfile}}}
+\generate{\file{Build.readme}{\from{Build.dtx}{readme}}}
 \endgroup
 %</internal>
