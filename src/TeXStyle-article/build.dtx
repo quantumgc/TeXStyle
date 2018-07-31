@@ -9,13 +9,16 @@
 # build.dtx
 
 A build file for the TeXStyle-article class.
-To build the source, use '(pdf|xe)?latex -jobname=./out/TeXStyle-article build-articles.dtx'.
+To build the source, use 'xelatex -output-directory=out -jobname=TeXStyle-article build.dtx&'.
 This should generate:
 
 + This readme
 + TeXStyle-article.ins
 + TeXStyle-article.cls
 + TeXStyle-article.pdf
+
+Run the command twice to generate the table of contents and associated
+hyperlinks in the documentation.
 %</readme>
 %<*internal>
 \fi
@@ -45,7 +48,7 @@ This should generate:
 %</internal>
 %
 %<*driver>
-\documentclass{TeXStyle-article}
+\documentclass{./out/TeXStyle-article}
 \usepackage{doc}
 \DisableCrossrefs
 \CodelineIndex
@@ -53,11 +56,11 @@ This should generate:
 
 \title{TeXStyle-article : Documentation}
 \author{Gautam Chaudhuri}
-\graphicspath{{./}}
-\headerGraphic{.1\textwidth}{test}
 
 \begin{document}
   \maketitle
+  \tableofcontents
+  
   \DocInput{TeXStyle-article.dtx}    
 \end{document}
 %</driver>
