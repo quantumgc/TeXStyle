@@ -9,13 +9,16 @@
 # build.dtx
 
 A build file for the TeXStyle package.
-To build the source, use '(pdf|xe)?latex -jobname=./out/TeXStyle build.dtx'.
+To build the source, use 'xelatex -output-directory=out -jobname=TeXStyle build.dtx&'.
 This should generate:
 
 + This readme
 + TeXStyle.ins
 + TeXStyle.sty
 + TeXStyle.pdf
+
+Run the command twice to generate the table of contents and associated
+hyperlinks in the documentation.
 %</readme>
 %<*internal>
 \fi
@@ -46,6 +49,7 @@ This should generate:
 %
 %<*driver>
 \documentclass{ltxdoc}
+\usepackage{hyperref}
 \usepackage{out/TeXStyle}
 \EnableCrossrefs
 \CodelineIndex
@@ -56,6 +60,7 @@ This should generate:
 
 \begin{document}
     \maketitle
+    \tableofcontents
     \DocInput{TeXStyle.dtx}
     \DocInput{Glyphs.dtx}
     \DocInput{Environments.dtx}
