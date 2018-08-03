@@ -1,4 +1,4 @@
-# TeXStyle
+# ![TeXStyle](graphics/logo.png)
 
 This is a `XeLaTeX` style that I use for most of the documents I write, along with a few classes that make use of and extend it.
 While this mostly consists of several packages that I've often used brought together into one, there are some slight modifications to make them work well together/look acceptable.
