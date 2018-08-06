@@ -35,7 +35,6 @@
 %       \begin{itemize}
 %         \item {\ttfamily TeXStyle}: any option specified in loading the class will be passed onto TeXStyle.
 %         \item {\ttfamily parskip}: paragraph and indent control.
-%         \item {\ttfamily marginnote}: margin note control.
 %         \item {\ttfamily geometry}: page sizing and control.
 %         \item {\ttfamily fancyhdr}: header control.
 %         \item {\ttfamily hyperref}: hyperlinked referencing.
@@ -51,7 +50,6 @@
 \RequirePackageWithOptions{TeXStyle}
 
 \RequirePackage{parskip}
-\RequirePackage{marginnote}
 \RequirePackage{geometry}
 \RequirePackage{fancyhdr}
 \RequirePackage{hyperref}
@@ -103,65 +101,14 @@
   \urlstyle{same}
 
   %% Page Size
-  \ifDraftOn
-    % Paper sizes for draft versions
-    \geometry{b4paper,%
-      total={18cm,27.5cm},
-      inner=1.5cm,%
-      top=2cm,%
-      heightrounded,%
-      marginparsep=2cm,%
-      includeheadfoot
-      %outer=8cm,
-      %inner=2cm,
-      %heightrounded,
-      %marginparwidth=5cm,
-      %marginparsep=2cm
-      }
-  \else
-    % Paper sizes for non-draft versions
-    \geometry{a4paper,%
-      total={18cm,27.5cm},%
-      inner=1.25cm,%
-      top=.75cm,%
-      heightrounded,%
-      marginparwidth=0cm,%
-      marginparsep=0cm,%
-      includeheadfoot}
-  \fi
-
-%    \end{macrocode}
-% \iffalse
-%</class>
-% \fi
-%
-%     \section{Macros}
-%
-% \iffalse
-%<*class>
-% \fi
-%    \begin{macrocode}
-%%------------------------------------------------------------
-%% Macro definitions
-  \ifDraftOn
-    % Emphasis and margin notes
-    \newcommand{\marEmp}[3]{#1\marginnote{\emph{#1}:#2}[#3]}
-    \newcommand{\marNote}[2]{\marginnote{#1}[#2]}
-  \else
-    % Emphasis and margin notes are discouraged in non-draft versions
-    \newcommand{\marEmp}[3]{
-      #1
-      \PackageWarning{MyStyle}{Emphasis margin note:\MessageBreak
-      \space \space \"#1: #2\" \MessageBreak
-      not removed, consider removing for final draft.}
+  \geometry{a4paper,%
+    total={18cm,26cm},%
+    inner=1.25cm,%
+    top=.75cm,%
+    heightrounded,%
+    marginparwidth=0cm,%
+    marginparsep=0cm,%
     }
-
-    \newcommand{\marNote}[2]{
-      \PackageWarning{MyStyle}{Margin note:\MessageBreak
-      \space \space \"#1\" \MessageBreak
-      not removed, consider removing for final draft.}
-    }
-  \fi
 
 %    \end{macrocode}
 % \iffalse
@@ -170,8 +117,6 @@
 %
 %     \section{Headers}
 %
-%       Headers are styled using |fancyhdr|, the base style is fancy but some
-%       additions are made.
 % \iffalse
 %<*class>
 % \fi
@@ -201,7 +146,7 @@
     \fi
     \setlength{\headheight}{21pt}
     \setlength{\headsep}{10pt}
-    \setlength{\voffset}{0pt}
+    \setlength{\voffset}{.9cm}
     %\setlength{\hoffset}{10pt}
     \renewcommand{\headrule}{%
       \hbox to\headwidth{%
