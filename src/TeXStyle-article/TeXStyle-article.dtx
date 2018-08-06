@@ -28,7 +28,7 @@
 %<class>\ProvidesClass{TeXStyle-article}
 % \fi
 %
-%     TeXStyle-article is a document class based on the normal |article| class for LaTeX.
+%     TeXStyle-article is a document class based on the normal {\ttfamily article} class for LaTeX.
 %
 %     \section{Dependencies}
 %       The following packages are required:
@@ -106,10 +106,12 @@
   \ifDraftOn
     % Paper sizes for draft versions
     \geometry{b4paper,%
-      total={18cm,26cm},&
-      inner=1.5cm, top=2cm,%
+      total={18cm,27.5cm},
+      inner=1.5cm,%
+      top=2cm,%
       heightrounded,%
-      marginparsep=2cm%,
+      marginparsep=2cm,%
+      includeheadfoot
       %outer=8cm,
       %inner=2cm,
       %heightrounded,
@@ -119,12 +121,13 @@
   \else
     % Paper sizes for non-draft versions
     \geometry{a4paper,%
-      total={18cm,25cm},%
-      inner=1.5cm,%
-      top=2cm,%
+      total={18cm,27.5cm},%
+      inner=1.25cm,%
+      top=.75cm,%
       heightrounded,%
       marginparwidth=0cm,%
-      marginparsep=0cm}
+      marginparsep=0cm,%
+      includeheadfoot}
   \fi
 
 %    \end{macrocode}
@@ -185,13 +188,32 @@
   \renewcommand{\sectionmark}[1]{\markright{\thesection:\ #1}}
   \renewcommand{\subsectionmark}[1]{}
 
+  \fancypagestyle{main}{%
     \fancyhf{} % clear all fields
-    \renewcommand{\headrulewidth}{0pt}
     \lhead{\thetitle}
     \rhead{\rightmark}
     \lfoot{}
-    \cfoot{}
+    \cfoot{\thepage}
     \rfoot{}
+    \renewcommand{\headrulewidth}{1pt}
+    \ifDraftOn
+    \else
+    \fi
+    \setlength{\headheight}{21pt}
+    \setlength{\headsep}{10pt}
+    \setlength{\voffset}{0pt}
+    %\setlength{\hoffset}{10pt}
+    \renewcommand{\headrule}{%
+      \hbox to\headwidth{%
+        \color{ts-8}\leaders\hrule height \headrulewidth\hfill%
+      }%
+    }
+  }
+  \fancypagestyle{cover}{%
+    \fancyhf{} % clear all fields
+    \renewcommand{\headrulewidth}{0pt}
+  }
+  \pagestyle{main}
 
 %    \end{macrocode}
 % \iffalse
