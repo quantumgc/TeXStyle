@@ -129,14 +129,16 @@
 %
 %
 %     \newcommand\crule[1][black]{\textcolor{#1}{\rule{1em}{1em}}}
-%     The colours are:\\
-
+%     \noindent
+%     The colours are:
+%
 %     \newcounter{i}
 %     \setcounter{i}{0}
 %     \loop
-%     \ifnum \value{i} < 16
-%     ts-\thei : \crule[ts-\thei],\\
-%     \stepcounter{i}
+%       \ifnum \value{i} < 16
+%       \noindent
+%       ts-\thei : \crule[ts-\thei],\\
+%       \stepcounter{i}
 %     \repeat
 %     accent-red : \crule[accent-red],\\
 %     accent-green : \crule[accent-green],\\
@@ -145,4 +147,4 @@
 %     line-grey : \crule[line-grey],\\
 %     line-black : \crule[line-black],\\
 %     back-grey : \crule[back-grey],\\
-%     back-blue : \crule[back-blue]\\
+%     back-blue : \crule[back-blue]
