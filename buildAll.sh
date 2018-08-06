@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/sh
 
 cd ./src/TeXStyle
 xelatex -output-directory=out -jobname=test build.dtx
