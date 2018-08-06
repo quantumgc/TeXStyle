@@ -2,7 +2,8 @@
 %     \subsubsection{Dependencies}
 %       \begin{itemize}
 %         \item |gensymb|: For general non-maths symbols
-%         \item |fdsymbol|: Extended maths symbols
+%         \item |fdsymbol|: Extended maths symbols, the symbol mathdollar needs
+%         to be undefined after calling the package in order to placate the compiler.
 %         \item |bbm|: Blackboard bold fonts
 %         \item |fontspec|: General font specification, no-math passed so as to
 %         not interfere with the math font
@@ -16,8 +17,9 @@
 %% Glyphs
   \RequirePackage{gensymb}
   \RequirePackage{fdsymbol}
+  \undef\mathdollar
   \RequirePackage{bbm}
-  \RequirePackage[no-math]{fontspec}
+  \RequirePackage{fontspec}
 
 %    \end{macrocode}
 % \iffalse
@@ -27,7 +29,8 @@
 %         \paragraph{Logic and proof symbols}
 %
 % \begin{macro}{\implies}
-% Renews the command for implication to better fit the rest of the implication symbols, outputs $\implies$.
+% Renews the command for implication to better fit the rest of the implication
+% symbols, outputs $\implies$.
 % \iffalse
 %<*package>
 % \fi
@@ -319,13 +322,12 @@
 % \fi
 % \end{macro}
 %
-%       \subsection{Fonts}
+%       \subsubsection{Fonts}
 %         TeXStyle uses the following fonts:
 %         \begin{itemize}
-%           \item Linux Biolinum as the serif font
-%           \item {\sffamily Fira Sans as the regular and {\itshape italicised} sans serif font}
-%           \item {\sffamily\bfseries Free Sans Bold as the bold sans serif font}
-%           \item {\ttfamily Noto Mono as the monospace font}
+%           \item Libertinus serif as the serif font
+%           \item {\sffamily Libertinus Sans as the sans serif font}
+%           \item {\ttfamily Liberation Mono as the monospace font}
 %         \end{itemize}
 %
 %         Please verify that each font is installed and visible to
@@ -334,9 +336,11 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
-  \setromanfont{Linux Biolinum O}
-  \setsansfont{Fira Sans}[BoldFont={FreeSansBold}]
-  \setmonofont{Noto Mono}
+
+  \setmainfont{Libertinus Serif}
+  \setmathrm{Libertinus Math}
+  \setsansfont{Libertinus Sans}
+  \setmonofont{Liberation Mono}
 %    \end{macrocode}
 % \iffalse
 %</package>
