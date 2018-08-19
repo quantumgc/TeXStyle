@@ -49,16 +49,27 @@ hyperlinks in the documentation.
 %
 %<*driver>
 \documentclass[twoside]{./out/TeXStyle-article}
+\RequirePackage{hyperref}
 \usepackage{doc}
 \DisableCrossrefs
 \CodelineIndex
 \RecordChanges
+
+\hypersetup{%
+  pdfauthor={Gautam Chaudhuri},%
+  pdftitle={TeXStyle-article: Documentation},%
+  pdfsubject={The documentation for the TeXStyle-article XeLaTeX class},%
+  pdfkeywords={TeXStyle, TeXStyle-article, XeLaTeX, Documentation},%
+  pdfproducer={XeLateX with hyperref},%
+  pdfcreator={Xelatex}%
+}
 
 \title{TeXStyle-article : Documentation}
 \author{Gautam Chaudhuri}
 
 \begin{document}
   \maketitle
+
   \tableofcontents
   
   \DocInput{TeXStyle-article.dtx}    

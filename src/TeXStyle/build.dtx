@@ -48,12 +48,21 @@ hyperlinks in the documentation.
 %</internal>
 %
 %<*driver>
-\documentclass{ltxdoc}
+\documentclass[a4paper]{ltxdoc}
 \usepackage{hyperref}
 \usepackage{out/TeXStyle}
 \EnableCrossrefs
 \CodelineIndex
 \RecordChanges
+
+\hypersetup{%
+  pdfauthor={Gautam Chaudhuri},%
+  pdftitle={TeXStyle: Documentation},%
+  pdfsubject={The documentation for the TeXStyle XeLaTeX package},%
+  pdfkeywords={TeXStyle, XeLaTeX, Documentation},%
+  pdfproducer={XeLateX with hyperref},%
+  pdfcreator={Xelatex}%
+}
 
 \title{TeXStyle - Documentation}
 \author{Gautam Chaudhuri}
