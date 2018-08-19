@@ -9,7 +9,9 @@ TeXStyle can be installed either through the use of pre-built packages and class
 
 ### Installing Pre-Built Source
 
-Download the latest version from the [build folder](https://mega.nz/#F!ikFXXJyS!GfjAadqWMMIBercQpy-3uw) (currently a personal MEGA folder, I'll figure out a better solution later) and extract the files to a directory that is visible to your TeX compiler.
+Download the latest version from the [build folder](https://mega.nz/#F!ikFXXJyS!GfjAadqWMMIBercQpy-3uw)
+(currently a personal MEGA folder, I'll figure out a better solution later)
+and extract the files to a directory that is visible to your TeX compiler.
 For platform specific instructions on where this might be, see the [platform guide](./docs/platform.md).
 
 ### Compiling from Source
