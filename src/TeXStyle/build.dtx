@@ -9,13 +9,16 @@
 # build.dtx
 
 A build file for the TeXStyle package.
-To build the source, use '(pdf|xe)?latex -jobname=./out/TeXStyle build.dtx'.
+To build the source, use 'xelatex -output-directory=out -jobname=TeXStyle build.dtx&'.
 This should generate:
 
 + This readme
 + TeXStyle.ins
 + TeXStyle.sty
 + TeXStyle.pdf
+
+Run the command twice to generate the table of contents and associated
+hyperlinks in the documentation.
 %</readme>
 %<*internal>
 \fi
@@ -28,40 +31,49 @@ This should generate:
 \nopreamble\nopostamble
 
 \generate{%
-    \file{./out/TeXStyle.sty}{%
-        \from{./TeXStyle.dtx}{package}%
-        \from{./Environments.dtx}{package}%
-        \from{./Glyphs.dtx}{package}%
-        \from{./Graphics.dtx}{package}%
-        \from{./Referencing.dtx}{package}%
+    \file{TeXStyle.sty}{%
+        \from{TeXStyle.dtx}{package}%
+        \from{Environments.dtx}{package}%
+        \from{Glyphs.dtx}{package}%
+        \from{Graphics.dtx}{package}%
         }%  
     }%
 %</package_batchfile>
 %<package_batchfile>\endbatchfile
 %
 %<*internal>
-\generate{\file{./out/TeXStyle.ins}{\from{build.dtx}{package_batchfile}}}
-\generate{\file{./out/README.md}{\from{build.dtx}{readme}}}
+\generate{\file{TeXStyle.ins}{\from{build.dtx}{package_batchfile}}}
+\generate{\file{README.md}{\from{build.dtx}{readme}}}
 \endgroup
 %</internal>
 %
 %<*driver>
-\documentclass{ltxdoc}
+\documentclass[a4paper]{ltxdoc}
+\usepackage{hyperref}
 \usepackage{out/TeXStyle}
 \EnableCrossrefs
 \CodelineIndex
 \RecordChanges
+
+\hypersetup{%
+  pdfauthor={Gautam Chaudhuri},%
+  pdftitle={TeXStyle: Documentation},%
+  pdfsubject={The documentation for the TeXStyle XeLaTeX package},%
+  pdfkeywords={TeXStyle, XeLaTeX, Documentation},%
+  pdfproducer={XeLateX with hyperref},%
+  pdfcreator={Xelatex}%
+}
 
 \title{TeXStyle - Documentation}
 \author{Gautam Chaudhuri}
 
 \begin{document}
     \maketitle
-    \DocInput{./TeXStyle.dtx}
-        \DocInput{./Glyphs.dtx}
-        \DocInput{./Environments.dtx}
-        \DocInput{./Graphics.dtx}
-        \DocInput{./Referencing.dtx}  
+    \tableofcontents
+    \DocInput{TeXStyle.dtx}
+    \DocInput{Glyphs.dtx}
+    \DocInput{Environments.dtx}
+    \DocInput{Graphics.dtx}
 \end{document}
 %</driver>
 % \fi

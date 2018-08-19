@@ -1,19 +1,19 @@
 % \iffalse meta-comment
 %
 % MIT License
-% 
+%
 % Copyright (c) 2017 Gautam Chaudhuri
-% 
+%
 % Permission is hereby granted, free of charge, to any person obtaining a copy
 % of this software and associated documentation files (the "Software"), to deal
 % in the Software without restriction, including without limitation the rights
 % to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 % copies of the Software, and to permit persons to whom the Software is
 % furnished to do so, subject to the following conditions:
-% 
+%
 % The above copyright notice and this permission notice shall be included in all
 % copies or substantial portions of the Software.
-% 
+%
 % THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 % IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 % FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -28,16 +28,18 @@
 %<class>\ProvidesClass{TeXStyle-article}
 % \fi
 %
-%     TeXStyle-article is a document class based on the normal |article| class for LaTeX.
+%     TeXStyle-article is a document class based on the normal {\ttfamily article} class for LaTeX.
 %
 %     \section{Dependencies}
 %       The following packages are required:
 %       \begin{itemize}
-%         \item |TeXStyle|: Any option specified in loading the class will be passed onto TeXStyle.
-%         \item |parskip|: paragraph and indent control.
-%         \item |marginnote|: margin note control.
-%         \item |geometry|: page sizing and control.
-%         \item |fancyhdr|: header control.
+%         \item {\ttfamily TeXStyle}: any option specified in%
+%           loading the class will be passed onto TeXStyle.
+%         \item {\ttfamily geometry}: page sizing and control.
+%         \item {\ttfamily fancyhdr}: header control.
+%         \item {\ttfamily hyperref}: hyperlinked referencing.
+%         \item {\ttfamily xr}: external referencing.
+%         \item {\ttfamily zref}: flexible referencing.
 %       \end{itemize}
 %
 % \iffalse
@@ -47,11 +49,11 @@
 \LoadClassWithOptions{article}
 \RequirePackageWithOptions{TeXStyle}
 
-\RequirePackage{parskip}
-\RequirePackage{marginnote}
-\RequirePackage{geometry}  
+\RequirePackage{geometry}
 \RequirePackage{fancyhdr}
-\pagestyle{fancy}
+\RequirePackage{hyperref}
+\RequirePackage{xr}
+\RequirePackage{zref}
 
 %    \end{macrocode}
 % \iffalse
@@ -66,8 +68,13 @@
 %    \begin{macrocode}
 %% Initialise draft option
 \newif\ifDraftOn
+\newif\ifTwosided
 
 \DeclareOption{draft}{\DraftOntrue}
+\DeclareOption{twoside}{\Twosidedtrue}
+\DeclareOption*{
+  \PackageWarning{TeXStyle-article}{Unknown Option '\CurrentOption'}
+  }
 \ProcessOptions\relax
 
 %    \end{macrocode}
@@ -75,8 +82,8 @@
 %</class>
 % \fi
 %
-%
 %     \section{Document Sizing and Style}
+%
 % \iffalse
 %<*class>
 % \fi
@@ -94,18 +101,28 @@
   }
   \urlstyle{same}
 
-  %% Section Title styles
-  \renewcommand\thesection{\arabic{section}.\arabic{section}}
-  \renewcommand\thesection{\textsection\arabic{section}}
-
-  %% Page Size
-  \ifDraftOn
-    % Paper sizes for draft versions
-    \geometry{b4paper, total={18cm,26cm}, inner=1.5cm, top=2cm, heightrounded, marginparsep=2cm}
-    %, outer=8cm, inner=2cm, heightrounded, marginparwidth=5cm, marginparsep=2cm
+  \ifTwosided
+    %% Page Size
+    \geometry{a4paper,%
+      inner=1.5cm,%
+      outer=2.3cm,%
+      top=2.7cm,%
+      bottom=2.5cm,%
+      heightrounded,%
+      marginparwidth=0cm,%
+      marginparsep=0cm,%
+      }
   \else
-    % Paper sizes for non-draft versions
-    \geometry{a4paper, total={18cm,25cm}, inner=1.5cm, top=2cm, heightrounded, marginparwidth=0cm, marginparsep=0cm}
+    %% Page Size
+    \geometry{a4paper,%
+      inner=1.5cm,%
+      outer=1.5cm,%
+      top=2.7cm,%
+      bottom=2.5cm,%
+      heightrounded,%
+      marginparwidth=0cm,%
+      marginparsep=0cm,%
+      }
   \fi
 
 %    \end{macrocode}
@@ -113,35 +130,80 @@
 %</class>
 % \fi
 %
-%     \section{Macros}
+%     \section{Headers}
 %
 % \iffalse
 %<*class>
 % \fi
 %    \begin{macrocode}
-%%------------------------------------------------------------
-%% Macro definitions
-  \ifDraftOn
-    % Emphasis and margin notes
-    \newcommand{\marEmp}[3]{#1\marginnote{\emph{#1}:#2}[#3]}
-    \newcommand{\marNote}[2]{\marginnote{#1}[#2]}
-  \else
-    % Emphasis and margin notes are discouraged in non-draft versions
-    \newcommand{\marEmp}[3]{
-      #1
-      \PackageWarning{MyStyle}{Emphasis margin note:\MessageBreak
-      \space \space \"#1: #2\" \MessageBreak
-      not removed, consider removing for final draft.}
-    }
+% renewing the title command to save the title in an external variable
+\makeatletter
+\renewcommand{\title}[1]{%
+  \gdef\@title{#1}%
+  \gdef\thetitle{#1}%
+}
+\makeatother
 
-    \newcommand{\marNote}[2]{
-      \PackageWarning{MyStyle}{Margin note:\MessageBreak
-      \space \space \"#1\" \MessageBreak
-      not removed, consider removing for final draft.}
+  \pagestyle{fancy}
+  \renewcommand{\sectionmark}[1]{\markright{\thesection:\ #1}}
+  \renewcommand{\subsectionmark}[1]{}
+
+  \ifTwosided
+    \fancypagestyle{main}{%
+      \fancyhf{} % clear all fields
+      \fancyhead[RO]{\raisebox{-.6\baselineskip}[0pt][0pt]{%
+          \fontsize{8}{10}\selectfont \thepage}}
+      \fancyhead[LO]{\raisebox{-.6\baselineskip}[0pt][0pt]{%
+          \fontsize{8}{10}\selectfont \thetitle}}
+      \fancyhead[RE]{\raisebox{-.6\baselineskip}[0pt][0pt]{%
+          \fontsize{8}{10}\selectfont \rightmark}}
+      \fancyhead[LE]{\raisebox{-.6\baselineskip}[0pt][0pt]{%
+          \fontsize{8}{10}\selectfont \thepage}}
+      \renewcommand{\headrulewidth}{1pt}
+      \ifDraftOn
+      \else
+      \fi
+      \setlength{\headheight}{0.3cm}
+      \setlength{\headsep}{0.7cm}
+      \setlength{\voffset}{-0.3cm}
+      %\renewcommand{\headruleskip}{0cm}
+      %\setlength{\hoffset}{10pt}
+      \renewcommand{\headrule}{\hbox to\headwidth{%
+      \color{ts-8}\leaders\hrule height \headrulewidth\hfill}}
+    } 
+  \else
+    \fancypagestyle{main}{%
+      \fancyhf{} % clear all fields
+      \fancyhead[LO,LE]{\raisebox{-.6\baselineskip}[0pt][0pt]{%
+          \fontsize{8}{10}\selectfont \thetitle }}
+      \fancyhead[RO,RE]{\raisebox{-.6\baselineskip}[0pt][0pt]{%
+          \fontsize{8}{10}\selectfont \rightmark }}
+      \lfoot{}
+      \cfoot{\thepage}
+      \rfoot{}
+      \renewcommand{\headrulewidth}{1pt}
+      \ifDraftOn
+      \else
+      \fi
+      \setlength{\headheight}{0.3cm}
+      \setlength{\headsep}{0.7cm}
+      \setlength{\voffset}{-0.3cm}
+      %\renewcommand{\headruleskip}{0cm}
+      %\setlength{\hoffset}{10pt}
+      \renewcommand{\headrule}{\hbox to\headwidth{%
+      \color{ts-8}\leaders\hrule height \headrulewidth\hfill}}
     }
   \fi
-  
+  \fancypagestyle{cover}{%
+    \fancyhf{} % clear all fields
+    \renewcommand{\headrulewidth}{0pt}
+  }
+  \pagestyle{main}
+
 %    \end{macrocode}
 % \iffalse
-%</class>
+%<*class>
+% \fi
+% \iffalse
+%<*class>
 % \fi

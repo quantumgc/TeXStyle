@@ -2,4 +2,5 @@ batch.sh
 src/tmp/**
 themeinfo/**
 **/out/**
+**/auto/**
 Builds/**

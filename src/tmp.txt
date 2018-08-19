@@ -1,7 +1,0 @@
-\from{components/TeXStyle-Graphics.dtx}{package}
-\from{components/TeXStyle-Notation.dtx}{package}
-\from{components/TeXStyle-Referencing.dtx}{package}
-
-\DocInput{components/TeXStyle-Graphics.dtx}
-\DocInput{components/TeXStyle-Notation.dtx}
-\DocInput{components/TeXStyle-Referencing.dtx}

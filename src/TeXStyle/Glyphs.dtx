@@ -2,8 +2,11 @@
 %     \subsubsection{Dependencies}
 %       \begin{itemize}
 %         \item |gensymb|: For general non-maths symbols
-%         \item |fdsymbol|: Extended maths symbols
+%         \item |fdsymbol|: Extended maths symbols, the symbol mathdollar needs
+%         to be undefined after calling the package in order to placate the compiler.
 %         \item |bbm|: Blackboard bold fonts
+%         \item |fontspec|: General font specification, no-math passed so as to
+%         not interfere with the math font
 %       \end{itemize}
 %
 % \iffalse
@@ -15,6 +18,7 @@
   \RequirePackage{gensymb}
   \RequirePackage{fdsymbol}
   \RequirePackage{bbm}
+  \RequirePackage[no-math]{fontspec}
 
 %    \end{macrocode}
 % \iffalse
@@ -24,7 +28,8 @@
 %         \paragraph{Logic and proof symbols}
 %
 % \begin{macro}{\implies}
-% Renews the command for implication to better fit the rest of the implication symbols, outputs $\implies$.
+% Renews the command for implication to better fit the rest of the implication
+% symbols, outputs $\implies$.
 % \iffalse
 %<*package>
 % \fi
@@ -297,9 +302,45 @@
 % \fi
 %    \begin{macrocode}
   \newcommand{\Rpl}{\mathbb{R}^+}
-
 %    \end{macrocode}
 % \iffalse
 %</package>
 % \fi
 % \end{macro}
+%
+% \begin{macro}{\CC}
+% Complex numbers, outputs $\CC$.
+% \iffalse
+%<*package>
+% \fi
+%    \begin{macrocode}
+  \newcommand{\CC}{\mathbb{C}}
+%    \end{macrocode}
+% \iffalse
+%</package>
+% \fi
+% \end{macro}
+%
+%       \subsubsection{Fonts}
+%         TeXStyle uses the following fonts:
+%         \begin{itemize}
+%           \item Libertinus serif as the serif font
+%           \item {\sffamily Libertinus Sans as the sans serif font}
+%           \item {\ttfamily Liberation Mono as the monospace font}
+%         \end{itemize}
+%
+%         Please verify that each font is installed and visible to
+%         \textbf{xelatex} before using the style.
+% \iffalse
+%<*package>
+% \fi
+%    \begin{macrocode}
+
+  \setmainfont{Libertinus Serif}
+  \setmathrm{Libertinus Math}
+  \setsansfont{Libertinus Sans}
+  \setmonofont{Liberation Mono}
+%    \end{macrocode}
+% \iffalse
+%</package>
+% \fi

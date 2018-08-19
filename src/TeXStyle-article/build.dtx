@@ -9,13 +9,16 @@
 # build.dtx
 
 A build file for the TeXStyle-article class.
-To build the source, use '(pdf|xe)?latex -jobname=./out/TeXStyle-article build-articles.dtx'.
+To build the source, use 'xelatex -output-directory=out -jobname=TeXStyle-article build.dtx&'.
 This should generate:
 
 + This readme
 + TeXStyle-article.ins
 + TeXStyle-article.cls
 + TeXStyle-article.pdf
+
+Run the command twice to generate the table of contents and associated
+hyperlinks in the documentation.
 %</readme>
 %<*internal>
 \fi
@@ -30,8 +33,8 @@ This should generate:
 \nopreamble\nopostamble
 
 \generate{%
-  \file{./out/TeXStyle-article.cls}{%
-    \from{./TeXStyle-article.dtx}{class}%
+  \file{TeXStyle-article.cls}{%
+    \from{TeXStyle-article.dtx}{class}%
     }
   }
 % \iffalse
@@ -39,23 +42,37 @@ This should generate:
 % \fi
 %<article_batchfile>\endbatchfile
 %<*internal>
-\generate{\file{./out/TeXStyle-article.ins}{\from{build.dtx}{article_batchfile}}}
-\generate{\file{./out/README.md}{\from{build.dtx}{readme}}}
+\generate{\file{TeXStyle-article.ins}{\from{build.dtx}{article_batchfile}}}
+\generate{\file{README.md}{\from{build.dtx}{readme}}}
 \endgroup
 %</internal>
 %
 %<*driver>
-\documentclass{ltxdoc}
+\documentclass[twoside]{./out/TeXStyle-article}
+\RequirePackage{hyperref}
+\usepackage{doc}
 \DisableCrossrefs
 \CodelineIndex
 \RecordChanges
+
+\hypersetup{%
+  pdfauthor={Gautam Chaudhuri},%
+  pdftitle={TeXStyle-article: Documentation},%
+  pdfsubject={The documentation for the TeXStyle-article XeLaTeX class},%
+  pdfkeywords={TeXStyle, TeXStyle-article, XeLaTeX, Documentation},%
+  pdfproducer={XeLateX with hyperref},%
+  pdfcreator={Xelatex}%
+}
 
 \title{TeXStyle-article : Documentation}
 \author{Gautam Chaudhuri}
 
 \begin{document}
   \maketitle
-  \docinput{./TeXStyle-article.dtx}    
+
+  \tableofcontents
+  
+  \DocInput{TeXStyle-article.dtx}    
 \end{document}
 %</driver>
 % \fi

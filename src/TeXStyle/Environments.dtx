@@ -45,8 +45,10 @@
     {}% measure of space to indent
     {}% name of head font
     {}% punctuation between head and body
-    {.5em}% space after theorem head; " " = normal inter-word space
-    {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}% Manually specify theorem head
+    {.5em}% space after theorem head
+    %; " " = normal inter-word space
+    % Manually specify theorem head
+    {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
 
 %    \end{macrocode}
 % \iffalse
@@ -59,16 +61,21 @@
 %    \begin{macrocode}
   \newtheoremstyle{NoBreakNoNumber}{}{}{\itshape}%
     {}{}{}{.5em}{\thmname{#1}:\thmnote{ #3}}
-  \newtheoremstyle{Break}{}{}{\itshape}%
-    {}{}{}{\newline}{\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
-  \newtheoremstyle{BreakNoNumber}{}{}{\itshape}%
-    {}{}{}{\newline}{\thmname{#1}:\thmnote{ #3}}
   \newtheoremstyle{BreakBold}{}{}{\itshape}
-  {}{\bfseries}{}{\newline}{\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
+    {}{\bfseries}{}{\newline}%
+    {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
+  \newtheoremstyle{Break}{}{}{\itshape}%
+    {}{}{}{\newline}%
+    {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
+  \newtheoremstyle{BreakNoNumber}{}{}{\itshape}%
+    {}{}{}{\newline}%
+    {\thmname{#1}:\thmnote{ #3}}
   \newtheoremstyle{BreakBoldNoNumber}{}{}{\itshape}%
-    {}{\bfseries}{}{\newline}{\thmname{#1}:\thmnote{ #3}}
+    {}{\bfseries}{}{\newline}%
+    {\thmname{#1}:\thmnote{ #3}}
   \newtheoremstyle{NoBreakBold}{}{}{\itshape}
-    {}{\bfseries}{}{.5em}{\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
+    {}{\bfseries}{}{.5em}%
+    {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
   \newtheoremstyle{NoBreakBoldNoNumber}{}{}{\itshape}%
     {}{\bfseries}{}{.5em}{\thmname{#1}:\thmnote{ #3}}
 
@@ -98,6 +105,9 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
+  \newtheoremstyle{Theorem}{}{}{}
+    {}{\bfseries}{}{\newline}%
+    {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
   \mdfdefinestyle{theorem}{
     skipabove=1cm, skipbelow=1cm,
     innertopmargin=0cm, innerbottommargin=.05cm,
@@ -105,7 +115,7 @@
     linecolor=line-blue,
     linewidth=.05cm, backgroundcolor=back-blue!20
     }
-  \theoremstyle{BreakBold}
+  \theoremstyle{Theorem}
   \newmdtheoremenv[style=theorem]{theorem}{Theorem}[section]
 
 %    \end{macrocode}
@@ -137,15 +147,19 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
+  \newtheoremstyle{Proposition}{}{}{\itshape}
+    {}{\bfseries}{}{\newline}%
+    {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
   \mdfdefinestyle{proposition}{
     skipabove=.5cm, skipbelow=.5cm,
     innertopmargin=0cm, innerbottommargin=.05cm,
     leftmargin=.24cm, innerleftmargin=.1cm,
     backgroundcolor=back-grey!20,
-    hidealllines=true
+    linecolor=line-grey, theoremtitlefont=\sffamily\bfseries
     }
-  \theoremstyle{BreakBold}
-  \newmdtheoremenv[style=proposition]{proposition}[theorem]{Proposition}
+  \theoremstyle{Proposition}
+  \newmdtheoremenv[style=proposition]{proposition}%
+  [theorem]{Proposition}
 
   \mdfdefinestyle{subPro}
   {
@@ -158,7 +172,8 @@
     linewidth=.05cm
   }
   \theoremstyle{NoBreak}
-  \newmdtheoremenv[style=subPro]{subPro}{}[theorem] % Refreshes every proposition
+  % Refreshes every proposition
+  \newmdtheoremenv[style=subPro]{subPro}{}[theorem]
 
 %    \end{macrocode}
 % \iffalse
@@ -187,6 +202,9 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
+  \newtheoremstyle{Definition}{}{}{\sffamily}
+    {}{\sffamily\bfseries}{}{\newline}%
+    {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
   \mdfdefinestyle{definition}{
     skipabove=.5cm, skipbelow=.5cm,
     innertopmargin=0cm, innerbottommargin=.05cm,
@@ -194,9 +212,12 @@
     linecolor=line-black,
     linewidth=.05cm
     }
-  \theoremstyle{BreakBold}
-  \newmdtheoremenv[style=definition]{definition}[theorem]{Definition}
-
+  \theoremstyle{Definition}
+  \newmdtheoremenv[style=definition]{definition}%
+  [theorem]{Definition}
+  \newtheoremstyle{SubDefinition}{}{}{\sffamily}%
+    {}{\bfseries}{}{.5em}%
+    {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
   \mdfdefinestyle{subDef}
   {
     skipabove=0cm, skipbelow=.01cm,
@@ -207,8 +228,9 @@
     linecolor=line-black,
     linewidth=.01cm
   }
-  \theoremstyle{NoBreakBold}
-  \newmdtheoremenv[style=subDef]{subDef}{}[theorem] % Refreshes every definition
+  \theoremstyle{SubDefinition}
+  % Refreshes every definition
+  \newmdtheoremenv[style=subDef]{subDef}{}[theorem]
 
 %    \end{macrocode}
 % \iffalse
@@ -257,7 +279,8 @@
     linewidth=.01cm
   }
   \theoremstyle{NoBreak}
-  \newmdtheoremenv[style=subExa]{subExa}{}[example] % Refreshes every example
+  \newmdtheoremenv[style=subExa]{subExa}{}[example]
+  % Refreshes every example
 
 %    \end{macrocode}
 % \iffalse
@@ -296,7 +319,7 @@
     linewidth=.05cm
   }
   \theoremstyle{Break}
-  \newmdtheoremenv[style=lemma]{lemma}{Lemma}[theorem]
+  \newmdtheoremenv[style=lemma]{lemma}[theorem]{Lemma}
 
 %    \end{macrocode}
 % \iffalse
@@ -327,7 +350,8 @@
     linewidth=.05cm
     }
   \theoremstyle{Break}
-  \newmdtheoremenv[style=corollary]{corollary}{Corollary}[theorem]
+  \newmdtheoremenv[style=corollary]{corollary}%
+    {Corollary}[theorem]
 
 %    \end{macrocode}
 % \iffalse
@@ -373,22 +397,22 @@
 %
 % \end{environment}
 %
-% \begin{environment}{note}
+% \begin{environment}{ThrmNote}
 % \iffalse
 %<*package>
 % \fi
 %    \begin{macrocode}
   \theoremstyle{NoBreakNoNumber}
-  \newtheorem{note}{Note}
+  \newtheorem{ThrmNote}{Note}
 
 %    \end{macrocode}
 % \iffalse
 %</package>
 % \fi
 %
-%   \begin{note}
+%   \begin{ThrmNote}
 %     This is a note
-%   \end{note}
+%   \end{ThrmNote}
 %
 % \end{environment}
 %
@@ -402,15 +426,16 @@
 %    \begin{macrocode}
   \lstset{
     basicstyle=\fontsize{8}{10}\ttfamily,
-    aboveskip={1.0\baselineskip},
-    belowskip={1.0\baselineskip},
+    aboveskip={0.8\baselineskip},
+    belowskip={0.8\baselineskip},
     columns=fixed,
     extendedchars=true,
     breaklines=true,
-    tabsize=2,
-    prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+    tabsize=4,
+    prebreak=\raisebox{0ex}[0ex][0ex]%
+    {\ensuremath{\hookleftarrow}},
     frame=lines,
-    showtabs=false,
+    showtabs=true,
     showspaces=false,
     showstringspaces=false,
     keywordstyle=\color{line-blue},

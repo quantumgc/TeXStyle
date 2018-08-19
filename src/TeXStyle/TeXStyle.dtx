@@ -1,19 +1,19 @@
 % \iffalse meta-comment
 %
 % MIT License
-% 
+%
 % Copyright (c) 2017 Gautam Chaudhuri
-% 
+%
 % Permission is hereby granted, free of charge, to any person obtaining a copy
 % of this software and associated documentation files (the "Software"), to deal
 % in the Software without restriction, including without limitation the rights
 % to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 % copies of the Software, and to permit persons to whom the Software is
 % furnished to do so, subject to the following conditions:
-% 
+%
 % The above copyright notice and this permission notice shall be included in all
 % copies or substantial portions of the Software.
-% 
+%
 % THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 % IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 % FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -34,7 +34,6 @@
 %     These packages are used across practically all of TeXStyle, including the various sub-sections of the main package.
 %     They are used for:
 %     \begin{itemize}
-%       \item |subfiles|: Assembling documents from multiple files. %MARKED FOR REMOVAL
 %       \item |color|: Control over the colour of various elements.
 %       \item |xcolor|: A driver-independent implementation of color.
 %     \end{itemize}
@@ -43,7 +42,6 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
-\RequirePackage{subfiles}
 \RequirePackage{color}
 \RequirePackage{xcolor}
 
@@ -53,7 +51,7 @@
 % \fi
 %
 %   \subsection{TeXStyle options}
-%     This section covers the options available on loading the TeXStyle package.     
+%     This section covers the options available on loading the TeXStyle package.
 %
 %
 %     Draft mode enables features such as extended margins and margin comments.
@@ -65,6 +63,13 @@
   \newif\ifDraftModeOn
   \DeclareOption{draft}{
     \DraftModeOntrue
+    }
+  \newif\ifUseDefaultFonts
+  \DeclareOption{defaultFonts}{
+    \UseDefaultFontstrue
+  }
+  \DeclareOption*{
+    \PackageWarning{TeXStyle}{Unknown Option '\CurrentOption'}
     }
   \ProcessOptions\relax
 
@@ -81,18 +86,65 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
-  \definecolor{accent-red}{HTML}{EF2D56} %#EF2D56
-  \definecolor{accent-green}{HTML}{7DDF64} %#7DDF64
-  \definecolor{accent-blue}{HTML}{5BC0EB} %#5BC0EB
 
-  \definecolor{line-blue}{HTML}{1D2951} %#1D2951
-  \definecolor{line-grey}{HTML}{1D2951} %#90909A
-  \definecolor{line-black}{HTML}{02111B} %#02111B
+  \definecolorset{HTML}{accent-}{}{%
+    red,EF2D56;%
+    green,7DDF64;%
+    blue,5BC0EB%
+  }
 
-  \definecolor{back-grey}{HTML}{403F4C} %#403F4C
-  \definecolor{back-blue}{HTML}{C6E0FF} %#C6E0FF
+  \definecolorset{HTML}{line-}{}{%
+    blue,1D2951;%
+    grey,90909A;%
+    black,02111B%
+  }
 
+  \definecolorset{HTML}{back-}{}{%
+    grey,403F4C;%
+    blue,C6E0FF%
+  }
+
+  \definecolorset{HTML}{ts-}{}{%
+    0,FFFFEE;%
+    1,F1F1F0;%
+    2,F0F0EE;%
+    3,F2E7DA;%
+    4,F2BC79;%
+    5,C2D2E9;%
+    6,5E83BA;%
+    7,8899AA;%
+    8,3A4E7A;%
+    9,004AA8;%
+    10,114488;%
+    11,003366;%
+    12,2B2B2B;%
+    13,091D36;%
+    14,221100;%
+    15,111110%
+  }
 %    \end{macrocode}
 % \iffalse
 %<*package>
 % \fi
+%
+%
+%     \newcommand\crule[1][black]{\textcolor{#1}{\rule{1em}{1em}}}
+%     \noindent
+%     The colours are:
+%
+%     \newcounter{i}
+%     \setcounter{i}{0}
+%     \loop
+%       \ifnum \value{i} < 16
+%       \noindent
+%       ts-\thei : \crule[ts-\thei],\\
+%       \stepcounter{i}
+%     \repeat
+%     accent-red : \crule[accent-red],\\
+%     accent-green : \crule[accent-green],\\
+%     accent-blue : \crule[accent-blue],\\
+%     line-blue : \crule[line-blue],\\
+%     line-grey : \crule[line-grey],\\
+%     line-black : \crule[line-black],\\
+%     back-grey : \crule[back-grey],\\
+%     back-blue : \crule[back-blue]
