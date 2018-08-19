@@ -1,6 +1,6 @@
 batch.sh
-src/tmp/**
 themeinfo/**
+**/tmp/**
 **/out/**
 **/auto/**
 Builds/**
