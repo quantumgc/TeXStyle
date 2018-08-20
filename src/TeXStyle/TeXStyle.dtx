@@ -1,3 +1,4 @@
+%& -jobname=TeXStyle
 % \iffalse
 %
 % Build file for Gautam Chaudhuri's TeXStyle
@@ -6,10 +7,10 @@
 \iffalse
 %</internal>
 %<*readme>
-# build.dtx
+# TeXStyle.dtx
 
 A build file for the TeXStyle package.
-To build the source, use 'xelatex -output-directory=out -jobname=TeXStyle build.dtx&'.
+To build the source, use 'xelatex -output-directory=out -jobname=TeXStyle TeXStyle.dtx&'.
 This should generate:
 
 + This readme
@@ -32,7 +33,7 @@ hyperlinks in the documentation.
 
 \generate{%
     \file{TeXStyle.sty}{%
-        \from{TeXStyle.dtx}{package}%
+        \from{MiscChanges.dtx}{package}%
         \from{Environments.dtx}{package}%
         \from{Glyphs.dtx}{package}%
         \from{Graphics.dtx}{package}%
@@ -42,8 +43,8 @@ hyperlinks in the documentation.
 %<package_batchfile>\endbatchfile
 %
 %<*internal>
-\generate{\file{TeXStyle.ins}{\from{build.dtx}{package_batchfile}}}
-\generate{\file{README.md}{\from{build.dtx}{readme}}}
+\generate{\file{TeXStyle.ins}{\from{TeXStyle.dtx}{package_batchfile}}}
+\generate{\file{README.md}{\from{TeXStyle.dtx}{readme}}}
 \endgroup
 %</internal>
 %
@@ -76,7 +77,7 @@ hyperlinks in the documentation.
     commonly use into one for convenience. 
     
     \section{Miscellaneous Changes}
-    \DocInput{TeXStyle.dtx}
+    \DocInput{MiscChanges.dtx}
     \section{Symbols}
     \DocInput{Glyphs.dtx}
     \section{Environments}

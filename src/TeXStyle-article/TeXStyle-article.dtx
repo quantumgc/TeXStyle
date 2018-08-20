@@ -6,10 +6,10 @@
 \iffalse
 %</internal>
 %<*readme>
-# build.dtx
+# TeXStyle-article.dtx
 
 A build file for the TeXStyle-article class.
-To build the source, use 'xelatex -output-directory=out -jobname=TeXStyle-article build.dtx&'.
+To build the source, use 'xelatex -output-directory=out -jobname=TeXStyle-article TeXStyle-article.dtx&'.
 This should generate:
 
 + This readme
@@ -34,7 +34,7 @@ hyperlinks in the documentation.
 
 \generate{%
   \file{TeXStyle-article.cls}{%
-    \from{TeXStyle-article.dtx}{class}%
+    \from{source.dtx}{class}%
     }
   }
 % \iffalse
@@ -42,8 +42,8 @@ hyperlinks in the documentation.
 % \fi
 %<article_batchfile>\endbatchfile
 %<*internal>
-\generate{\file{TeXStyle-article.ins}{\from{build.dtx}{article_batchfile}}}
-\generate{\file{README.md}{\from{build.dtx}{readme}}}
+\generate{\file{TeXStyle-article.ins}{\from{TeXStyle-article.dtx}{article_batchfile}}}
+\generate{\file{README.md}{\from{TeXStyle-article.dtx}{readme}}}
 \endgroup
 %</internal>
 %
@@ -72,7 +72,7 @@ hyperlinks in the documentation.
 
   \tableofcontents
   
-  \DocInput{TeXStyle-article.dtx}    
+  \DocInput{source.dtx}    
 \end{document}
 %</driver>
 % \fi
