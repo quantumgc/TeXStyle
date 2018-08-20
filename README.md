@@ -24,3 +24,5 @@ You're welcome to adapt these instructions for another OS, but YMMV.
 + Change to the directory containing the project you want to build.
 + Run `xelatex -output-directory=out -jobname=test build.dtx` changing names as appropriate.
 + This should generate, among other things, the source and documentation files for the project in the out directory.
+
+Running `latexmk` inside the project root directory should also build the source files if `latexmk` is installed.
