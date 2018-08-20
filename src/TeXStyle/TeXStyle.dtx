@@ -28,32 +28,8 @@
 %<package>\ProvidesPackage{TeXStyle}
 % \fi
 %
-%   \subsection{Base dependencies}
-%
-%     These packages are used across practically all of TeXStyle, including the various sub-sections of the main package.
-%     They are used for:
-%     \begin{itemize}
-%       \item |color|: Control over the colour of various elements.
-%       \item |xcolor|: A driver-independent implementation of color.
-%     \end{itemize}
-%
-% \iffalse
-%<*package>
-% \fi
-%    \begin{macrocode}
-\RequirePackage{color}
-\RequirePackage{xcolor}
-
-%    \end{macrocode}
-% \iffalse
-%</package>
-% \fi
-%
 %   \subsection{TeXStyle options}
 %     This section covers the options available on loading the TeXStyle package.
-%
-%     Draft mode enables features such as extended margins and margin comments.
-%     These are covered later in the documentation.
 % \iffalse
 %<*package>
 % \fi
@@ -78,7 +54,24 @@
 %
 %   \subsection{Colours}
 %
-%     The following colours are named to provide some consistency across the style.
+%     The following colours are named to provide some consistency across the
+%     style. The required dependencies are:
+%     \begin{itemize}
+%       \item |color|: Control over the colour of various elements.
+%       \item |xcolor|: A driver-independent implementation of color.
+%     \end{itemize}
+%
+% \iffalse
+%<*package>
+% \fi
+%    \begin{macrocode}
+\RequirePackage{color}
+\RequirePackage{xcolor}
+
+%    \end{macrocode}
+% \iffalse
+%</package>
+% \fi
 %
 % \iffalse
 %<*package>
