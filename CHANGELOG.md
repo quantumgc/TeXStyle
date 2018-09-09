@@ -2,9 +2,16 @@
 
 ## [0.0.2]
 
-+ CHANGELOG added
-+ Added documentation for TeXStyle-article class
-+ Added custom headers for TeXStyle-article
+### Additions
+
++ CHANGELOG and version information.
++ Documentation for TeXStyle-article.
++ Custom headers for TeXStyle-article.
++ PDF metadata.
+
+### Removals
+
+- All packages relating to referencing.
 
 ## [0.0.1]
 
