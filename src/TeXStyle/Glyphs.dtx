@@ -1,7 +1,7 @@
 %     \subsection{Dependencies}
 %       \begin{itemize}
 %         \item |gensymb|: For general non-maths symbols
-%         \item |fdsymbol|: Extended maths symbols.
+%         \item |amssymb|, |amsmath|, |centernot|: Extended maths symbols.
 %         \item |bbm|: Blackboard bold fonts
 %         \item |fontspec|: General font specification, no-math passed so as to
 %         not interfere with the math font
@@ -14,7 +14,9 @@
 %%------------------------------------------------------------
 %% Glyphs
   \RequirePackage{gensymb}
-  \RequirePackage{fdsymbol}
+  \RequirePackage{amssymb}
+  \RequirePackage{amsmath}
+  \RequirePackage{centernot}
   \RequirePackage{bbm}
   \RequirePackage[no-math]{fontspec}
 
@@ -58,7 +60,7 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
-  \newcommand{\nImplies}{\>\nLongrightarrow\>}
+  \newcommand{\nImplies}{\>\centernot\Longrightarrow\>}
 %    \end{macrocode}
 % \iffalse
 %</package>
@@ -71,7 +73,7 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
-  \newcommand{\nImplied}{\>\nLongleftarrow\>}
+  \newcommand{\nImplied}{\>\centernot\Longleftarrow\>}
 %    \end{macrocode}
 % \iffalse
 %</package>
@@ -97,7 +99,7 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
-  \newcommand{\nIff}{\>\nLongleftrightarrow\>}
+  \newcommand{\nIff}{\>\centernot\Longleftrightarrow\>}
 %    \end{macrocode}
 % \iffalse
 %</package>
