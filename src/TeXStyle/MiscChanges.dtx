@@ -31,6 +31,12 @@
 %   \subsection{TeXStyle options}
 %     This section covers the options available on loading the TeXStyle package.
 %     Most of these are implemented because other packages need them.
+%     Two options to note are the |useHyperrefMacros| and its complement  the
+%     |noHyperrefMacros| options.
+%     If the package |hyperref| is loaded before |TeXStyle|, the corresponding
+%     boolean is automatically set to true and certain macros are then defined
+%     to make referencing slightly easier.
+%     To override this behaviour, specify |noHyperrefMacros|.
 % \iffalse
 %<*package>
 % \fi
@@ -42,6 +48,25 @@
   \newif\ifUseDefaultFonts
   \DeclareOption{defaultFonts}{
     \UseDefaultFontstrue
+  }
+  \newif\ifHyperrefMacros
+  \DeclareOption{useHyperrefMacros}{
+    \HyperrefMacrostrue
+  }
+  \@ifpackageloaded{hyperref}{
+    \HyperrefMacrostrue
+  }
+  {
+    \ifHyperrefMacros
+    \PackageWarning{TeXStyle}{
+      Loading hyperref macros even though hyperref has
+      not been detected yet.
+      If hyperref has been loaded later in the document, ignore this message.
+    }
+    \fi
+  }
+  \DeclareOption{noHyperrefMacros}{
+    \HyperrefMacrosfalse
   }
   \DeclareOption*{
     \PackageWarning{TeXStyle}{Unknown Option '\CurrentOption'}
