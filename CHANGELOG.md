@@ -9,6 +9,7 @@
   For this to work, `hyperref` must either be loaded before `TeXStyle` or loaded
   afterwards with a `useHyperrefMacros` option passed to TeXStyle.
   *(Partially Document)*
++ Changed load order of TeXStyle-article to reflect above changes.
   
 
 ### Changes
