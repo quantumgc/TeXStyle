@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.3]
+
+### Changes
+
+* Now using `amssymb`, `amsmath` and `centernot` instead of `fdsymbol` as the
+  math font.
+
 ## [0.0.2]
 
 ### Additions
