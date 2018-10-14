@@ -4,12 +4,20 @@
 %     their respective parent group.
 
 %     \subsection{Dependencies}
-%       The following packages are required in order to generate and style the environments.
+%       The following packages are required in order to generate and style the
+%       environments.
 %       \begin{itemize}
-%         \item |amsthm| provides the base for generating and configuring theorem environments.
-%         \item |mdframed| with the |framemethod=tikz| option allows theorem environments to be framed with lines.
+%         \item |amsthm| provides the base for generating and configuring
+%           theorem environments.
+%         \item |mdframed| with the |framemethod=tikz| option allows theorem
+%           environments to be framed with lines.
 %         \item |listings| provides environments for including source code.
-%         \item |enumitem| with the |shortlabels| option allows short specifiers for the bullets on enumerated lists.
+%         \item |enumitem| with the |shortlabels| option allows short specifiers
+%           for the bullets on enumerated lists.
+%         \item \textit{(optional)}|aliascnt| is loaded if the
+%           |useHyperrefMacros| option is specified.
+%           It provides aliased counters to help hyperref to properly reference
+%           theorems, etc.
 %       \end{itemize}
 %
 % \iffalse
@@ -22,6 +30,9 @@
   \RequirePackage[framemethod=tikz]{mdframed}
   \RequirePackage{listings}
   \RequirePackage[shortlabels]{enumitem}
+  \ifHyperrefMacros
+  \RequirePackage{aliascnt}
+  \fi
 
 %    \end{macrocode}
 % \iffalse
@@ -84,7 +95,8 @@
 %</package>
 % \fi
 %
-%       Additionally, a filled black square marks the end of a proof as opposed to an empty one.
+%       Additionally, a filled black square marks the end of a proof as opposed
+%       to an empty one.
 %
 % \iffalse
 %<*package>
@@ -99,6 +111,25 @@
 %
 %     \subsection{Detailed Theorem Environments}
 %       The following |amsthm| environments are defined within TeXStyle.
+%
+%       \subsubsection{Hyperref Macros}
+%       An additional counter is defined if the boolean |HyperrefMacros| is
+%       true, this simulates a separate counter so that the autoref macro in
+%       |hyperref| works properly.
+%       If hyperref is loaded, referencing should look something like this:
+%       \begin{itemize}
+%         \item \autoref{thm:First} goes to the first Theorem.
+%         \item \autoref{pro:First}, the first Proposition and
+%         \autoref{sPro:First}, the first Sub-Proposition.
+%         \item \autoref{def:First}, the first Definition and
+%         \autoref{sDef:First}, the first Sub-Definition.
+%         \item \autoref{exa:First}, the first Example and
+%         \autoref{sExa:First}, the first Sub-Example.
+%         \item \autoref{lem:First}, the first Lemma.
+%         \item \autoref{cor:First}, the first Corollary.
+%         \item \autoref{rem:First}, the first Remark.
+%       \end{itemize}
+%       
 %
 % \begin{environment}{Theorem}
 % \iffalse
@@ -123,7 +154,7 @@
 %</package>
 % \fi
 %
-%   \begin{theorem}[Theorem Title]
+%   \begin{theorem}[Theorem Title]\label{thm:First}
 %     This is a theorem, this is the theorem sub-title
 %
 %     $\forall x \in S, x \in S$,
@@ -157,10 +188,6 @@
     backgroundcolor=back-grey!20,
     linecolor=line-grey, theoremtitlefont=\sffamily\bfseries
     }
-  \theoremstyle{Proposition}
-  \newmdtheoremenv[style=proposition]{proposition}%
-  [theorem]{Proposition}
-
   \mdfdefinestyle{subPro}
   {
     skipabove=0cm, skipbelow=.01cm,
@@ -171,22 +198,39 @@
     leftline=true, linecolor=line-grey,
     linewidth=.05cm
   }
-  \theoremstyle{NoBreak}
-  % Refreshes every proposition
-  \newmdtheoremenv[style=subPro]{subPro}{}[theorem]
+
+  \ifHyperrefMacros
+    \theoremstyle{Proposition}
+    \newaliascnt{proposition}{theorem}
+    \newmdtheoremenv[style=proposition]{proposition}%
+    [proposition]{Proposition}
+    \aliascntresetthe{proposition}
+    \theoremstyle{NoBreak}
+    % Refreshes every proposition
+    \newmdtheoremenv[style=subPro]{subPro}{}[proposition]
+    \providecommand*{\propositionautorefname}{Proposition}
+    \providecommand*{\subProautorefname}{Proposition}
+  \else
+    \theoremstyle{Proposition}
+    \newmdtheoremenv[style=proposition]{proposition}%
+    [theorem]{Proposition}
+    \theoremstyle{NoBreak}
+    % Refreshes every proposition
+    \newmdtheoremenv[style=subPro]{subPro}{}[theorem]
+  \fi
 
 %    \end{macrocode}
 % \iffalse
 %</package>
 % \fi
 %
-%   \begin{proposition}[Proposition Title]
+%   \begin{proposition}[Proposition Title]\label{pro:First}
 %     This is a proposition, this is the proposition sub-title.
 %
 %     Let $S \subset \R$.
 %     This is what normal text looks like.
 %
-%     \begin{subPro}
+%     \begin{subPro}\label{sPro:First}
 %       This is a sub-proposition, this is the sub-proposition title.
 %
 %       $\forall x \in S, x \in S$,
@@ -212,12 +256,6 @@
     linecolor=line-black,
     linewidth=.05cm
     }
-  \theoremstyle{Definition}
-  \newmdtheoremenv[style=definition]{definition}%
-  [theorem]{Definition}
-  \newtheoremstyle{SubDefinition}{}{}{\sffamily}%
-    {}{\bfseries}{}{.5em}%
-    {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
   \mdfdefinestyle{subDef}
   {
     skipabove=0cm, skipbelow=.01cm,
@@ -228,22 +266,44 @@
     linecolor=line-black,
     linewidth=.01cm
   }
-  \theoremstyle{SubDefinition}
-  % Refreshes every definition
-  \newmdtheoremenv[style=subDef]{subDef}{}[theorem]
+  \ifHyperrefMacros
+    \theoremstyle{Definition}
+    \newaliascnt{definition}{theorem}
+    \newmdtheoremenv[style=definition]{definition}%
+    [definition]{Definition}
+    \aliascntresetthe{definition}
+    \newtheoremstyle{SubDefinition}{}{}{\sffamily}%
+      {}{\bfseries}{}{.5em}%
+      {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
+    \theoremstyle{SubDefinition}
+    % Refreshes every definition
+    \newmdtheoremenv[style=subDef]{subDef}{}[definition]
+    \providecommand*{\definitionautorefname}{Definition}
+    \providecommand*{\subDefautorefname}{Definition}
+  \else
+    \theoremstyle{Definition}
+    \newmdtheoremenv[style=definition]{definition}%
+    [theorem]{Definition}
+    \newtheoremstyle{SubDefinition}{}{}{\sffamily}%
+      {}{\bfseries}{}{.5em}%
+      {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
+    \theoremstyle{SubDefinition}
+    % Refreshes every definition
+    \newmdtheoremenv[style=subDef]{subDef}{}[theorem]
+  \fi
 
 %    \end{macrocode}
 % \iffalse
 %</package>
 % \fi
 %
-%   \begin{definition}[Definition Title]
+%   \begin{definition}[Definition Title]\label{def:First}
 %     This is a definition, this is the definition sub-title.
 %
 %     Let $S \subset \R$.
 %     This is what normal text looks like.
 %
-%     \begin{subDef}
+%     \begin{subDef}\label{sDef:First}
 %       This is a sub-definition, this is the sub-definition title.
 %
 %       $\forall x \in S, x \in S$,
@@ -265,9 +325,6 @@
     hidealllines=true, leftline=true, linecolor=line-black,
     linewidth=.1cm
     }
-  \theoremstyle{BreakBold}
-  \newmdtheoremenv[style=example]{example}{Example}[section]
-
   \mdfdefinestyle{subExa}
   {
     skipabove=.1cm, skipbelow=.15cm,
@@ -278,22 +335,37 @@
     linecolor=line-black,
     linewidth=.01cm
   }
-  \theoremstyle{NoBreak}
-  \newmdtheoremenv[style=subExa]{subExa}{}[example]
-  % Refreshes every example
+  \ifHyperrefMacros
+    \theoremstyle{Example}
+    \newaliascnt{example}{theorem}
+    \newmdtheoremenv[style=example]{example}%
+    [example]{Example}
+    \aliascntresetthe{example}
+    \theoremstyle{NoBreak}
+    % Refreshes every example
+    \newmdtheoremenv[style=subExa]{subExa}{}[example]
+    \providecommand*{\exampleautorefname}{Example}
+    \providecommand*{\subExaautorefname}{Example}
+  \else
+    \theoremstyle{BreakBold}
+    \newmdtheoremenv[style=example]{example}{Example}[section]
+    \theoremstyle{NoBreak}
+    \newmdtheoremenv[style=subExa]{subExa}{}[example]
+    % Refreshes every example
+  \fi
 
 %    \end{macrocode}
 % \iffalse
 %</package>
 % \fi
 %
-%   \begin{example}[Example Title]
+%   \begin{example}[Example Title]\label{exa:First}
 %     This is an example, this is the example sub-title.
 %
 %     Let $S \subset \R$.
 %     This is what normal text looks like.
 %
-%     \begin{subExa}
+%     \begin{subExa}\label{sExa:First}
 %       This is a sub-example. This is the sub-example title.
 %
 %       $\forall x \in S, x \in S$,
@@ -318,15 +390,23 @@
     leftline=true, linecolor=line-grey,
     linewidth=.05cm
   }
-  \theoremstyle{Break}
-  \newmdtheoremenv[style=lemma]{lemma}[theorem]{Lemma}
+  \ifHyperrefMacros
+    \theoremstyle{Break}
+    \newaliascnt{lemma}{theorem}
+    \newmdtheoremenv[style=lemma]{lemma}[lemma]{Lemma}
+    \aliascntresetthe{lemma}
+    \providecommand*{\lemmaautorefname}{Lemma}
+  \else
+    \theoremstyle{Break}
+    \newmdtheoremenv[style=lemma]{lemma}[theorem]{Lemma}
+  \fi
 
 %    \end{macrocode}
 % \iffalse
 %</package>
 % \fi
 %
-%   \begin{lemma}[Lemma title]
+%   \begin{lemma}[Lemma title]\label{lem:First}
 %     This is a Lemma, this is the lemma sub-title.
 %
 %     $\forall x \in S, x \in S$,
@@ -349,16 +429,23 @@
     hidealllines=true, leftline=true, linecolor=accent-blue,
     linewidth=.05cm
     }
-  \theoremstyle{Break}
-  \newmdtheoremenv[style=corollary]{corollary}%
-    {Corollary}[theorem]
+    \ifHyperrefMacros
+      \theoremstyle{Break}
+      \newmdtheoremenv[style=corollary]{corollary}%
+        {Corollary}[theorem]
+      \providecommand*{\corollaryautorefname}{Corollary}
+    \else
+      \theoremstyle{Break}
+      \newmdtheoremenv[style=corollary]{corollary}%
+        {Corollary}[theorem]
+    \fi
 
 %    \end{macrocode}
 % \iffalse
 %</package>
 % \fi
 %
-%   \begin{corollary}[Corollary title]
+%   \begin{corollary}[Corollary title]\label{cor:First}
 %     This is a Corollary, this is the corollary sub-title.
 %
 %     $\forall x \in S, x \in S$,
@@ -379,15 +466,23 @@
     leftmargin=0cm, innerleftmargin=.1cm,
     hidealllines=true, leftline=true, linecolor=line-black
     }
-  \theoremstyle{BreakNoNumber}
-  \newmdtheoremenv[style=remark]{remark}{Remark}
+  \ifHyperrefMacros
+    \theoremstyle{BreakNoNumber}
+    \newaliascnt{remark}{theorem}
+    \newmdtheoremenv[style=remark]{remark}[remark]{Remark}
+    \aliascntresetthe{remark}
+    \providecommand*{\remarkautorefname}{Remark}
+  \else
+    \theoremstyle{BreakNoNumber}
+    \newmdtheoremenv[style=remark]{remark}{Remark}
+  \fi
 
 %    \end{macrocode}
 % \iffalse
 %</package>
 % \fi
 %
-%   \begin{remark}[Remark title]
+%   \begin{remark}[Remark title]\label{rem:First}
 %     This is a remark, this is the remark sub-title.
 %
 %     $\forall x \in S, x \in S$,
@@ -403,18 +498,19 @@
 % \fi
 %    \begin{macrocode}
   \theoremstyle{NoBreakNoNumber}
-  \newtheorem{ThrmNote}{Note}
+  \newtheorem{note}{Note}
 
 %    \end{macrocode}
 % \iffalse
 %</package>
 % \fi
 %
-%   \begin{ThrmNote}
+%   \begin{note}
 %     This is a note
-%   \end{ThrmNote}
+%   \end{note}
 %
 % \end{environment}
+%
 %
 %   \subsection{Source Code Environments}
 %     The listings environment is given in order to typeset source code for various languages.
