@@ -15,6 +15,7 @@
 
 * Now using `amssymb`, `amsmath` and `centernot` instead of `fdsymbol` as the
   math font. *(Documented)*
++ Upped minor version number
 
 ## [0.0.2]
 
