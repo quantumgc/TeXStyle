@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.0.3r2]
+## [0.0.3d2]
 
 ### Additions
 
