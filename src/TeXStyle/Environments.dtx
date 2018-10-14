@@ -114,8 +114,8 @@
 %
 %       \subsubsection{Hyperref Macros}
 %       An additional counter is defined if the boolean |HyperrefMacros| is
-%       true, this simulates a separate counter so that the autoref macro in
-%       |hyperref| works properly.
+%       true, this follows the numbering of the parent counter while simulating
+%       another so that the autoref macro in |hyperref| works properly.
 %       If hyperref is loaded, referencing should look something like this:
 %       \begin{itemize}
 %         \item \autoref{thm:First} goes to the first Theorem.
@@ -131,7 +131,7 @@
 %       \end{itemize}
 %       
 %
-% \begin{environment}{Theorem}
+% \begin{environment}{theorem}
 % \iffalse
 %<*package>
 % \fi
@@ -142,7 +142,7 @@
   \mdfdefinestyle{theorem}{
     skipabove=1cm, skipbelow=1cm,
     innertopmargin=0cm, innerbottommargin=.05cm,
-    leftmargin=0cm, innerleftmargin=.1cm,
+    leftmargin=0cm, innerleftmargin=.25cm,
     linecolor=line-blue,
     linewidth=.05cm, backgroundcolor=back-blue!20
     }
@@ -154,26 +154,9 @@
 %</package>
 % \fi
 %
-%   \begin{theorem}[Theorem Title]\label{thm:First}
-%     This is a theorem, this is the theorem sub-title
-%
-%     $\forall x \in S, x \in S$,
-%     normal text looks like this.
-%
-%     \begin{proof}
-%       This is a proof, this is the proof heading.
-%
-%       This is now a multi-line proof, this is how normal text looks.
-%     \end{proof}
-%
-%     \begin{proof}[Alternative proof title]
-%       This is a proof with an alternate title.
-%     \end{proof}
-%   \end{theorem}
-%
 % \end{environment}
 %
-% \begin{environment}{Proposition}
+% \begin{environment}{proposition}
 % \iffalse
 %<*package>
 % \fi
@@ -184,15 +167,15 @@
   \mdfdefinestyle{proposition}{
     skipabove=.5cm, skipbelow=.5cm,
     innertopmargin=0cm, innerbottommargin=.05cm,
-    leftmargin=.24cm, innerleftmargin=.1cm,
+    leftmargin=.24cm, innerleftmargin=.25cm,
     backgroundcolor=back-grey!20,
     linecolor=line-grey, theoremtitlefont=\sffamily\bfseries
     }
   \mdfdefinestyle{subPro}
   {
-    skipabove=0cm, skipbelow=.01cm,
+    skipabove=0cm, skipbelow=.1cm,
     innertopmargin=0cm, innerbottommargin=0cm,
-    leftmargin=0cm, innerleftmargin=.01cm,
+    leftmargin=0cm, innerleftmargin=.1cm,
     backgroundcolor=back-grey!20,
     hidealllines=true,
     leftline=true, linecolor=line-grey,
@@ -205,7 +188,7 @@
     \newmdtheoremenv[style=proposition]{proposition}%
     [proposition]{Proposition}
     \aliascntresetthe{proposition}
-    \theoremstyle{NoBreak}
+    \theoremstyle{NoBreakBold}
     % Refreshes every proposition
     \newmdtheoremenv[style=subPro]{subPro}{}[proposition]
     \providecommand*{\propositionautorefname}{Proposition}
@@ -214,7 +197,7 @@
     \theoremstyle{Proposition}
     \newmdtheoremenv[style=proposition]{proposition}%
     [theorem]{Proposition}
-    \theoremstyle{NoBreak}
+    \theoremstyle{NoBreakBold}
     % Refreshes every proposition
     \newmdtheoremenv[style=subPro]{subPro}{}[theorem]
   \fi
@@ -224,24 +207,9 @@
 %</package>
 % \fi
 %
-%   \begin{proposition}[Proposition Title]\label{pro:First}
-%     This is a proposition, this is the proposition sub-title.
-%
-%     Let $S \subset \R$.
-%     This is what normal text looks like.
-%
-%     \begin{subPro}\label{sPro:First}
-%       This is a sub-proposition, this is the sub-proposition title.
-%
-%       $\forall x \in S, x \in S$,
-%       this is how normal text looks.
-%
-%     \end{subPro}
-%   \end{proposition}
-%
 % \end{environment}
 %
-% \begin{environment}{Definition}
+% \begin{environment}{definition}
 % \iffalse
 %<*package>
 % \fi
@@ -252,15 +220,15 @@
   \mdfdefinestyle{definition}{
     skipabove=.5cm, skipbelow=.5cm,
     innertopmargin=0cm, innerbottommargin=.05cm,
-    leftmargin=0cm, innerleftmargin=0cm,
+    leftmargin=0cm, innerleftmargin=0.25cm,
     linecolor=line-black,
     linewidth=.05cm
     }
   \mdfdefinestyle{subDef}
   {
     skipabove=0cm, skipbelow=.01cm,
-    innertopmargin=0cm, innerbottommargin=0cm,
-    leftmargin=0.1cm, innerleftmargin=0cm,
+    innertopmargin=0cm, innerbottommargin=0.1cm,
+    leftmargin=0.1cm, innerleftmargin=0.1cm,
     hidealllines=true,
     leftline=true, bottomline=true,
     linecolor=line-black,
@@ -297,23 +265,9 @@
 %</package>
 % \fi
 %
-%   \begin{definition}[Definition Title]\label{def:First}
-%     This is a definition, this is the definition sub-title.
-%
-%     Let $S \subset \R$.
-%     This is what normal text looks like.
-%
-%     \begin{subDef}\label{sDef:First}
-%       This is a sub-definition, this is the sub-definition title.
-%
-%       $\forall x \in S, x \in S$,
-%       this is how normal text looks.
-%     \end{subDef}
-%   \end{definition}
-%
 % \end{environment}
 %
-% \begin{environment}{Examples}
+% \begin{environment}{examples}
 % \iffalse
 %<*package>
 % \fi
@@ -329,7 +283,7 @@
   {
     skipabove=.1cm, skipbelow=.15cm,
     innertopmargin=0cm, innerbottommargin=0cm,
-    leftmargin=0.01cm, innerleftmargin=0cm,
+    leftmargin=0.01cm, innerleftmargin=0.1cm,
     hidealllines=true,
     leftline=true, topline=true,
     linecolor=line-black,
@@ -359,24 +313,9 @@
 %</package>
 % \fi
 %
-%   \begin{example}[Example Title]\label{exa:First}
-%     This is an example, this is the example sub-title.
-%
-%     Let $S \subset \R$.
-%     This is what normal text looks like.
-%
-%     \begin{subExa}\label{sExa:First}
-%       This is a sub-example. This is the sub-example title.
-%
-%       $\forall x \in S, x \in S$,
-%       this is how normal text looks.
-%
-%     \end{subExa}
-%   \end{example}
-%
 % \end{environment}
 %
-% \begin{environment}{Lemma}
+% \begin{environment}{lemma}
 % \iffalse
 %<*package>
 % \fi
@@ -406,17 +345,9 @@
 %</package>
 % \fi
 %
-%   \begin{lemma}[Lemma title]\label{lem:First}
-%     This is a Lemma, this is the lemma sub-title.
-%
-%     $\forall x \in S, x \in S$,
-%     normal text looks like this.
-%
-%   \end{lemma}
-%
 % \end{environment}
 %
-% \begin{environment}{Corollary}
+% \begin{environment}{corollary}
 % \iffalse
 %<*package>
 % \fi
@@ -445,17 +376,9 @@
 %</package>
 % \fi
 %
-%   \begin{corollary}[Corollary title]\label{cor:First}
-%     This is a Corollary, this is the corollary sub-title.
-%
-%     $\forall x \in S, x \in S$,
-%     normal text looks like this.
-%
-%   \end{corollary}
-%
 % \end{environment}
 %
-% \begin{environment}{Remark}
+% \begin{environment}{remark}
 % \iffalse
 %<*package>
 % \fi
@@ -467,13 +390,13 @@
     hidealllines=true, leftline=true, linecolor=line-black
     }
   \ifHyperrefMacros
-    \theoremstyle{BreakNoNumber}
+    \theoremstyle{Break}
     \newaliascnt{remark}{theorem}
     \newmdtheoremenv[style=remark]{remark}[remark]{Remark}
     \aliascntresetthe{remark}
     \providecommand*{\remarkautorefname}{Remark}
   \else
-    \theoremstyle{BreakNoNumber}
+    \theoremstyle{Break}
     \newmdtheoremenv[style=remark]{remark}{Remark}
   \fi
 
@@ -482,17 +405,9 @@
 %</package>
 % \fi
 %
-%   \begin{remark}[Remark title]\label{rem:First}
-%     This is a remark, this is the remark sub-title.
-%
-%     $\forall x \in S, x \in S$,
-%     normal text looks like this.
-%
-%   \end{remark}
-%
 % \end{environment}
 %
-% \begin{environment}{ThrmNote}
+% \begin{environment}{note}
 % \iffalse
 %<*package>
 % \fi
@@ -505,12 +420,141 @@
 %</package>
 % \fi
 %
-%   \begin{note}
-%     This is a note
-%   \end{note}
-%
 % \end{environment}
 %
+%   \subsubsection{Examples of Theorem Environments}
+%   Here are a few examples of how the individual theorem environments look.
+%
+%   \begin{theorem}[Theorem Title]\label{thm:First}
+%     This is a theorem, this is the theorem sub-title
+%
+%     $\forall x \in S, x \in S$,
+%     normal text looks like this.
+%     \lipsum[1-1]
+%
+%     This is a centered equation
+%     \[a + b = c + d\]
+%
+%     \begin{proof}
+%       This is a proof, this is the first line of the proof.
+%
+%       This is now a multi-line proof, this is the second line of the proof
+%       with a hard break in between.\\
+%       This is a soft line break.
+%       \lipsum[1]
+%
+%       This is a hard line break.
+%     \end{proof}
+%
+%     \begin{proof}[Alternative proof title]
+%       This is a proof with an alternate title.
+%     \end{proof}
+%   \end{theorem}
+%
+%   \begin{proposition}[Proposition Title]\label{pro:First}
+%     This is a proposition, this is the proposition sub-title.
+%
+%     Let $S \subset \R$.
+%     This is what normal text looks like.
+%     \lipsum[1]
+%
+%     \begin{subPro}\label{sPro:First}
+%       This is a sub-proposition, this is the sub-proposition title.
+%
+%       $\forall x \in S, x \in S$,
+%       this is how normal text looks.
+%       \lipsum[2]
+%
+%     \end{subPro}
+%     \begin{subPro}\label{sPro:Second}
+%       This is a sub-proposition, this is the sub-proposition title.
+%
+%       $\forall x \in S, x \in S$,
+%       this is how normal text looks.
+%       \lipsum[3]
+%
+%     \end{subPro}
+%   \end{proposition}
+%
+%   \begin{definition}[Definition Title]\label{def:First}
+%     This is a definition, this is the definition sub-title.
+%
+%     Let $S \subset \R$.
+%     This is what normal text looks like.
+%     \lipsum[1]
+%
+%     \begin{subDef}\label{sDef:First}
+%       This is a sub-definition, this is the sub-definition title.
+%
+%       $\forall x \in S, x \in S$,
+%       this is how normal text looks.
+%       \lipsum[2]
+%     \end{subDef}
+%     \begin{subDef}\label{sDef:First}
+%       This is a sub-definition, this is the sub-definition title.
+%
+%       $\forall x \in S, x \in S$,
+%       this is how normal text looks.
+%       \lipsum[3]
+%     \end{subDef}
+%   \end{definition}
+%
+%   \begin{example}[Example Title]\label{exa:First}
+%     This is an example, this is the example sub-title.
+%
+%     Let $S \subset \R$.
+%     This is what normal text looks like.
+%     \lipsum[1]
+%
+%     \begin{subExa}\label{sExa:First}
+%       This is a sub-example. This is the sub-example title.
+%
+%       $\forall x \in S, x \in S$,
+%       this is how normal text looks.
+%       \lipsum[2]
+%
+%     \end{subExa}
+%     \begin{subExa}\label{sExa:First}
+%       This is a sub-example. This is the sub-example title.
+%
+%       $\forall x \in S, x \in S$,
+%       this is how normal text looks.
+%       \lipsum[3]
+%
+%     \end{subExa}
+%   \end{example}
+%
+%   \begin{lemma}[Lemma title]\label{lem:First}
+%     This is a Lemma, this is the lemma sub-title.
+%
+%     $\forall x \in S, x \in S$,
+%     normal text looks like this.
+%     \lipsum[1]
+%
+%   \end{lemma}
+%
+%   \begin{corollary}[Corollary title]\label{cor:First}
+%     This is a Corollary, this is the corollary sub-title.
+%
+%     $\forall x \in S, x \in S$,
+%     normal text looks like this.
+%     \lipsum[1]
+%
+%   \end{corollary}
+%
+%   \begin{remark}[Remark title]\label{rem:First}
+%     This is a remark, this is the remark sub-title.
+%
+%     $\forall x \in S, x \in S$,
+%     normal text looks like this.
+%     \lipsum[1]
+%
+%   \end{remark}
+%
+%   \begin{note}
+%     This is a note.
+%     \lipsum[1]
+%   \end{note}
 %
 %   \subsection{Source Code Environments}
 %     The listings environment is given in order to typeset source code for various languages.
