@@ -2,6 +2,13 @@
 
 ## [0.0.3d2]
 
+### Bugfixes
+
++ Temporary fix for an issue with the font becoming white on a page split in
+  theorem environments.
+
+## [0.0.3d2]
+
 ### Additions
 
 + Now able to use `hyperref`'s `autoref` macro to reference theorems with
