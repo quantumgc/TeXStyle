@@ -45,8 +45,8 @@ To build the source, use 'xelatex -output-directory=tmp -jobname=TestBuild Build
 \nopreamble\nopostamble
 
 \generate{%
-  \file{TeXStyle-article.cls}{%
-    \from{TeXStyle-article/TeXStyle-article.dtx}{class}%
+  \file{TeXStyle-notes.cls}{%
+    \from{TeXStyle-notes/TeXStyle-notes.dtx}{class}%
     }
   }
 % \iffalse
@@ -55,7 +55,7 @@ To build the source, use 'xelatex -output-directory=tmp -jobname=TestBuild Build
 %<article_batchfile>\endbatchfile
 %<*internal>
 \generate{\file{TeXStyle.ins}{\from{Build.dtx}{package_batchfile}}}
-\generate{\file{TeXStyle-article.ins}{\from{Build.dtx}{article_batchfile}}}
+\generate{\file{TeXStyle-notes.ins}{\from{Build.dtx}{article_batchfile}}}
 \generate{\file{Build.readme}{\from{Build.dtx}{readme}}}
 \endgroup
 %</internal>

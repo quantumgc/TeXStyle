@@ -6,16 +6,16 @@
 \iffalse
 %</internal>
 %<*readme>
-# TeXStyle-article.dtx
+# TeXStyle-notes.dtx
 
-A build file for the TeXStyle-article class.
-To build the source, use 'xelatex -output-directory=out -jobname=TeXStyle-article TeXStyle-article.dtx&'.
+A build file for the TeXStyle-notes class.
+To build the source, use 'xelatex -output-directory=out -jobname=TeXStyle-notes TeXStyle-notes.dtx&'.
 This should generate:
 
 + This readme
-+ TeXStyle-article.ins
-+ TeXStyle-article.cls
-+ TeXStyle-article.pdf
++ TeXStyle-notes.ins
++ TeXStyle-notes.cls
++ TeXStyle-notes.pdf
 
 Run the command twice to generate the table of contents and associated
 hyperlinks in the documentation.
@@ -33,7 +33,7 @@ hyperlinks in the documentation.
 \nopreamble\nopostamble
 
 \generate{%
-  \file{TeXStyle-article.cls}{%
+  \file{TeXStyle-notes.cls}{%
     \from{source.dtx}{class}%
     }
   }
@@ -42,13 +42,13 @@ hyperlinks in the documentation.
 % \fi
 %<article_batchfile>\endbatchfile
 %<*internal>
-\generate{\file{TeXStyle-article.ins}{\from{TeXStyle-article.dtx}{article_batchfile}}}
-\generate{\file{README.md}{\from{TeXStyle-article.dtx}{readme}}}
+\generate{\file{TeXStyle-notes.ins}{\from{TeXStyle-notes.dtx}{article_batchfile}}}
+\generate{\file{README.md}{\from{TeXStyle-notes.dtx}{readme}}}
 \endgroup
 %</internal>
 %
 %<*driver>
-\documentclass[twoside]{./out/TeXStyle-article}
+\documentclass[twoside]{./out/TeXStyle-notes}
 \RequirePackage{hyperref}
 \usepackage{doc}
 \DisableCrossrefs
@@ -58,15 +58,15 @@ hyperlinks in the documentation.
 
 \hypersetup{%
   pdfauthor={Gautam Chaudhuri},%
-  pdftitle={TeXStyle-article : \tsvers - Documentation},%
-  pdfsubject={The documentation for the TeXStyle-article XeLaTeX class, version \tsvers},%
-  pdfkeywords={TeXStyle, TeXStyle-article, XeLaTeX, Documentation, \tsvers},%
+  pdftitle={TeXStyle-notes : \tsvers - Documentation},%
+  pdfsubject={The documentation for the TeXStyle-notes XeLaTeX class, version \tsvers},%
+  pdfkeywords={TeXStyle, TeXStyle-notes, XeLaTeX, Documentation, \tsvers},%
   pdfproducer={XeLaTeX with hyperref},%
   pdfcreator={XeLaTeX},%
   pdfpagelayout={Dual}
 }
 
-\title{TeXStyle-article : \tsvers - Documentation}
+\title{TeXStyle-notes : \tsvers - Documentation}
 \author{Gautam Chaudhuri}
 
 \begin{document}

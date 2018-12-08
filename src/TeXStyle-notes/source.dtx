@@ -25,10 +25,10 @@
 % \fi
 % \iffalse
 %<class>\NeedsTeXFormat{LaTeX2e}
-%<class>\ProvidesClass{TeXStyle-article}
+%<class>\ProvidesClass{TeXStyle-notes}
 % \fi
 %
-%     \paragraph{ TeXStyle-article } is a document class based on the normal
+%     \paragraph{ TeXStyle-notes } is a document class based on the normal
 %     {\ttfamily article} class for LaTeX.
 %     Its intended use is for typing up lecture notes so it may not be suitable
 %     as a drop in replacement for {\ttfamily article}.
@@ -77,7 +77,7 @@
 \DeclareOption{draft}{\DraftOntrue}
 \DeclareOption{twoside}{\Twosidedtrue}
 \DeclareOption*{
-  \PackageWarning{TeXStyle-article}{Unknown Option '\CurrentOption'}
+  \PackageWarning{TeXStyle-notes}{Unknown Option '\CurrentOption'}
   }
 \ProcessOptions\relax
 
