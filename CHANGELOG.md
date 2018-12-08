@@ -2,18 +2,18 @@
 
 ## [0.0.4d1]
 
-### Bugfixes
+### bugfixes
 
-### Additions
+### additions
 
-### Removals
+### removals
 
-### Changes
+### changes
 
-+ **Major Change**: The class `TeXStyle-article` is now called `TeXStyle-notes`.
-  Any document using the `TeXStyle-article` class will need to change the document class to reflect this.
-  This change was made due to how divorced `TeXStyle-article` became from the stock `article` class.
-  In the future, a slimmer article class will be made as a replacement.
++ **major change**: the class `texstyle-article` is now called `texstyle-notes`.
+  any document using the `texstyle-article` class will need to change the document class to reflect this.
+  this change was made due to how divorced `texstyle-article` became from the stock `article` class.
+  in the future, a slimmer article class will be made as a replacement.
 
 ## [0.0.3d2]
 
