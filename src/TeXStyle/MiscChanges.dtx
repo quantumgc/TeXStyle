@@ -37,22 +37,20 @@
 %     boolean is automatically set to true and certain macros are then defined
 %     to make referencing slightly easier.
 %     To override this behaviour, specify |noHyperrefMacros|.
+%     Key-value options are implemented using the |kvoptions| package.
 % \iffalse
 %<*package>
 % \fi
 %    \begin{macrocode}
-  \newif\ifDraftModeOn
-  \DeclareOption{draft}{
-    \DraftModeOntrue
-    }
-  \newif\ifUseDefaultFonts
-  \DeclareOption{defaultFonts}{
-    \UseDefaultFontstrue
+  \RequirePackage{kvoptions}
+  \SetupKeyvalOptions{
+    family=TS,
+    prefix=TS@
   }
+  \DeclareBoolOption[false]{draft}
+  \DeclareBoolOption[false]{defaultFonts}
   \newif\ifHyperrefMacros
-  \DeclareOption{useHyperrefMacros}{
-    \HyperrefMacrostrue
-  }
+  \DeclareBoolOption[false]{HyperrefMacros}
   \@ifpackageloaded{hyperref}{
     \HyperrefMacrostrue
   }
@@ -65,13 +63,11 @@
     }
     \fi
   }
-  \DeclareOption{noHyperrefMacros}{
-    \HyperrefMacrosfalse
-  }
-  \DeclareOption*{
+  \DeclareStringOption[section]{envRefreshLevel}
+  \DeclareDefaultOption{
     \PackageWarning{TeXStyle}{Unknown Option '\CurrentOption'}
     }
-  \ProcessOptions\relax
+    \ProcessKeyvalOptions*
 
 %    \end{macrocode}
 % \iffalse

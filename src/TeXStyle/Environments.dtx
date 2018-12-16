@@ -30,7 +30,7 @@
   \RequirePackage[framemethod=tikz]{mdframed}
   \RequirePackage{listings}
   \RequirePackage[shortlabels]{enumitem}
-  \ifHyperrefMacros
+  \ifTS@HyperrefMacros
   \RequirePackage{aliascnt}
   \fi
 
@@ -147,7 +147,7 @@
     linewidth=.05cm, backgroundcolor=back-blue!20
     }
   \theoremstyle{Theorem}
-  \newmdtheoremenv[style=theorem]{theorem}{Theorem}[section]
+  \newmdtheoremenv[style=theorem]{theorem}{Theorem}[\TS@envRefreshLevel]
 
 %    \end{macrocode}
 % \iffalse
@@ -182,7 +182,7 @@
     linewidth=.05cm
   }
 
-  \ifHyperrefMacros
+  \ifTS@HyperrefMacros
     \theoremstyle{Proposition}
     \newaliascnt{proposition}{theorem}
     \newmdtheoremenv[style=proposition]{proposition}%
@@ -235,7 +235,7 @@
     linecolor=line-black,
     linewidth=.01cm
   }
-  \ifHyperrefMacros
+  \ifTS@HyperrefMacros
     \theoremstyle{Definition}
     \newaliascnt{definition}{theorem}
     \newmdtheoremenv[style=definition]{definition}%
@@ -290,7 +290,7 @@
     linecolor=line-black,
     linewidth=.01cm
   }
-  \ifHyperrefMacros
+  \ifTS@HyperrefMacros
     \theoremstyle{Example}
     \newaliascnt{example}{theorem}
     \newmdtheoremenv[style=example]{example}%
@@ -330,7 +330,7 @@
     leftline=true, linecolor=line-grey,
     linewidth=.05cm
   }
-  \ifHyperrefMacros
+  \ifTS@HyperrefMacros
     \theoremstyle{Break}
     \newaliascnt{lemma}{theorem}
     \newmdtheoremenv[style=lemma]{lemma}[lemma]{Lemma}
@@ -361,7 +361,7 @@
     hidealllines=true, leftline=true, linecolor=accent-blue,
     linewidth=.05cm
     }
-    \ifHyperrefMacros
+    \ifTS@HyperrefMacros
       \theoremstyle{Break}
       \newmdtheoremenv[style=corollary]{corollary}%
         {Corollary}[theorem]
@@ -390,7 +390,7 @@
     leftmargin=0cm, innerleftmargin=.1cm,
     hidealllines=true, leftline=true, linecolor=line-black
     }
-  \ifHyperrefMacros
+  \ifTS@HyperrefMacros
     \theoremstyle{Break}
     \newaliascnt{remark}{theorem}
     \newmdtheoremenv[style=remark]{remark}[remark]{Remark}
