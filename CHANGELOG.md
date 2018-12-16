@@ -13,24 +13,14 @@
 
 ### changes
 
-+ now using `kvoptions` to process package options.
-
-## [0.0.4d1]
-
-### bugfixes
-
-### additions
-
-### removals
-
-### changes
-
 + **major change**: the class `texstyle-article` is now called `texstyle-notes`.
   any document using the `texstyle-article` class will need to change the
   document class to reflect this.
   this change was made due to how divorced `texstyle-article` became from the
   stock `article` class.
   in the future, a slimmer article class will be made as a replacement.
+
++ now using `kvoptions` to process package options.
 
 ## [0.0.3d2]
 
