@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.0.4d2]
+
+### bugfixes
+
+### additions
+
++ added new `envRefreshLevel` option which sets at what level the numbering on
+  the theorems, propositions, etc. refresh.
+
+### removals
+
+### changes
+
++ now using `kvoptions` to process package options.
+
 ## [0.0.4d1]
 
 ### bugfixes
