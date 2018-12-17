@@ -129,6 +129,9 @@
 %         \item \autoref{cor:First}, the first Corollary.
 %         \item \autoref{rem:First}, the first Remark.
 %       \end{itemize}
+%       The numbering of the theorems is set to reset by default when the
+%       section resets.
+%       This behaviour can be changed by using the |envRefreshLevel| option.
 %       
 %
 % \begin{environment}{theorem}
@@ -148,6 +151,11 @@
     }
   \theoremstyle{Theorem}
   \newmdtheoremenv[style=theorem]{theorem}{Theorem}[\TS@envRefreshLevel]
+  \newtheoremstyle{Theorem*}{}{}{}
+    {}{\bfseries}{}{\newline}%
+    {\thmname{#1}:\thmnote{ #3}}
+  \theoremstyle{Theorem*}
+  \newmdtheoremenv[style=theorem]{theorem*}{Theorem}
 
 %    \end{macrocode}
 % \iffalse
@@ -161,9 +169,12 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
-  \newtheoremstyle{Proposition}{}{}{\itshape}
+  \newtheoremstyle{Proposition}{}{}{\itshape}%
     {}{\bfseries}{}{\newline}%
     {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
+  \newtheoremstyle{Proposition*}{}{}{\itshape}%
+  {}{\bfseries}{}{\newline}%
+  {\thmname{#1}:\thmnote{ #3}}
   \mdfdefinestyle{proposition}{
     skipabove=.5cm, skipbelow=.5cm,
     innertopmargin=0cm, innerbottommargin=.05cm,
@@ -201,6 +212,9 @@
     % Refreshes every proposition
     \newmdtheoremenv[style=subPro]{subPro}{}[theorem]
   \fi
+  \theoremstyle{Proposition*}
+  \newmdtheoremenv[style=proposition]{proposition*}%
+  {Proposition}
 
 %    \end{macrocode}
 % \iffalse
@@ -214,9 +228,12 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
-  \newtheoremstyle{Definition}{}{}{\sffamily}
+  \newtheoremstyle{Definition}{}{}{\sffamily}%
     {}{\sffamily\bfseries}{}{\newline}%
     {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
+  \newtheoremstyle{Definition*}{}{}{\sffamily}%
+    {}{\sffamily\bfseries}{}{\newline}%
+    {\thmname{#1}:\thmnote{ #3}}
   \mdfdefinestyle{definition}{
     skipabove=.5cm, skipbelow=.5cm,
     innertopmargin=0cm, innerbottommargin=.05cm,
@@ -260,6 +277,9 @@
     % Refreshes every definition
     \newmdtheoremenv[style=subDef]{subDef}{}[theorem]
   \fi
+    \theoremstyle{Definition*}
+    \newmdtheoremenv[style=definition]{definition*}%
+    {Definition}
 
 %    \end{macrocode}
 % \iffalse
@@ -290,24 +310,11 @@
     linecolor=line-black,
     linewidth=.01cm
   }
-  \ifTS@HyperrefMacros
-    \theoremstyle{Example}
-    \newaliascnt{example}{theorem}
-    \newmdtheoremenv[style=example]{example}%
-    [example]{Example}
-    \aliascntresetthe{example}
-    \theoremstyle{NoBreak}
-    % Refreshes every example
-    \newmdtheoremenv[style=subExa]{subExa}{}[example]
-    \providecommand*{\exampleautorefname}{Example}
-    \providecommand*{\subExaautorefname}{Example}
-  \else
-    \theoremstyle{BreakBold}
-    \newmdtheoremenv[style=example]{example}{Example}[section]
-    \theoremstyle{NoBreak}
-    \newmdtheoremenv[style=subExa]{subExa}{}[example]
-    % Refreshes every example
-  \fi
+  \theoremstyle{BreakBoldNoNumber}
+  \newmdtheoremenv[style=example]{example}{Example}
+  \theoremstyle{NoBreak}
+  \newmdtheoremenv[style=subExa]{subExa}{}
+  % Refreshes every example
 
 %    \end{macrocode}
 % \iffalse
@@ -340,6 +347,8 @@
     \theoremstyle{Break}
     \newmdtheoremenv[style=lemma]{lemma}[theorem]{Lemma}
   \fi
+    \theoremstyle{BreakNoNumber}
+    \newmdtheoremenv[style=lemma]{lemma*}{Lemma}
 
 %    \end{macrocode}
 % \iffalse
@@ -371,6 +380,9 @@
       \newmdtheoremenv[style=corollary]{corollary}%
         {Corollary}[theorem]
     \fi
+      \theoremstyle{BreakNoNumber}
+      \newmdtheoremenv[style=corollary]{corollary*}%
+        {Corollary}
 
 %    \end{macrocode}
 % \iffalse
@@ -400,6 +412,8 @@
     \theoremstyle{Break}
     \newmdtheoremenv[style=remark]{remark}{Remark}
   \fi
+    \theoremstyle{BreakNoNumber}
+    \newmdtheoremenv[style=remark]{remark*}{Remark}
 
 %    \end{macrocode}
 % \iffalse
