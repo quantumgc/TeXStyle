@@ -49,13 +49,12 @@
   }
   \DeclareBoolOption[false]{draft}
   \DeclareBoolOption[false]{defaultFonts}
-  \newif\ifHyperrefMacros
   \DeclareBoolOption[false]{HyperrefMacros}
   \@ifpackageloaded{hyperref}{
-    \HyperrefMacrostrue
+    \TS@HyperrefMacrostrue
   }
   {
-    \ifHyperrefMacros
+    \ifTS@HyperrefMacros
     \PackageWarning{TeXStyle}{
       Loading hyperref macros even though hyperref has
       not been detected yet.
