@@ -428,7 +428,13 @@
 % \fi
 %    \begin{macrocode}
   \theoremstyle{NoBreakNoNumber}
-  \newtheorem{note}{Note}
+  \makeatletter
+  \if@classloaded{beamer}
+  {}
+  {
+    \newtheorem{note}{Note}
+  }
+  \makeatother
 
 %    \end{macrocode}
 % \iffalse
