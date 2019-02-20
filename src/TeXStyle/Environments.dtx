@@ -429,7 +429,7 @@
 %    \begin{macrocode}
   \theoremstyle{NoBreakNoNumber}
   \makeatletter
-  \if@classloaded{beamer}
+  \@ifclassloaded{beamer}
   {}
   {
     \newtheorem{note}{Note}
