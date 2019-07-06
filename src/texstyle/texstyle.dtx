@@ -1,4 +1,4 @@
-%& -jobname=TeXStyle
+%& -jobname=texstyle
 % \iffalse
 %
 % Build file for Gautam Chaudhuri's TeXStyle
@@ -7,16 +7,16 @@
 \iffalse
 %</internal>
 %<*readme>
-# TeXStyle.dtx
+# texstyle.dtx
 
 A build file for the TeXStyle package.
-To build the source, use 'xelatex -output-directory=out -jobname=TeXStyle TeXStyle.dtx&'.
+To build the source, use 'xelatex -output-directory=out -jobname=texstyle texstyle.dtx&'.
 This should generate:
 
 + This readme
-+ TeXStyle.ins
-+ TeXStyle.sty
-+ TeXStyle.pdf
++ texstyle.ins
++ texstyle.sty
++ texstyle.pdf
 
 Run the command twice to generate the table of contents and associated
 hyperlinks in the documentation.
@@ -32,19 +32,19 @@ hyperlinks in the documentation.
 \nopreamble\nopostamble
 
 \generate{%
-    \file{TeXStyle.sty}{%
-        \from{MiscChanges.dtx}{package}%
-        \from{Environments.dtx}{package}%
-        \from{Glyphs.dtx}{package}%
-        \from{Graphics.dtx}{package}%
+    \file{texstyle.sty}{%
+        \from{miscChanges.dtx}{package}%
+        \from{environments.dtx}{package}%
+        \from{glyphs.dtx}{package}%
+        \from{graphics.dtx}{package}%
         }%  
     }%
 %</package_batchfile>
 %<package_batchfile>\endbatchfile
 %
 %<*internal>
-\generate{\file{TeXStyle.ins}{\from{TeXStyle.dtx}{package_batchfile}}}
-\generate{\file{README.md}{\from{TeXStyle.dtx}{readme}}}
+\generate{\file{texstyle.ins}{\from{texstyle.dtx}{package_batchfile}}}
+\generate{\file{README.md}{\from{texstyle.dtx}{readme}}}
 \endgroup
 %</internal>
 %
@@ -52,7 +52,7 @@ hyperlinks in the documentation.
 \documentclass[a4paper]{ltxdoc}
 \usepackage{hyperref}
 \usepackage{lipsum}
-\usepackage{out/TeXStyle}
+\usepackage{out/texstyle}
 \EnableCrossrefs
 \CodelineIndex
 \RecordChanges

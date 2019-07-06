@@ -6,16 +6,16 @@
 \iffalse
 %</internal>
 %<*readme>
-# TeXStyle-notes.dtx
+# texstyle-notes.dtx
 
-A build file for the TeXStyle-notes class.
-To build the source, use 'xelatex -output-directory=out -jobname=TeXStyle-notes TeXStyle-notes.dtx&'.
+A build file for the texstyle-notes class.
+To build the source, use 'xelatex -output-directory=out -jobname=texstyle-notes texstyle-notes.dtx&'.
 This should generate:
 
 + This readme
-+ TeXStyle-notes.ins
-+ TeXStyle-notes.cls
-+ TeXStyle-notes.pdf
++ texstyle-notes.ins
++ texstyle-notes.cls
++ texstyle-notes.pdf
 
 Run the command twice to generate the table of contents and associated
 hyperlinks in the documentation.
@@ -33,7 +33,7 @@ hyperlinks in the documentation.
 \nopreamble\nopostamble
 
 \generate{%
-  \file{TeXStyle-notes.cls}{%
+  \file{texstyle-notes.cls}{%
     \from{source.dtx}{class}%
     }
   }
@@ -42,13 +42,13 @@ hyperlinks in the documentation.
 % \fi
 %<article_batchfile>\endbatchfile
 %<*internal>
-\generate{\file{TeXStyle-notes.ins}{\from{TeXStyle-notes.dtx}{article_batchfile}}}
-\generate{\file{README.md}{\from{TeXStyle-notes.dtx}{readme}}}
+\generate{\file{texstyle-notes.ins}{\from{texstyle-notes.dtx}{article_batchfile}}}
+\generate{\file{README.md}{\from{texstyle-notes.dtx}{readme}}}
 \endgroup
 %</internal>
 %
 %<*driver>
-\documentclass[twoside]{./out/TeXStyle-notes}
+\documentclass[twoside]{./out/texstyle-notes}
 \RequirePackage{hyperref}
 \usepackage{doc}
 \DisableCrossrefs
