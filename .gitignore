@@ -3,5 +3,6 @@ themeinfo/**
 **/tmp/**
 **/out/**
 **/auto/**
-Builds/**
+src/texstyle-notes/texstyle.sty
+build/**
 tagmsg.md
