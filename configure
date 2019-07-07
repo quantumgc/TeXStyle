@@ -1,0 +1,18 @@
+#!/bin/sh
+
+TEXSTYLESRCDIR="src/texstyle/out"
+TEXSTYLENOTESSRCDIR="src/texstyle-notes/out"
+BUILDDIR="build"
+
+
+if [ ! -d $TEXSTYLESRCDIR ]; then
+    mkdir $TEXSTYLESRCDIR
+fi
+
+if [ ! -d $TEXSTYLENOTESSRCDIR ]; then
+    mkdir $TEXSTYLENOTESSRCDIR
+fi
+
+if [ ! -d $BUILDDIR ]; then
+    mkdir $BUILDDIR
+fi

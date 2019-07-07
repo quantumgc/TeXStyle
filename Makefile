@@ -12,10 +12,12 @@ texstyle_notes_objs := $(addprefix $(texstyle_notes_dir)out/,texstyle-notes.cls 
 
 $(texstyle_objs) : $(texstyle_preqs)
 	@cd $(texstyle_dir) && xelatex --output-directory=./out -jobname=texstyle texstyle.dtx
+	@cd $(texstyle_dir) && xelatex --output-directory=./out -jobname=texstyle texstyle.dtx
 
 $(texstyle_notes_objs) : $(texstyle_notes_preqs)
 	cp $(texstyle_dir)out/texstyle.sty $(texstyle_notes_dir)
 	@cd $(texstyle_notes_dir) && xelatex --output-directory=./out texstyle-notes.dtx
+	@cd $(texstyle_dir) && xelatex --output-directory=./out -jobname=texstyle texstyle.dtx
 
 .PHONY : build
 build : $(texstyle_objs) $(texstyle_notes_objs)
@@ -24,5 +26,5 @@ build : $(texstyle_objs) $(texstyle_notes_objs)
 
 .PHONY : clean
 clean :
-	rm -rf $(texstyle_dir)out
-	rm -rf $(texstyle_notes_dir)out
+	rm -rf $(texstyle_dir)out/*
+	rm -rf $(texstyle_notes_dir)out/*
