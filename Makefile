@@ -24,6 +24,15 @@ build : $(texstyle_objs) $(texstyle_notes_objs)
 	cp $(texstyle_objs) build/
 	cp $(texstyle_notes_objs) build/
 
+.PHONY : texstyle
+texstyle : $(texstyle_objs)
+	cp $(texstyle_objs) build/
+
+
+.PHONY : texstyle-notes
+texstyle-notes : $(texstyle_notes_objs)
+	cp $(texstyle_notes_objs) build/
+
 .PHONY : clean
 clean :
 	rm -rf $(texstyle_dir)out/*
