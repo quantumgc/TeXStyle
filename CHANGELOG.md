@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.0.5]
+
+### bugfixes
+
+### additions
+
++ makefile
+
+### removals
+
+### changes
+
++ capitalisation of package names
+
 ## [0.0.4d2]
 
 ### bugfixes
