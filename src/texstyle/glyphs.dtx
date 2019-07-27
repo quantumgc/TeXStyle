@@ -334,10 +334,22 @@
 % \fi
 %    \begin{macrocode}
 
-  \setmainfont{Libertinus Serif}
-  \setmathrm{Libertinus Math}
-  \setsansfont{Libertinus Sans}
-  \setmonofont{Liberation Mono}
+  \setmainfont[
+    Extension=.otf,
+    UprightFont={*-Regular},
+    BoldFont={*-Bold},
+    ItalicFont={*-Italic},
+    BoldItalicFont={*-BoldItalic}
+  ]{LibertinusSerif}
+  \setmathrm{LibertinusMath-Regular.otf}
+  \setsansfont[
+    Extension=.otf,
+    UprightFont={*-Regular},
+    BoldFont={*-Bold},
+    ItalicFont={*-Italic},
+    BoldItalicFont={*-BoldItalic}
+  ]{LibertinusSans}
+  \setmonofont{LiberationMono}
 %    \end{macrocode}
 % \iffalse
 %</package>
