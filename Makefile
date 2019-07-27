@@ -17,7 +17,7 @@ $(texstyle_objs) : $(texstyle_preqs)
 	@cd $(texstyle_dir) && xelatex --output-directory=./out -jobname=texstyle texstyle.dtx
 
 $(texstyle_notes_objs) : $(texstyle_notes_preqs)
-	cp $(texstyle_dir)out/texstyle.sty $(texstyle_notes_dir)/
+	cp $(texstyle_dir)/out/texstyle.sty $(texstyle_notes_dir)/
 	@cd $(texstyle_notes_dir) && xelatex --output-directory=./out texstyle-notes.dtx
 	@cd $(texstyle_dir) && xelatex --output-directory=./out -jobname=texstyle texstyle.dtx
 
