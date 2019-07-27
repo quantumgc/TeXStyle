@@ -6,13 +6,21 @@ BUILDDIR="build"
 
 
 if [ ! -d $TEXSTYLESRCDIR ]; then
-    mkdir $TEXSTYLESRCDIR
+    mkdir -p $TEXSTYLESRCDIR
 fi
 
 if [ ! -d $TEXSTYLENOTESSRCDIR ]; then
-    mkdir $TEXSTYLENOTESSRCDIR
+    mkdir -p $TEXSTYLENOTESSRCDIR
 fi
 
 if [ ! -d $BUILDDIR ]; then
-    mkdir $BUILDDIR
+    mkdir -p $BUILDDIR
+fi
+
+if [ -z $TEXMFLOCAL ]; then
+    echo "TEXMFLOCAL is undefined, please set it and rerun this configuration script"
+else
+    if [ ! -d "${TEXMFLOCAL}/tex/latex/texstyle" ]; then
+       mkdir -p "${TEXMFLOCAL}/tex/latex/texstyle"
+    fi
 fi
