@@ -324,7 +324,7 @@
 %         \begin{itemize}
 %           \item Libertinus serif as the serif font
 %           \item {\sffamily Libertinus Sans as the sans serif font}
-%           \item {\ttfamily Liberation Mono as the monospace font}
+%           \item {\ttfamily IBMPlexMono  as the monospace font}
 %         \end{itemize}
 %
 %         Please verify that each font is installed and visible to
@@ -349,7 +349,12 @@
     ItalicFont={*-Italic},
     BoldItalicFont={*-BoldItalic}
   ]{LibertinusSans}
-  \setmonofont{LiberationMono}
+  \setmonofont[
+    Extension=.otf,
+    UprightFont={*-Regular},
+    ItalicFont={*-Italic},
+    BoldFont={*-Bold}
+  ]{IBMPlexMono}
 %    \end{macrocode}
 % \iffalse
 %</package>
