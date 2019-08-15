@@ -94,7 +94,19 @@
 % \iffalse
 %</package>
 % \fi
-%
+%       We also define the following lengths.
+% \iffalse
+%<*package>
+% \fi
+%       \begin{macrocode}       
+\newlength\envSkip
+\newlength\boxEnvInner
+\newlength\leftSkip
+\envSkip = 1cm minus \baselineskip
+%       \end{macrocode}       
+% \iffalse
+%</package>
+% \fi
 %       Additionally, a filled black square marks the end of a proof as opposed
 %       to an empty one.
 %
@@ -143,8 +155,8 @@
     {}{\bfseries}{}{\newline}%
     {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
   \mdfdefinestyle{theorem}{
-    skipabove=1cm, skipbelow=1cm,
-    innertopmargin=.05cm, innerbottommargin=.05cm,
+    skipabove=\envSkip, skipbelow=\envSkip,
+    innertopmargin=.1cm, innerbottommargin=.2cm,
     leftmargin=0cm, innerleftmargin=.5cm,
     linecolor=line-blue,
     linewidth=.05cm, backgroundcolor=back-blue!20
@@ -177,17 +189,17 @@
   {\thmname{#1}:\thmnote{ #3}}
   \mdfdefinestyle{proposition}{
     skipabove=.5cm, skipbelow=.5cm,
-    innertopmargin=0cm, innerbottommargin=.05cm,
-    leftmargin=0cm, innerleftmargin=.25cm,
-    backgroundcolor=back-grey!20,
+    innertopmargin=0cm, innerbottommargin=.2cm,
+    leftmargin=0cm, innerleftmargin=.5cm,
+    backgroundcolor=back-grey!5,
     linecolor=line-grey, theoremtitlefont=\sffamily\bfseries
     }
   \mdfdefinestyle{subPro}
   {
     skipabove=0cm, skipbelow=.1cm,
-    innertopmargin=0cm, innerbottommargin=0cm,
+    innertopmargin=-.3cm, innerbottommargin=0cm,
     leftmargin=0cm, innerleftmargin=.1cm,
-    backgroundcolor=back-grey!20,
+    backgroundcolor=back-grey!5,
     hidealllines=true,
     leftline=true, linecolor=line-grey,
     linewidth=.05cm
@@ -237,18 +249,18 @@
   \mdfdefinestyle{definition}{
     skipabove=.5cm, skipbelow=.5cm,
     innertopmargin=0cm, innerbottommargin=.15cm,
-    leftmargin=0cm, innerleftmargin=0.25cm,
+    leftmargin=0cm, innerleftmargin=0.3cm,
     linecolor=line-black,
     linewidth=.05cm,
     nobreak
     }
   \mdfdefinestyle{subDef}
   {
-    skipabove=0cm, skipbelow=.01cm,
+    skipabove=.2cm, skipbelow=.01cm,
     innertopmargin=0cm, innerbottommargin=0.1cm,
-    leftmargin=0.1cm, innerleftmargin=0.1cm,
+    leftmargin=0cm, innerleftmargin=0cm,
     hidealllines=true,
-    leftline=true, bottomline=true,
+    topline=true,
     linecolor=line-black,
     linewidth=.01cm
   }
@@ -295,7 +307,7 @@
 %    \begin{macrocode}
   \mdfdefinestyle{example}{
     skipabove=0cm, skipbelow=.5cm,
-    innertopmargin=0cm, innerbottommargin=.05cm,
+    innertopmargin=-.3cm, innerbottommargin=0cm,
     leftmargin=0cm, innerleftmargin=.1cm,
     hidealllines=true, leftline=true, linecolor=line-black,
     linewidth=.1cm
@@ -303,10 +315,10 @@
   \mdfdefinestyle{subExa}
   {
     skipabove=.1cm, skipbelow=.15cm,
-    innertopmargin=0cm, innerbottommargin=0cm,
+    innertopmargin=-.3cm, innerbottommargin=0cm,
     leftmargin=0.01cm, innerleftmargin=0.1cm,
     hidealllines=true,
-    leftline=true, topline=true,
+    leftline=true,
     linecolor=line-black,
     linewidth=.01cm
   }
@@ -446,6 +458,8 @@
 %   \subsubsection{Examples of Theorem Environments}
 %   Here are a few examples of how the individual theorem environments look.
 %
+%   \clearpage
+%   \lipsum[1]
 %   \begin{theorem}[Theorem Title]\label{thm:First}
 %     This is a theorem, this is the theorem sub-title
 %
@@ -456,35 +470,35 @@
 %     This is a centered equation
 %     \[a + b = c + d\]
 %
-%     \begin{proof}
-%       This is a proof, this is the first line of the proof.
-%
-%       This is now a multi-line proof, this is the second line of the proof
-%       with a hard break in between.\\
-%       This is a soft line break.
-%       \lipsum[1]
-%
-%       This is a hard line break.
-%     \end{proof}
-%
-%     \begin{proof}[Alternative proof title]
-%       This is a proof with an alternate title.
-%     \end{proof}
 %   \end{theorem}
+%   \begin{proof}
+%     This is a proof, this is the first line of the proof.
 %
+%     This is now a multi-line proof, this is the second line of the proof
+%     with a hard break in between.
+%     This is a soft line break.
+%     \lipsum[1]
+%
+%     This is a hard line break.
+%   \end{proof}
+%
+%   \begin{proof}[Alternative proof title]
+%     This is a proof with an alternate title.
+%   \end{proof}
+%   \lipsum[2]
 %   \begin{proposition}[Proposition Title]\label{pro:First}
 %     This is a proposition, this is the proposition sub-title.
 %
 %     Let $S \subset \R$.
 %     This is what normal text looks like.
-%     \lipsum[1]
+%     \lipsum[3]
 %
 %     \begin{subPro}\label{sPro:First}
 %       This is a sub-proposition, this is the sub-proposition title.
 %
 %       $\forall x \in S, x \in S$,
 %       this is how normal text looks.
-%       \lipsum[2]
+%       \lipsum[4]
 %
 %     \end{subPro}
 %     \begin{subPro}\label{sPro:Second}
@@ -492,47 +506,47 @@
 %
 %       $\forall x \in S, x \in S$,
 %       this is how normal text looks.
-%       \lipsum[3]
+%       \lipsum[5]
 %
 %     \end{subPro}
 %   \end{proposition}
-%
+%   \lipsum[6]
 %   \begin{definition}[Definition Title]\label{def:First}
 %     This is a definition, this is the definition sub-title.
 %
 %     Let $S \subset \R$.
 %     This is what normal text looks like.
-%     \lipsum[1]
+%     \lipsum[7]
 %
 %     \begin{subDef}\label{sDef:First}
 %       This is a sub-definition, this is the sub-definition title.
 %
 %       $\forall x \in S, x \in S$,
 %       this is how normal text looks.
-%       \lipsum[2]
+%       \lipsum[8]
 %     \end{subDef}
 %     \begin{subDef}\label{sDef:First}
 %       This is a sub-definition, this is the sub-definition title.
 %
 %       $\forall x \in S, x \in S$,
 %       this is how normal text looks.
-%       \lipsum[3]
+%       \lipsum[9]
 %     \end{subDef}
 %   \end{definition}
-%
+%   \lipsum[10]
 %   \begin{example}[Example Title]\label{exa:First}
 %     This is an example, this is the example sub-title.
 %
 %     Let $S \subset \R$.
 %     This is what normal text looks like.
-%     \lipsum[1]
+%     \lipsum[11]
 %
 %     \begin{subExa}\label{sExa:First}
 %       This is a sub-example. This is the sub-example title.
 %
 %       $\forall x \in S, x \in S$,
 %       this is how normal text looks.
-%       \lipsum[2]
+%       \lipsum[12]
 %
 %     \end{subExa}
 %     \begin{subExa}\label{sExa:First}
@@ -540,26 +554,26 @@
 %
 %       $\forall x \in S, x \in S$,
 %       this is how normal text looks.
-%       \lipsum[3]
+%       \lipsum[13]
 %
 %     \end{subExa}
 %   \end{example}
-%
+%   \lipsum[1]
 %   \begin{lemma}[Lemma title]\label{lem:First}
 %     This is a Lemma, this is the lemma sub-title.
 %
 %     $\forall x \in S, x \in S$,
 %     normal text looks like this.
-%     \lipsum[1]
+%     \lipsum[14]
 %
 %   \end{lemma}
-%
+%   \lipsum[15]
 %   \begin{corollary}[Corollary title]\label{cor:First}
 %     This is a Corollary, this is the corollary sub-title.
 %
 %     $\forall x \in S, x \in S$,
 %     normal text looks like this.
-%     \lipsum[1]
+%     \lipsum[16]
 %
 %   \end{corollary}
 %
@@ -568,13 +582,13 @@
 %
 %     $\forall x \in S, x \in S$,
 %     normal text looks like this.
-%     \lipsum[1]
+%     \lipsum[17]
 %
 %   \end{remark}
-%
+%   \lipsum[18]
 %   \begin{note}
 %     This is a note.
-%     \lipsum[1]
+%     \lipsum[19]
 %   \end{note}
 %
 %   \subsection{Source Code Environments}
