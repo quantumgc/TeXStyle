@@ -6,7 +6,7 @@
 
 ### additions
 
-+ makefile
++ makefile and configure script
 
 ### removals
 
