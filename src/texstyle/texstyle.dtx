@@ -1,52 +1,32 @@
-%& -jobname=texstyle
+% \iffalse meta-comment
+%
+% MIT License
+% 
+% Copyright (c) 2017 Gautam Chaudhuri
+% 
+% Permission is hereby granted, free of charge, to any person obtaining a copy
+% of this software and associated documentation files (the "Software"), to deal
+% in the Software without restriction, including without limitation the rights
+% to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+% copies of the Software, and to permit persons to whom the Software is
+% furnished to do so, subject to the following conditions:
+% 
+% The above copyright notice and this permission notice shall be included in all
+% copies or substantial portions of the Software.
+% 
+% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+% IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+% FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+% AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+% LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+% OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+% SOFTWARE.
+%
+% \fi
 % \iffalse
-%
-% Build file for Gautam Chaudhuri's TeXStyle
-%
-%<*internal>
-\iffalse
-%</internal>
-%<*readme>
-# texstyle.dtx
-
-A build file for the texstyle package.
-To build the source, use 'xelatex -output-directory=out -jobname=texstyle texstyle.dtx&'.
-This should generate:
-
-+ This readme
-+ texstyle.ins
-+ texstyle.sty
-+ texstyle.pdf
-
-Run the command twice to generate the table of contents and associated
-hyperlinks in the documentation.
-%</readme>
-%<*internal>
-\fi
-\begingroup
-%</internal>
-%
-%<*package_batchfile>
-\input docstrip.tex
-\keepsilent\askforoverwritefalse
-\nopreamble\nopostamble
-
-\generate{%
-    \file{texstyle.sty}{%
-        \from{miscChanges.dtx}{package}%
-        \from{environments.dtx}{package}%
-        \from{glyphs.dtx}{package}%
-        \from{graphics.dtx}{package}%
-        }%  
-    }%
-%</package_batchfile>
-%<package_batchfile>\endbatchfile
-%
-%<*internal>
-\generate{\file{texstyle.ins}{\from{texstyle.dtx}{package_batchfile}}}
-\generate{\file{README.md}{\from{texstyle.dtx}{readme}}}
-\endgroup
-%</internal>
+%<package>\NeedsTeXFormat{LaTeX2e}
+%<package>\ProvidesPackage{texstyle}
+%<package>  [2019/12/26 v0.0.6 A collection of useful macros and definitions]
 %
 %<*driver>
 \documentclass[a4paper]{ltxdoc}
@@ -56,36 +36,36 @@ hyperlinks in the documentation.
 \EnableCrossrefs
 \CodelineIndex
 \RecordChanges
-\def\tsvers{0.0.5\ }
-
-\hypersetup{%
-  pdfauthor={Gautam Chaudhuri},%
-  pdftitle={TeXStyle : \tsvers - Documentation},%
-  pdfsubject={The documentation for the TeXStyle XeLaTeX package, version \tsvers},%
-  pdfkeywords={TeXStyle, XeLaTeX, Documentation, \tsvers},%
-  pdfproducer={XeLaTeX with hyperref},%
-  pdfcreator={XeLaTeX}%
-}
-
-\title{TeXStyle : \tsvers - Documentation}
-\author{Gautam Chaudhuri}
 
 \begin{document}
-    \maketitle
-    \tableofcontents
-
-    \paragraph{TeXStyle}
-    is a package that collects various macros, packages and environments that I
-    commonly use into one. 
-    
-    \section{Miscellaneous}
-    \DocInput{MiscChanges.dtx}
-    \section{Symbols}
-    \DocInput{Glyphs.dtx}
+    \let\origPrintIndex=\PrintIndex \let\PrintIndex=\relax
+    \DocInput{texstyle.dtx}
+    \section{Miscellaneous Changes}
+    \DocInput{miscChanges.dtx}
+    \DocInput{../texstyle-common/colours.dtx}
+    \section{Glyphs}
+    \DocInput{glyphs.dtx}
     \section{Environments}
-    \DocInput{Environments.dtx}
+    \DocInput{environments.dtx}
     \section{Graphics}
-    \DocInput{Graphics.dtx}
+    \DocInput{graphics.dtx}
+    \origPrintIndex
 \end{document}
 %</driver>
 % \fi
+%
+% \GetFileInfo{out/texstyle.sty}
+%
+% \hypersetup{%
+%   pdfauthor={Gautam Chaudhuri},%
+%   pdftitle={TeXStyle :~\fileversion - Documentation},%
+%   pdfsubject={The documentation for the TeXStyle LuaLaTeX package, version~\fileversion},%
+%   pdfkeywords={TeXStyle, LuaLaTeX, Documentation, \fileversion},%
+%   pdfproducer={LuaLaTeX with hyperref},%
+%   pdfcreator={LuaLaTeX}%
+% }
+%
+% \title{\textsf{TeXStyle} - Documentation\thanks{\fileversion~compiled on~\filedate}}
+% \author{Gautam Chaudhuri}
+% \maketitle
+% \tableofcontents
