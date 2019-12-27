@@ -1,80 +1,90 @@
+% \iffalse meta-comment
+%
+% MIT License
+%
+% Copyright (c) 2017 Gautam Chaudhuri
+%
+% Permission is hereby granted, free of charge, to any person obtaining a copy
+% of this software and associated documentation files (the "Software"), to deal
+% in the Software without restriction, including without limitation the rights
+% to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+% copies of the Software, and to permit persons to whom the Software is
+% furnished to do so, subject to the following conditions:
+%
+% The above copyright notice and this permission notice shall be included in all
+% copies or substantial portions of the Software.
+%
+% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+% IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+% FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+% AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+% LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+% OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+% SOFTWARE.
+%
+% \fi
 % \iffalse
-%
-% Test build file for Gautam Chaudhuri's TeXStyle
-%
-%<*internal>
-\iffalse
-%</internal>
 %<*readme>
-# texstyle-notes.dtx
-
-A build file for the texstyle-notes class.
-To build the source, use 'xelatex -output-directory=out -jobname=texstyle-notes texstyle-notes.dtx&'.
-This should generate:
-
-+ This readme
-+ texstyle-notes.ins
-+ texstyle-notes.cls
-+ texstyle-notes.pdf
-
-Run the command twice to generate the table of contents and associated
-hyperlinks in the documentation.
-%</readme>
-%<*internal>
+\iffalse
+% \fi
+TeXStyle-notes
+===
+% \iffalse
+% </readme>
 \fi
-\begingroup
-%</internal>
+% \fi
 %
 % \iffalse
-%<*article_batchfile>
-% \fi
-\input docstrip.tex
-\keepsilent\askforoverwritefalse
-\nopreamble\nopostamble
-
-\generate{%
-  \file{texstyle-notes.cls}{%
-    \from{source.dtx}{class}%
-    }
-  }
-% \iffalse
-%</article_batchfile>
-% \fi
-%<article_batchfile>\endbatchfile
-%<*internal>
-\generate{\file{texstyle-notes.ins}{\from{texstyle-notes.dtx}{article_batchfile}}}
-\generate{\file{README.md}{\from{texstyle-notes.dtx}{readme}}}
-\endgroup
-%</internal>
-%
+%<class>\NeedsTeXFormat{LaTeX2e}
+%<class>\ProvidesClass{texstyle-notes}
+%<class>  [2019/12/26 v0.0.6 A class for typesetting notes]
+%<class>\LoadClassWithOptions{article}
 %<*driver>
+\ProvidesFile{texstyle-notes.dtx}
 \documentclass[twoside]{./out/texstyle-notes}
-\RequirePackage{hyperref}
 \usepackage{doc}
-\DisableCrossrefs
+\EnableCrossrefs
 \CodelineIndex
 \RecordChanges
-\def\tsvers{0.0.5\ }
-
-\hypersetup{%
-  pdfauthor={Gautam Chaudhuri},%
-  pdftitle={TeXStyle-notes : \tsvers - Documentation},%
-  pdfsubject={The documentation for the TeXStyle-notes XeLaTeX class, version \tsvers},%
-  pdfkeywords={TeXStyle, TeXStyle-notes, XeLaTeX, Documentation, \tsvers},%
-  pdfproducer={XeLaTeX with hyperref},%
-  pdfcreator={XeLaTeX},%
-  pdfpagelayout={Dual}
-}
-
-\title{TeXStyle-notes : \tsvers - Documentation}
-\author{Gautam Chaudhuri}
-
 \begin{document}
-  \maketitle
-
-  \tableofcontents
-  
-  \DocInput{source.dtx}    
+    \let\origPrintIndex=\PrintIndex \let\PrintIndex=\relax
+    \DocInput{texstyle-notes.dtx}
+    \section{Options}
+    \DocInput{options.dtx}
+    \section{Colours}
+    \DocInput{../common/colours.dtx}
+    \section{Document Sizing and Style}
+    \DocInput{document.dtx}
+    \section{Headers}
+    \DocInput{headers.dtx}
+    \section{Environments}
+    \DocInput{../common/environments.dtx}
+    \origPrintIndex
 \end{document}
 %</driver>
 % \fi
+%
+% \GetFileInfo{texstyle-notes.dtx}
+%
+% \hypersetup{%
+%   pdfauthor={Gautam Chaudhuri},%
+%   pdftitle={TeXStyle-notes :\fileversion~- Documentation},%
+%   pdfsubject={The documentation for the TeXStyle-notes LuaLaTeX class, version~\fileversion},%
+%   pdfkeywords={TeXStyle-notes, LuaLaTeX, Documentation, \fileversion},%
+%   pdfproducer={LuaLaTeX with hyperref},%
+%   pdfcreator={LuaLaTeX},%
+%   pdfpagelayout={Dual}
+% }
+%
+% \title{\textsf{TeXStyle-notes} --- Documentation
+% \thanks{\fileversion~compiled on~\filedate}
+% }
+% \author{Gautam Chaudhuri}
+%
+% \maketitle
+%
+% \tableofcontents
+%
+% \textsf{TeXStyle-notes} is a document class based on the normal {\ttfamily
+% article} class for LaTeX. Its intended use is for typing up lecture notes so
+% it may not be suitable as a drop in replacement for {\ttfamily article}.
