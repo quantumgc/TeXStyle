@@ -20,16 +20,26 @@
   prefix=TS@
 }
 
-%% |- Options
+%% |- Option initialisation
+\DeclareBoolOption{defaultFonts} % Use the in built fonts
 
-  \DeclareBoolOption[false]{draft}
-  \DeclareBoolOption[false]{twoside}
-  \DeclareBoolOption[false]{HyperrefMacros}
-  \DeclareDefaultOption{
-    \PackageWarning{texstyle-notes}{Unknown Option '\CurrentOption'}
-  }
-  \TS@HyperrefMacrostrue
-  \ProcessKeyvalOptions*
+\DeclareBoolOption{draft} % Draft mode
+\DeclareComplementaryOption{final}{draft}
+
+\newif\ifTwosided
+\DeclareVoidOption{twoside}{\Twosidedtrue} % Twosided document
+
+\DeclareBoolOption[true]{HyperrefMacros} % Hyperref enabled links
+\DeclareStringOption[section]{envRefreshLevel} % The level at which to refresh
+                                % the
+
+%% |- Default Option
+\DeclareDefaultOption{
+  \PackageWarning{texstyle-notes}{Unknown Option '\CurrentOption'}
+}
+
+\ProcessKeyvalOptions*
+
 %    \end{macrocode}
 % \iffalse
 %</class> 
