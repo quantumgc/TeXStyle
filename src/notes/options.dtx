@@ -11,12 +11,16 @@
 %<*class> 
 % \fi
 %    \begin{macrocode}
-%%      Initialise draft option
-  \RequirePackage{kvoptions}
-  \SetupKeyvalOptions{
-    family=TS,
-    prefix=TS@
-  }
+%%-----------------------------------------------------------
+%% Options
+%% |- Dependencies
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{
+  family=TS,
+  prefix=TS@
+}
+
+%% |- Options
 
   \DeclareBoolOption[false]{draft}
   \DeclareBoolOption[false]{twoside}

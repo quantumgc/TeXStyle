@@ -10,11 +10,15 @@
 %<*class> 
 % \fi
 %    \begin{macrocode}
+%%-----------------------------------------------------------
+%% Document Design
+%% |- Dependencies
 \RequirePackage{geometry}
 \RequirePackage{fancyhdr}
 \RequirePackage{hyperref}
 \RequirePackage{xr}
 \RequirePackage{zref}
+
 %    \end{macrocode}
 % \iffalse
 %</class> 
@@ -24,10 +28,8 @@
 %<*class> 
 % \fi
 %    \begin{macrocode}
-%%      ------------------------------------------------------------
-%%      Document Design
-%% Link design
-\hypersetup
+%% |- Link design
+\hypersetup%
 {
   colorlinks=true,
   linkcolor=blue,
@@ -36,9 +38,9 @@
 }
 \urlstyle{same}
 
-%%      Document sizing
+%% |- Document sizing
 \ifTS@twoside
-%% Page Size
+%%    |- Two sided document page spread size
 \geometry{a4paper,%
   inner=1.5cm,%
   outer=2.3cm,%
@@ -49,7 +51,7 @@
   marginparsep=0cm,%
 }
 \else
-%% Page Size
+%%    |- One sided document page spread size
 \geometry{a4paper,%
   inner=1.5cm,%
   outer=1.5cm,%

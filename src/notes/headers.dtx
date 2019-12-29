@@ -2,18 +2,23 @@
 %<*class> 
 % \fi
 %    \begin{macrocode}
-% renewing the title command to save the title in an external variable
+%%-----------------------------------------------------------
+%% Headers
+
+%% |- Variables
 \makeatletter
 \renewcommand{\title}[1]{%
   \gdef\@title{#1}%
-  \gdef\thetitle{#1}%
+  \gdef\thetitle{#1}% New title variable defined
 }
 \makeatother
 
+%% |- Header style
 \pagestyle{fancy}
 \renewcommand{\sectionmark}[1]{\markright{\thesection:\ #1}}
 \renewcommand{\subsectionmark}[1]{}
 
+%%    |- Two sided document header
 \ifTwosided
 \fancypagestyle{main}{%
   \fancyhf{} % clear all fields
@@ -26,17 +31,19 @@
   \fancyhead[LE]{\raisebox{-.6\baselineskip}[0pt][0pt]{%
       \fontsize{8}{10}\selectfont \thepage}}
   \renewcommand{\headrulewidth}{1pt}
-  \ifDraftOn
-  \else
-  \fi
+  %%      |- Draft document (unused)
+  % \ifDraftOn
+  % \else
+  % \fi
   \setlength{\headheight}{0.3cm}
   \setlength{\headsep}{0.7cm}
   \setlength{\voffset}{-0.3cm}
   % \renewcommand{\headruleskip}{0cm}
   % \setlength{\hoffset}{10pt}
-  \renewcommand{\headrule}{\hbox to\headwidth{%
+  \renewcommand{\headrule}{\hbox to\headwidth{% chktex 1
       \color{ts-8}\leaders\hrule height \headrulewidth\hfill}}
 } 
+%%    |- One sided document header
 \else
 \fancypagestyle{main}{%
   \fancyhf{} % clear all fields
@@ -48,9 +55,10 @@
   \cfoot{\thepage}
   \rfoot{}
   \renewcommand{\headrulewidth}{1pt}
-  \ifDraftOn
-  \else
-  \fi
+  %%      |- Draft document (unused)
+  % \ifDraftOn
+  % \else
+  % \fi
   \setlength{\headheight}{0.3cm}
   \setlength{\headsep}{0.7cm}
   \setlength{\voffset}{-0.3cm}
@@ -60,6 +68,8 @@
       \color{ts-8}\leaders\hrule height \headrulewidth\hfill}}
 }
 \fi
+
+% |- Cover page
 \fancypagestyle{cover}{%
   \fancyhf{} % clear all fields
   \renewcommand{\headrulewidth}{0pt}

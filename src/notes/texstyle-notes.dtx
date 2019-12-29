@@ -35,14 +35,25 @@ TeXStyle-notes
 % \fi
 %
 % \iffalse
-%<class>\NeedsTeXFormat{LaTeX2e}
-%<class>\ProvidesClass{texstyle-notes}
-%<class>  [2019/12/26 v0.0.6 A class for typesetting notes]
-%<class>\LoadClassWithOptions{article}
+%<class>%%
+%<class>%%-----------------------------------------------------------
+%<class>%%-----------------------------------------------------------
+%<class>%% Preamble
 %<*driver>
 \ProvidesFile{texstyle-notes.dtx}
-\documentclass[twoside]{./out/texstyle-notes}
-\usepackage{doc}
+%</driver>
+%<class>\NeedsTeXFormat{LaTeX2e}
+%<class>\ProvidesClass{texstyle-notes}
+%<*class>
+  [2019/12/26 v0.0.6 A class for typesetting notes]
+%</class>
+%<class>\LoadClassWithOptions{article}
+%<class>
+%<*driver>
+\documentclass[twoside]{ltxdoc}
+\usepackage{hyperref}
+\usepackage{../texstyle/out/texstyle}
+\usepackage{lipsum}
 \EnableCrossrefs
 \CodelineIndex
 \RecordChanges
@@ -78,7 +89,7 @@ TeXStyle-notes
 % }
 %
 % \title{\textsf{TeXStyle-notes} --- Documentation
-% \thanks{\fileversion~compiled on~\filedate}
+% \thanks{\fileversion~retrieved on~\filedate}
 % }
 % \author{Gautam Chaudhuri}
 %

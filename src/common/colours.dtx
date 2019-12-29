@@ -9,6 +9,9 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
+%%-----------------------------------------------------------
+%% Colours
+%% |- Dependencies
 \RequirePackage{color}
 \RequirePackage{xcolor}
 
@@ -21,42 +24,43 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
+%% |- Colours
+\definecolorset{HTML}{accent-}{}{%
+  red,EF2D56;%
+  green,7DDF64;%
+  blue,5BC0EB%
+}
 
-  \definecolorset{HTML}{accent-}{}{%
-    red,EF2D56;%
-    green,7DDF64;%
-    blue,5BC0EB%
-  }
+\definecolorset{HTML}{line-}{}{%
+  blue,1D2951;%
+  grey,90909A;%
+  black,02111B%
+}
 
-  \definecolorset{HTML}{line-}{}{%
-    blue,1D2951;%
-    grey,90909A;%
-    black,02111B%
-  }
+\definecolorset{HTML}{back-}{}{%
+  grey,403F4C;%
+  blue,C6E0FF%
+}
 
-  \definecolorset{HTML}{back-}{}{%
-    grey,403F4C;%
-    blue,C6E0FF%
-  }
+\definecolorset{HTML}{ts-}{}{%
+  0,FFFFEE;%
+  1,F1F1F0;%
+  2,F0F0EE;%
+  3,F2E7DA;%
+  4,F2BC79;%
+  5,C2D2E9;%
+  6,5E83BA;%
+  7,8899AA;%
+  8,3A4E7A;%
+  9,004AA8;%
+  10,114488;%
+  11,003366;%
+  12,2B2B2B;%
+  13,091D36;%
+  14,221100;%
+  15,111110%
+}
 
-  \definecolorset{HTML}{ts-}{}{%
-    0,FFFFEE;%
-    1,F1F1F0;%
-    2,F0F0EE;%
-    3,F2E7DA;%
-    4,F2BC79;%
-    5,C2D2E9;%
-    6,5E83BA;%
-    7,8899AA;%
-    8,3A4E7A;%
-    9,004AA8;%
-    10,114488;%
-    11,003366;%
-    12,2B2B2B;%
-    13,091D36;%
-    14,221100;%
-    15,111110%
-  }
 %    \end{macrocode}
 % \iffalse
 %</package>
