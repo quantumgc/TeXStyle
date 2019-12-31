@@ -1,0 +1,72 @@
+default:
+  image: ctornau/latex
+
+texstyle-build:
+  stage: build
+  only:
+    - master
+    - develop
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - src/texstyle/out/texstyle.sty
+  script:
+    - cd src/texstyle
+    - lualatex --interaction=nonstopmode --output-directory ./out texstyle.ins
+
+texstyle-test:
+  stage: test
+  only:
+    - master
+    - develop
+  script:
+    - chktex src/texstyle/out/texstyle.sty
+
+texstyle-docs:
+  stage: docs
+  only:
+    - master
+    - develop
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - src/texstyle/out/texstyle.pdf
+  script:
+    - cd src/texstyle
+    - lualatex --interaction=nonstopmode --output-directory ./out texstyle.dtx
+    - lualatex --interaction=nonstopmode --output-directory ./out texstyle.dtx
+
+notes-build:
+  stage: build
+  only:
+    - master
+    - develop
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - src/notes/out/texstyle-notes.cls
+  script:
+    - cd src/notes
+    - lualatex --interaction=nonstopmode --output-directory ./out texstyle-notes.ins
+
+notes-test:
+  stage: test
+  only:
+    - master
+    - develop
+  script:
+    - chktex src/notes/out/texstyle-notes.cls
+
+notes-docs:
+  stage: docs
+  only:
+    - master
+    - develop
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - src/notes/out/texstyle-notes.pdf
+  script:
+    - cd src/texstyle
+    - lualatex --interaction=nonstopmode --output-directory ./out texstyle-notes.dtx
+    - lualatex --interaction=nonstopmode --output-directory ./out texstyle-notes.dtx
