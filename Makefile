@@ -14,37 +14,28 @@ $(addprefix $(texstyle_dir)/,$(addsuffix .dtx, \
 texstyle options graphics)) \
 $(addprefix $(common_dir)/,$(addsuffix .dtx, \
 colours glyphs environments))
-texstyle_objs := $(addprefix $(texstyle_dir)/out/,texstyle.sty texstyle.pdf)
 
 notes_preqs := \
 $(addprefix $(notes_dir)/,$(addsuffix .dtx, \
 texstyle-notes options document headers)) \
 $(addprefix $(common_dir)/,$(addsuffix .dtx, \
 colours glyphs environments))
-notes_objs := $(addprefix $(notes_dir)/out/,texstyle-notes.cls texstyle-notes.pdf)
 
-$(texstyle_objs) : $(texstyle_preqs)
-	@cd $(texstyle_dir) && xelatex --output-directory=./out -jobname=texstyle texstyle.dtx
-	@cd $(texstyle_dir) && xelatex --output-directory=./out -jobname=texstyle texstyle.dtx
+# Building
+.PHONY : build texstyle notes
+texstyle $(texstyle_dir)/out/texstyle.sty : $(texstyle_preqs)
+	rm -rf $(texstyle_dir)/out/*
+	@cd $(texstyle_dir) && $(LUALATEX) texstyle.ins
 
-$(notes_objs) : $(notes_preqs)
-	cp $(texstyle_dir)/out/texstyle.sty $(notes_dir)/
-	@cd $(notes_dir) && xelatex --output-directory=./out texstyle-notes.dtx
-	@cd $(texstyle_dir) && xelatex --output-directory=./out -jobname=texstyle texstyle.dtx
+notes $(notes_dir)/out/texstyle-notes.cls : $(notes_preqs)
+	rm -rf $(notes_dir)/out/*
+	@cd $(notes_dir)    && $(LUALATEX) texstyle-notes.ins
 
-.PHONY : build
-build : $(texstyle_objs) $(notes_objs)
-	cp $(texstyle_objs) build/
-	cp $(notes_objs) build/
-
-.PHONY : texstyle
-texstyle : $(texstyle_objs)
-	cp $(texstyle_objs) build/
-
-
-.PHONY : texstyle-notes
-texstyle-notes : $(notes_objs)
-	cp $(notes_objs) build/
+build : $(texstyle_preqs) $(notes_preqs)
+	rm -rf $(texstyle_dir)/out/*
+	rm -rf $(notes_dir)/out/*
+	@cd $(texstyle_dir) && $(LUALATEX) texstyle.ins
+	@cd $(notes_dir)    && $(LUALATEX) texstyle-notes.ins
 
 .PHONY : clean
 clean :
