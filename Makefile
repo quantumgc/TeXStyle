@@ -37,6 +37,18 @@ build : $(texstyle_preqs) $(notes_preqs)
 	@cd $(texstyle_dir) && $(LUALATEX) texstyle.ins
 	@cd $(notes_dir)    && $(LUALATEX) texstyle-notes.ins
 
+# Testing
+.PHONY : test test-texstyle test-notes
+test-texstyle : $(texstyle_dir)/out/texstyle.sty
+	chktex $(texstyle_dir)/out/texstyle.sty
+
+test-notes : $(notes_dir)/out/texstyle-notes.cls
+	chktex $(notes_dir)/out/texstyle-notes.cls
+
+test : $(texstyle_dir)/out/texstyle.sty $(notes_dir)/out/texstyle-notes.cls
+	chktex $(texstyle_dir)/out/texstyle.sty
+	chktex $(notes_dir)/out/texstyle-notes.cls
+
 .PHONY : clean
 clean :
 	rm -rf $(texstyle_dir)/out/*
