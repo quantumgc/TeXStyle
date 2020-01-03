@@ -6,6 +6,8 @@ variables:
 
 default:
   image: ctornau/latex
+  before_script:
+    - sh configure
 
 stages:
   - build
