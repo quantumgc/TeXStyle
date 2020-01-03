@@ -20,12 +20,15 @@
 %           theorems, etc.
 %       \end{itemize}
 %
+%       In addition, we use the colours defined in |src/common/colours| so
+%       this must be included as a dependency when generating the file.
 % \iffalse
 %<*package>
 % \fi
 %    \begin{macrocode}
 %%------------------------------------------------------------
 %% Environments
+%% |- Dependencies
   \RequirePackage{amsthm}
   \RequirePackage[framemethod=tikz]{mdframed}
   \RequirePackage{listings}
@@ -49,6 +52,8 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
+%% |- Rough theorem styles
+%%     No break between heading and body, numbered
   \newtheoremstyle{NoBreak}
     {}% measure of space to leave above the theorem.
     {}% measure of space to leave below the theorem.
@@ -70,23 +75,36 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
-  \newtheoremstyle{NoBreakNoNumber}{}{}{\itshape}%
+%%     No break between heading and body, not numbered
+  \newtheoremstyle{NoBreakNoNumber}{}{}{\itshape}% chktex 6
     {}{}{}{.5em}{\thmname{#1}:\thmnote{ #3}}
-  \newtheoremstyle{BreakBold}{}{}{\itshape}
+
+%%     Break between heading and body, numbered and bold
+  \newtheoremstyle{BreakBold}{}{}{\itshape}% chktex 6
     {}{\bfseries}{}{\newline}%
     {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
+
+%%     Break between heading and body, numbered
   \newtheoremstyle{Break}{}{}{\itshape}%
     {}{}{}{\newline}%
     {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
+
+%%     Break between heading and body, not numbered
   \newtheoremstyle{BreakNoNumber}{}{}{\itshape}%
     {}{}{}{\newline}%
     {\thmname{#1}:\thmnote{ #3}}
+
+%%     Break between heading and body, bold heading, not numbered
   \newtheoremstyle{BreakBoldNoNumber}{}{}{\itshape}%
     {}{\bfseries}{}{\newline}%
     {\thmname{#1}:\thmnote{ #3}}
-  \newtheoremstyle{NoBreakBold}{}{}{\itshape}
+
+%%     No break between heading and body, bold heading, numbered
+  \newtheoremstyle{NoBreakBold}{}{}{\itshape}% chktex 6
     {}{\bfseries}{}{.5em}%
     {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
+
+%%     No break between heading and body, bold heading, not numbered
   \newtheoremstyle{NoBreakBoldNoNumber}{}{}{\itshape}%
     {}{\bfseries}{}{.5em}{\thmname{#1}:\thmnote{ #3}}
 
@@ -99,22 +117,27 @@
 %<*package>
 % \fi
 %       \begin{macrocode}
-\newlength{\envVertSkip}
-\newlength{\envTopInner}
-\newlength{\envBotInner}
-\newlength{\envLeftSkip}
-\newlength{\subLeftSkip}
-\newlength{\subTopSkip}
-\newlength{\subBotSkip}
-\newlength{\headerOffset}
-\setlength{\envVertSkip}{.5cm}
-\setlength{\envTopInner}{.1cm}
-\setlength{\envBotInner}{.25cm}
-\setlength{\envLeftSkip}{.5cm}
-\setlength{\subLeftSkip}{.1cm}
-\setlength{\subTopSkip}{0cm}
-\setlength{\subBotSkip}{.1cm}
-\setlength{\headerOffset}{-.3cm}
+%% |- Length definitions
+%%    |- Declare lengths
+  \newlength{\envVertSkip}
+  \newlength{\envTopInner}
+  \newlength{\envBotInner}
+  \newlength{\envLeftSkip}
+  \newlength{\subLeftSkip}
+  \newlength{\subTopSkip}
+  \newlength{\subBotSkip}
+  \newlength{\headerOffset}
+
+%%    |- Define lengths
+  \setlength{\envVertSkip}{.5cm}
+  \setlength{\envTopInner}{.1cm}
+  \setlength{\envBotInner}{.25cm}
+  \setlength{\envLeftSkip}{.5cm}
+  \setlength{\subLeftSkip}{.1cm}
+  \setlength{\subTopSkip}{0cm}
+  \setlength{\subBotSkip}{.1cm}
+  \setlength{\headerOffset}{-.3cm}
+
 %       \end{macrocode}
 % \iffalse
 %</package>
@@ -269,8 +292,8 @@
     }
   \mdfdefinestyle{subDef}
   {
-    skipabove=\dimexpr(\subTopSkip + .25cm), % needs to be a bit higher to
-                                % balance with the lower skip
+    % skipabove needs to be a bit higher to balance with the lower skip
+    skipabove=\dimexpr(\subTopSkip + .25cm), % chktex 1
     skipbelow=\subBotSkip,
     innertopmargin=0cm, %=\dimexpr(\headerOffset + .3cm)
     innerleftmargin=0cm, % we want subDefs to be flush with the main definition
@@ -652,4 +675,4 @@
 %
 %
 %     Given below is an example of the output with the default options:
-%     \lstinputlisting[language=Ruby,title=An example of the listings environment]{./Example.rb}
+%     \lstinputlisting[language=Ruby,title=An example of the listings environment]{../common/example.rb}

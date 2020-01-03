@@ -1,0 +1,46 @@
+%     This section covers the options available on loading the TeXStyle package.
+%     Most of these are implemented because other packages need them.
+%     Two options to note are the |useHyperrefMacros| and its complement  the
+%     |noHyperrefMacros| options.
+%     If the package |hyperref| is loaded before |TeXStyle|, the corresponding
+%     boolean is automatically set to true and certain macros are then defined
+%     to make referencing slightly easier.
+%     To override this behaviour, specify |noHyperrefMacros|.
+%     Key-value options are implemented using the |kvoptions| package.
+% \iffalse
+%<*class> 
+% \fi
+%    \begin{macrocode}
+%%-----------------------------------------------------------
+%% Options
+%% |- Dependencies
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{
+  family=TS,
+  prefix=TS@
+}
+
+%% |- Option initialisation
+\DeclareBoolOption{defaultFonts} % Use the in built fonts
+
+\DeclareBoolOption{draft} % Draft mode
+\DeclareComplementaryOption{final}{draft}
+
+\newif\ifTwosided
+\DeclareVoidOption{twoside}{\Twosidedtrue} % Twosided document
+
+\DeclareBoolOption[true]{HyperrefMacros} % Hyperref enabled links
+\DeclareStringOption[section]{envRefreshLevel} % The level at which to refresh
+                                % the
+
+%% |- Default Option
+\DeclareDefaultOption{
+  \PackageWarning{texstyle-notes}{Unknown Option '\CurrentOption'}
+}
+
+\ProcessKeyvalOptions*
+
+%    \end{macrocode}
+% \iffalse
+%</class> 
+% \fi

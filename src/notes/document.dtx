@@ -1,0 +1,69 @@
+% \subsection{Dependencies}
+% \begin{itemize}
+% \item {\ttfamily geometry}: page sizing and control.
+% \item {\ttfamily fancyhdr}: header control.
+% \item {\ttfamily hyperref}: hyperlinked referencing.
+% \item {\ttfamily xr}: external referencing.
+% \item {\ttfamily zref}: flexible referencing.
+% \end{itemize}
+% \iffalse
+%<*class> 
+% \fi
+%    \begin{macrocode}
+%%-----------------------------------------------------------
+%% Document Design
+%% |- Dependencies
+\RequirePackage{geometry}
+\RequirePackage{fancyhdr}
+\RequirePackage{hyperref}
+\RequirePackage{xr}
+\RequirePackage{zref}
+
+%    \end{macrocode}
+% \iffalse
+%</class> 
+% \fi
+% This is the document design
+% \iffalse
+%<*class> 
+% \fi
+%    \begin{macrocode}
+%% |- Link design
+\hypersetup%
+{
+  colorlinks=true,
+  linkcolor=blue,
+  filecolor=magenta,
+  urlcolor=cyan,
+}
+\urlstyle{same}
+
+%% |- Document sizing
+\ifTwosided
+%%    |- Two sided document page spread size
+\geometry{a4paper,%
+  inner=1.5cm,%
+  outer=2.3cm,%
+  top=2.7cm,%
+  bottom=2.5cm,%
+  heightrounded,%
+  marginparwidth=0cm,%
+  marginparsep=0cm,%
+}
+\else
+%%    |- One sided document page spread size
+\geometry{a4paper,%
+  inner=1.5cm,%
+  outer=1.5cm,%
+  top=2.7cm,%
+  bottom=2.5cm,%
+  heightrounded,%
+  marginparwidth=0cm,%
+  marginparsep=0cm,%
+}
+\fi
+
+%    \end{macrocode}
+% \iffalse
+%</class> 
+% \fi

@@ -1,0 +1,112 @@
+variables:
+  VERSION: 0.0.6
+  LUALATEX: lualatex --interaction=nonstopmode --output-directory ./out
+  texstyle_dir: src/texstyle/out
+  notes_dir: src/notes/out
+
+default:
+  image: ctornau/latex
+
+stages:
+  - build
+  - test
+  - docs
+  - deploy
+
+build-texstyle:
+  stage: build
+  only:
+    - master
+    - develop
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - src/texstyle/out/texstyle.sty
+  script:
+    - cd src/texstyle
+    - eval $LUALATEX texstyle.ins
+
+build-notes:
+  stage: build
+  only:
+    - master
+    - develop
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - src/notes/out/texstyle-notes.cls
+  script:
+    - cd src/notes
+    - eval $LUALATEX texstyle-notes.ins
+
+test-texstyle:
+  stage: test
+  only:
+    - master
+    - develop
+  script:
+    - chktex src/texstyle/out/texstyle.sty
+
+test-notes:
+  stage: test
+  only:
+    - master
+    - develop
+  script:
+    - chktex src/notes/out/texstyle-notes.cls
+
+docs-texstyle:
+  stage: docs
+  only:
+    - master
+    - develop
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - src/texstyle/out/texstyle.pdf
+  script:
+    - cd src/texstyle
+    - eval $LUALATEX texstyle.dtx
+    - eval $LUALATEX texstyle.dtx
+
+docs-notes:
+  stage: docs
+  only:
+    - master
+    - develop
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - src/notes/out/texstyle-notes.pdf
+  script:
+    - cd src/texstyle
+    - eval $LUALATEX texstyle-notes.dtx
+    - eval $LUALATEX texstyle-notes.dtx
+
+package:
+  image: alpine
+  stage: deploy
+  only:
+    - master
+  artifacts:
+    paths:
+      - "builds/${VERSION}"
+  before_script:
+    - apk add zip tar
+  script:
+    - mkdir tmp
+    - mkdir tmp/docs
+    - cp README.md tmp/
+    - cp LICENSE tmp/
+    - cp ${texstyle_dir}/texstyle.sty tmp/
+    - cp ${texstyle_dir}/texstyle.pdf tmp/docs/
+    - cp ${notes_dir}/texstyle-notes.sty tmp/
+    - cp ${notes_dir}/texstyle-notes.pdf tmp/docs/
+    - cp --parents `find ./src -name \*.dtx` tmp/
+    - ls -R tmp
+    - mkdir "builds/${VERSION}"
+    - mv tmp "texstyle-${VERSION}"
+    - zip -r "builds/${VERSION}/texstyle-${VERSION}.zip" "texstyle-${VERSION}"
+    - tar -cz -f "builds/${VERSION}/texstyle-${VERSION}.tar.gz" "texstyle-${VERSION}/"
+    - rm -rf "texstyle-${VERSION}"
+

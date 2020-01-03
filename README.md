@@ -13,13 +13,6 @@ You will need:
 + GNU Make
 + A LaTeX installation, this has been tested against texlive 2019
 
-### Installing Pre-Built Source
-
-If you've acquired a pre-built source file from somewhere, you will need to
-extract the files to a directory that is visible to your TeX compiler. For
-platform specific instructions on where this might be, see the [platform
-guide](./docs/platform.md).
-
 ### Compiling from Source
 
 **Note**: You will need to set the `TEXMFLOCAL` environment variable before
@@ -32,3 +25,10 @@ to `~/.cache`.
 + This should generate, among other things, the source and documentation files
   for the project in the build directory.
 + Install the files by running `make install`.
+
+### Installing Pre-Built Source
+
+If you've acquired a pre-built source file from somewhere, you will need to
+extract the files to a directory that is visible to your TeX compiler. For
+platform specific instructions on where this might be, see the [platform
+guide](./docs/platform.md).
