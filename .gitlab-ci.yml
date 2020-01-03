@@ -1,6 +1,12 @@
 default:
   image: ctornau/latex
 
+stages:
+  - build
+  - test
+  - docs
+  - package
+
 texstyle-build:
   stage: build
   only:
