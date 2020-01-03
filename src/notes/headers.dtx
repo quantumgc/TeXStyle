@@ -19,7 +19,7 @@
 \renewcommand{\subsectionmark}[1]{}
 
 %%    |- Two sided document header
-\ifTwosided
+\ifTwosided % chktex 1
 \fancypagestyle{main}{%
   \fancyhf{} % clear all fields
   \fancyhead[RO]{\raisebox{-.6\baselineskip}[0pt][0pt]{%
@@ -48,9 +48,9 @@
 \fancypagestyle{main}{%
   \fancyhf{} % clear all fields
   \fancyhead[LO,LE]{\raisebox{-.6\baselineskip}[0pt][0pt]{%
-      \fontsize{8}{10}\selectfont \thetitle }}
+      \fontsize{8}{10}\selectfont \thetitle}}
   \fancyhead[RO,RE]{\raisebox{-.6\baselineskip}[0pt][0pt]{%
-      \fontsize{8}{10}\selectfont \rightmark }}
+      \fontsize{8}{10}\selectfont \rightmark}}
   \lfoot{}
   \cfoot{\thepage}
   \rfoot{}
@@ -64,7 +64,7 @@
   \setlength{\voffset}{-0.3cm}
   % \renewcommand{\headruleskip}{0cm}
   % \setlength{\hoffset}{10pt}
-  \renewcommand{\headrule}{\hbox to\headwidth{%
+  \renewcommand{\headrule}{\hbox to\headwidth{% chktex 1
       \color{ts-8}\leaders\hrule height \headrulewidth\hfill}}
 }
 \fi
