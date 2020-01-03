@@ -5,20 +5,21 @@ VERSION := 0.0.6
 working_dir := $(@pwd)
 install_dir := ${TEXMFLOCAL}/tex/latex/texstyle
 docs_dir := ${TEXMFLOCAL}/doc
-
 texstyle_dir := src/texstyle
+notes_dir := src/notes
+common_dir := src/common
+
 texstyle_preqs := \
 $(addprefix $(texstyle_dir)/,$(addsuffix .dtx, \
 texstyle options graphics)) \
-$(addprefix $(texstyle_dir)/,$(addsuffix .dtx, \
+$(addprefix $(common_dir)/,$(addsuffix .dtx, \
 colours glyphs environments))
 texstyle_objs := $(addprefix $(texstyle_dir)/out/,texstyle.sty texstyle.pdf)
 
-notes_dir := src/notes
 notes_preqs := \
 $(addprefix $(notes_dir)/,$(addsuffix .dtx, \
 texstyle-notes options document headers)) \
-$(addprefix $(texstyle_dir)/,$(addsuffix .dtx, \
+$(addprefix $(common_dir)/,$(addsuffix .dtx, \
 colours glyphs environments))
 notes_objs := $(addprefix $(notes_dir)/out/,texstyle-notes.cls texstyle-notes.pdf)
 
