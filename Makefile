@@ -49,6 +49,23 @@ test : $(texstyle_dir)/out/texstyle.sty $(notes_dir)/out/texstyle-notes.cls
 	chktex $(texstyle_dir)/out/texstyle.sty
 	chktex $(notes_dir)/out/texstyle-notes.cls
 
+# Documentation
+.PHONY : docs docs-texstyle docs-notes
+docs-texstyle $(texstyle_dir)/out/texstyle.pdf : $(texstyle_dir)/out/texstyle.sty
+	@cd $(texstyle_dir) && $(LUALATEX) texstyle.dtx
+	@cd $(texstyle_dir) && $(LUALATEX) texstyle.dtx
+
+docs-notes $(notes_dir)/out/texstyle-notes.pdf : \
+$(notes_dir)/out/texstyle-notes.cls  $(texstyle_dir)/out/texstyle.sty
+	@cd $(notes_dir)    && $(LUALATEX) texstyle-notes.dtx
+	@cd $(notes_dir)    && $(LUALATEX) texstyle-notes.dtx
+
+docs : $(texstyle_dir)/out/texstyle.sty $(notes_dir)/out/texstyle-notes.cls
+	@cd $(texstyle_dir) && $(LUALATEX) texstyle.dtx
+	@cd $(texstyle_dir) && $(LUALATEX) texstyle.dtx
+	@cd $(notes_dir)    && $(LUALATEX) texstyle-notes.dtx
+	@cd $(notes_dir)    && $(LUALATEX) texstyle-notes.dtx
+
 .PHONY : clean
 clean :
 	rm -rf $(texstyle_dir)/out/*
