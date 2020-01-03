@@ -1,4 +1,6 @@
 SHELL := /bin/sh
+LUALATEX := lualatex --interaction=nonstopmode --output-directory ./out
+VERSION := 0.0.6
 working_dir := $(@pwd)
 install_dir := ${TEXMFLOCAL}/tex/latex/texstyle
 docs_dir := ${TEXMFLOCAL}/doc
