@@ -376,6 +376,45 @@
 %
 % \end{environment}
 %
+% \begin{environment}{exercise}
+% \iffalse
+%<*package>
+% \fi
+%    \begin{macrocode}
+  \mdfdefinestyle{exercise}{
+    skipabove=\envVertSkip, skipbelow=\envVertSkip,
+    innertopmargin=\headerOffset, % want the top of the example to be flush with
+                                %the bar
+    innerbottommargin=0cm, % want the bottom to be flush with the bar
+    innerleftmargin=\envLeftSkip,
+    hidealllines=true, leftline=true, rightline=true, linecolor=line-black,
+    linewidth=.1cm
+    }
+  \mdfdefinestyle{subExr}
+  {
+    skipabove=\subTopSkip, skipbelow=\subTopSkip,
+    innertopmargin=\dimexpr(\headerOffset + .2cm),
+    innerbottommargin=.25cm, % ditto
+    innerleftmargin=\subLeftSkip,
+    hidealllines=true,
+    topline=true,
+    bottomline=true,
+    linecolor=line-black,
+    linewidth=.01cm
+  }
+  \theoremstyle{BreakBoldNoNumber}
+  \newmdtheoremenv[style=exercise]{exercise}{Exercise}
+  \theoremstyle{NoBreak}
+  \newmdtheoremenv[style=subExr]{subExr}{}
+  % Refreshes every example
+
+%    \end{macrocode}
+% \iffalse
+%</package>
+% \fi
+%
+% \end{environment}
+%
 % \begin{environment}{lemma}
 % \iffalse
 %<*package>
@@ -600,6 +639,31 @@
 %
 %     \end{subExa}
 %   \end{example}
+%   \lipsum[10]
+%   \begin{exercise}[Exercise Title]\label{exr:First}
+%     This is an exercise, this is the exercise sub-title.
+%
+%     Let $S \subset \R$.
+%     This is what normal text looks like.
+%     \lipsum[11]
+%
+%     \begin{subExr}\label{sExr:First}
+%       This is a sub-exercise. This is the sub-exercise title.
+%
+%       $\forall x \in S, x \in S$,
+%       this is how normal text looks.
+%       \lipsum[12]
+%
+%     \end{subExr}
+%     \begin{subExr}\label{sExr:Second}
+%       This is a sub-exercise. This is the sub-exercise title.
+%
+%       $\forall x \in S, x \in S$,
+%       this is how normal text looks.
+%       \lipsum[13]
+%
+%     \end{subExr}
+%   \end{exercise}
 %   \lipsum[1]
 %   \begin{lemma}[Lemma title]\label{lem:First}
 %     This is a Lemma, this is the lemma sub-title.
