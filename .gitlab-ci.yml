@@ -100,6 +100,7 @@ package:
     - mkdir tmp/docs
     - cp README.md tmp/
     - cp LICENSE tmp/
+    - cp -r fonts tmp/
     - cp ${texstyle_dir}/texstyle.sty tmp/
     - cp ${texstyle_dir}/texstyle.pdf tmp/docs/
     - cp ${notes_dir}/texstyle-notes.sty tmp/
