@@ -81,7 +81,7 @@ docs-notes:
     paths:
       - src/notes/out/texstyle-notes.pdf
   script:
-    - cd src/texstyle
+    - cd src/notes
     - eval $LUALATEX texstyle-notes.dtx
     - eval $LUALATEX texstyle-notes.dtx
 
