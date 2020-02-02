@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# build_alpine.sh
+#
+ctr=$(buildah from alpine)
+brunch="buildah run $ctr /bin/sh -c"
+
+$brunch 'apk add make wget perl tar gzip git'
+$brunch "wget \"http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz\" -O home/install-tl-unx.tar.gz"
+$brunch "cd home; tar -xvf install-tl-unx.tar.gz"
+
+texlivedir=$($brunch "cd home; tar --exclude='*/*' -tf install-tl-unx.tar.gz")
+
+mnt=$(buildah mount $ctr)
+
+cp texlive.profile "${mnt}/home/${texlivedir}"
+
+if [ -n "$TEST" ]; then
+   cp -r ./ "${mnt}/home/texstyle"
+fi
+
+$brunch "cd home/${texlivedir}; ./install-tl -profile=texlive.profile"
+bpath=$($brunch "echo $PATH")
+echo $bpath
+# buildah config --env PATH="$bpath:/usr/local/texlive/2019/bin/x86_64-linuxmusl" $ctr
