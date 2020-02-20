@@ -206,8 +206,8 @@
 
 %    \end{macrocode}
 % \iffalse
-%</package>
-% \fi
+%</package>%
+\fi
 %
 % \end{environment}
 %
@@ -290,6 +290,9 @@
     linewidth=.05cm,
     nobreak
     }
+  \newtheoremstyle{SubDefinition}{}{}{\sffamily}%
+    {}{\bfseries}{}{.5em}%
+    {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
   \mdfdefinestyle{subDef}
   {
     % skipabove needs to be a bit higher to balance with the lower skip
@@ -308,9 +311,6 @@
     \newmdtheoremenv[style=definition]{definition}%
     [definition]{Definition}
     \aliascntresetthe{definition}
-    \newtheoremstyle{SubDefinition}{}{}{\sffamily}%
-      {}{\bfseries}{}{.5em}%
-      {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
     \theoremstyle{SubDefinition}
     % Refreshes every definition
     \newmdtheoremenv[style=subDef]{subDef}{}[definition]
@@ -320,9 +320,6 @@
     \theoremstyle{Definition}
     \newmdtheoremenv[style=definition]{definition}%
     [theorem]{Definition}
-    \newtheoremstyle{SubDefinition}{}{}{\sffamily}%
-      {}{\bfseries}{}{.5em}%
-      {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
     \theoremstyle{SubDefinition}
     % Refreshes every definition
     \newmdtheoremenv[style=subDef]{subDef}{}[theorem]
@@ -338,7 +335,7 @@
 %
 % \end{environment}
 %
-% \begin{environment}{examples}
+% \begin{environment}{example}
 % \iffalse
 %<*package>
 % \fi
@@ -363,11 +360,21 @@
     linecolor=line-black,
     linewidth=.01cm
   }
+  \ifTS@HyperrefMacros
+    \theoremstyle{BreakBold}
+    \newaliascnt{example}{theorem}
+    \newmdtheoremenv[style=example]{example}[example]{Example}
+  \else
+    \theoremstyle{BreakBold}
+    \newmdtheoremenv[style=example]{example}[example]{Example}
+  \fi
+  \theoremstyle{NoBreakNoNumber}
+  % Refreshes every example
+  \newmdtheoremenv[style=subExa]{subExa}{}
   \theoremstyle{BreakBoldNoNumber}
   \newmdtheoremenv[style=example]{example}{Example}
-  \theoremstyle{NoBreak}
-  \newmdtheoremenv[style=subExa]{subExa}{}
-  % Refreshes every example
+  \theoremstyle{BreakBoldNoNumber}
+  \newmdtheoremenv[style=example]{example*}{Example}
 
 %    \end{macrocode}
 % \iffalse
