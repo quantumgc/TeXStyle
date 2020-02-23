@@ -59,9 +59,11 @@ fi
 # create an texlive-medium container
 ctr=$(buildah from texlive-medium)
 mnt=$(buildah mount $ctr)
+echo "$mnt"
 brunch="buildah run $ctr /bin/sh -c"
 
 if [ -e ".build-config" ]; then
+    mkdir "${mnt}/home/texlive-local"
     mount --bind "${CTANDIR}" "${mnt}/home/texlive-local"
     git clone -l --no-hardlinks ./ "${mnt}/home/texstyle"
 else
