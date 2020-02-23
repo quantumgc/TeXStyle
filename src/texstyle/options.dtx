@@ -12,7 +12,7 @@
 % \fi
 %    \begin{macrocode}
   \RequirePackage{kvoptions}
-  \SetupKeyvalOptions{
+  \SetupKeyvalOptions{%
     family=TS,
     prefix=TS@
   }
@@ -25,9 +25,10 @@
   {
     \ifTS@HyperrefMacros
     \PackageWarning{TeXStyle}{
-      Loading hyperref macros even though hyperref has
-      not been detected yet.
-      If hyperref has been loaded later in the document, ignore this message.
+      Loading hyperref macros even though hyperref%
+      has not been detected yet. If hyperref has%
+      been loaded later in the document, ignore%
+      this message.
     }
     \fi
   }

@@ -33,6 +33,7 @@
   \RequirePackage[framemethod=tikz]{mdframed}
   \RequirePackage{listings}
   \RequirePackage[shortlabels]{enumitem}
+
   \ifTS@HyperrefMacros
   \RequirePackage{aliascnt}
   \fi
@@ -64,7 +65,7 @@
     {.5em}% space after theorem head
     %; " " = normal inter-word space
     % Manually specify theorem head
-    {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
+    {\thmname{#1} \thmnumber{#2}: \thmnote{#3}}
 
 %    \end{macrocode}
 % \iffalse
@@ -75,38 +76,41 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
-%%     No break between heading and body, not numbered
+%% No break between heading and body, not numbered
   \newtheoremstyle{NoBreakNoNumber}{}{}{\itshape}% chktex 6
-    {}{}{}{.5em}{\thmname{#1}:\thmnote{ #3}}
+    {}{}{}{.5em}{\thmname{#1}: \thmnote{#3}}
 
-%%     Break between heading and body, numbered and bold
+%% Break between heading and body, numbered and bold
   \newtheoremstyle{BreakBold}{}{}{\itshape}% chktex 6
     {}{\bfseries}{}{\newline}%
-    {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
+    {\thmname{#1} \thmnumber{#2}: \thmnote{#3}}
 
-%%     Break between heading and body, numbered
+%% Break between heading and body, numbered
   \newtheoremstyle{Break}{}{}{\itshape}%
     {}{}{}{\newline}%
-    {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
+    {\thmname{#1} \thmnumber{#2}: \thmnote{#3}}
 
-%%     Break between heading and body, not numbered
+%% Break between heading and body, not numbered
   \newtheoremstyle{BreakNoNumber}{}{}{\itshape}%
     {}{}{}{\newline}%
-    {\thmname{#1}:\thmnote{ #3}}
+    {\thmname{#1}: \thmnote{#3}}
 
-%%     Break between heading and body, bold heading, not numbered
+%% Break between heading and body, bold heading,
+%% not numbered
   \newtheoremstyle{BreakBoldNoNumber}{}{}{\itshape}%
     {}{\bfseries}{}{\newline}%
-    {\thmname{#1}:\thmnote{ #3}}
+    {\thmname{#1}: \thmnote{#3}}
 
-%%     No break between heading and body, bold heading, numbered
+%% No break between heading and body,
+%% bold heading, numbered
   \newtheoremstyle{NoBreakBold}{}{}{\itshape}% chktex 6
     {}{\bfseries}{}{.5em}%
-    {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
+    {\thmname{#1} \thmnumber{#2}: \thmnote{#3}}
 
-%%     No break between heading and body, bold heading, not numbered
+%% No break between heading and body, bold heading,
+%% not numbered
   \newtheoremstyle{NoBreakBoldNoNumber}{}{}{\itshape}%
-    {}{\bfseries}{}{.5em}{\thmname{#1}:\thmnote{ #3}}
+    {}{\bfseries}{}{.5em}{\thmname{#1}: \thmnote{#3}}
 
 %    \end{macrocode}
 % \iffalse
@@ -142,7 +146,9 @@
 % \iffalse
 %</package>
 % \fi
-%       Additionally, a filled black square marks the end of a proof as opposed
+%
+% Additionally, a filled black square
+% marks the end of a proof as opposed
 %       to an empty one.
 %
 % \iffalse
@@ -186,28 +192,35 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
-  \newtheoremstyle{Theorem}{}{}{}
+  \newtheoremstyle{Theorem}{}{}{}%
     {}{\bfseries}{}{\newline}%
-    {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
-  \mdfdefinestyle{theorem}{
-    skipabove=\envVertSkip, skipbelow=\envVertSkip,
-    innertopmargin=\envTopInner, innerbottommargin=\envBotInner,
-    innerleftmargin=\envLeftSkip,
-    linecolor=line-blue,
-    linewidth=.05cm, backgroundcolor=back-blue!20
+    {\thmname{#1} \thmnumber{#2}: \thmnote{#3}}
+
+  \mdfdefinestyle{theorem}{%
+    skipabove=\envVertSkip,%
+    skipbelow=\envVertSkip,%
+    innertopmargin=\envTopInner,%
+    innerbottommargin=\envBotInner,%
+    innerleftmargin=\envLeftSkip,%
+    linecolor=line-blue,%
+    linewidth=.05cm,%
+    backgroundcolor=back-blue!20%
     }
+
   \theoremstyle{Theorem}
-  \newmdtheoremenv[style=theorem]{theorem}{Theorem}[\TS@envRefreshLevel]
-  \newtheoremstyle{Theorem*}{}{}{}
+
+  \newmdtheoremenv[style=theorem]{theorem}%
+  {Theorem}[\TS@envRefreshLevel]
+
+  \newtheoremstyle{Theorem*}{}{}{}%
     {}{\bfseries}{}{\newline}%
-    {\thmname{#1}:\thmnote{ #3}}
+    {\thmname{#1}:\thmnote{ #3}}%
   \theoremstyle{Theorem*}
   \newmdtheoremenv[style=theorem]{theorem*}{Theorem}
 
 %    \end{macrocode}
 % \iffalse
 %</package>%
-\fi
 %
 % \end{environment}
 %
@@ -218,48 +231,60 @@
 %    \begin{macrocode}
   \newtheoremstyle{Proposition}{}{}{\itshape}%
     {}{\bfseries}{}{\newline}%
-    {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
+    {\thmname{#1} \thmnumber{#2}: \thmnote{#3}}
+
   \newtheoremstyle{Proposition*}{}{}{\itshape}%
   {}{\bfseries}{}{\newline}%
-  {\thmname{#1}:\thmnote{ #3}}
-  \mdfdefinestyle{proposition}{
-    skipabove=\envVertSkip, skipbelow=\envVertSkip,
-    innertopmargin=\envTopInner, innerbottommargin=\envBotInner,
-    innerleftmargin=\envLeftSkip,
-    backgroundcolor=back-grey!5,
-    linecolor=line-grey, theoremtitlefont=\sffamily\bfseries
-    }
-  \mdfdefinestyle{subPro}
-  {
-    skipabove=\subTopSkip, skipbelow=\subBotSkip,
-    innertopmargin=\headerOffset,
-    innerbottommargin=0cm,
-    innerleftmargin=\subLeftSkip,
-    backgroundcolor=back-grey!5,
-    hidealllines=true,
-    leftline=true, linecolor=line-grey,
-    linewidth=.05cm
+  {\thmname{#1}: \thmnote{#3}}
+
+  \mdfdefinestyle{proposition}{%
+    skipabove=\envVertSkip,%
+    skipbelow=\envVertSkip,%
+    innertopmargin=\envTopInner,%
+    innerbottommargin=\envBotInner,%
+    innerleftmargin=\envLeftSkip,%
+    backgroundcolor=back-grey!5,%
+    linecolor=line-grey,%
+    theoremtitlefont=\sffamily\bfseries%
   }
 
+  \mdfdefinestyle{subPro}{%
+    skipabove=\subTopSkip,%
+    skipbelow=\subBotSkip,%
+    innertopmargin=\headerOffset,%
+    innerbottommargin=0cm,%
+    innerleftmargin=\subLeftSkip,%
+    backgroundcolor=back-grey!5,%
+    hidealllines=true,%
+    leftline=true,%
+    linecolor=line-grey,%
+    linewidth=.05cm%
+  }
   \ifTS@HyperrefMacros
-    \theoremstyle{Proposition}
     \newaliascnt{proposition}{theorem}
+    \theoremstyle{Proposition}
     \newmdtheoremenv[style=proposition]{proposition}%
     [proposition]{Proposition}
     \aliascntresetthe{proposition}
-    \theoremstyle{NoBreakBold}
+
     % Refreshes every proposition
+    \theoremstyle{NoBreakBold}
     \newmdtheoremenv[style=subPro]{subPro}{}[proposition]
+
+    % autoref commands
     \providecommand*{\propositionautorefname}{Proposition}
     \providecommand*{\subProautorefname}{Proposition}
+
   \else
     \theoremstyle{Proposition}
     \newmdtheoremenv[style=proposition]{proposition}%
     [theorem]{Proposition}
+
+    % Refreshes counter every proposition
     \theoremstyle{NoBreakBold}
-    % Refreshes every proposition
     \newmdtheoremenv[style=subPro]{subPro}{}[theorem]
   \fi
+
   \theoremstyle{Proposition*}
   \newmdtheoremenv[style=proposition]{proposition*}%
   {Proposition}
@@ -279,27 +304,36 @@
   \newtheoremstyle{Definition}{5pt}{5pt}{\sffamily}%
     {}{\sffamily\bfseries}{}{\newline}%
     {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
+
   \newtheoremstyle{Definition*}{5pt}{5pt}{\sffamily}%
     {}{\sffamily\bfseries}{}{\newline}%
     {\thmname{#1}:\thmnote{ #3}}
+
   \mdfdefinestyle{definition}{
-    skipabove=\envVertSkip, skipbelow=\envVertSkip,
-    innertopmargin=\envTopInner, innerbottommargin=\envBotInner,
-    innerleftmargin=\envLeftSkip,
-    linecolor=line-black,
-    linewidth=.05cm,
-    nobreak
+    skipabove=\envVertSkip,%
+    skipbelow=\envVertSkip,%
+    innertopmargin=\envTopInner,%
+    innerbottommargin=\envBotInner,%
+    innerleftmargin=\envLeftSkip,%
+    linecolor=line-black,%
+    linewidth=.05cm,%
+    nobreak%
     }
+
   \newtheoremstyle{SubDefinition}{}{}{\sffamily}%
     {}{\bfseries}{}{.5em}%
     {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
+
   \mdfdefinestyle{subDef}
   {
-    % skipabove needs to be a bit higher to balance with the lower skip
+    % skipabove needs to be a bit
+% higher to balance with the lower skip
     skipabove=\dimexpr(\subTopSkip + .25cm), % chktex 1
     skipbelow=\subBotSkip,
-    innertopmargin=0cm, %=\dimexpr(\headerOffset + .3cm)
-    innerleftmargin=0cm, % we want subDefs to be flush with the main definition
+    innertopmargin=0cm,%
+    % =\dimexpr(\headerOffset + .3cm)
+    % we want subDefs to be flush with the main definition
+    innerleftmargin=0cm,
     hidealllines=true,
     topline=true,
     linecolor=line-black,
@@ -307,24 +341,32 @@
   }
   \ifTS@HyperrefMacros
     \theoremstyle{Definition}
+
     \newaliascnt{definition}{theorem}
     \newmdtheoremenv[style=definition]{definition}%
     [definition]{Definition}
+
     \aliascntresetthe{definition}
     \theoremstyle{SubDefinition}
+
     % Refreshes every definition
     \newmdtheoremenv[style=subDef]{subDef}{}[definition]
+
     \providecommand*{\definitionautorefname}{Definition}
     \providecommand*{\subDefautorefname}{Definition}
   \else
     \theoremstyle{Definition}
+
     \newmdtheoremenv[style=definition]{definition}%
     [theorem]{Definition}
+
     \theoremstyle{SubDefinition}
     % Refreshes every definition
     \newmdtheoremenv[style=subDef]{subDef}{}[theorem]
   \fi
+
     \theoremstyle{Definition*}
+
     \newmdtheoremenv[style=definition]{definition*}%
     {Definition}
 
@@ -340,39 +382,46 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
-  \mdfdefinestyle{example}{
-    skipabove=\envVertSkip, skipbelow=\envVertSkip,
-    innertopmargin=\headerOffset, % want the top of the example to be flush with
-                                %the bar
-    innerbottommargin=0cm, % want the bottom to be flush with the bar
-    innerleftmargin=\envLeftSkip,
-    hidealllines=true, leftline=true, linecolor=line-black,
-    linewidth=.1cm
+  \mdfdefinestyle{example}{%
+    skipabove=\envVertSkip, skipbelow=\envVertSkip,%
+    % want the top and bottom of the example to be
+% flush with the bar
+    innertopmargin=\headerOffset,%
+    innerbottommargin=0cm,%
+    innerleftmargin=\envLeftSkip,%
+    hidealllines=true,%
+    leftline=true,%
+    linecolor=line-black,%
+    linewidth=.1cm%
     }
-  \mdfdefinestyle{subExa}
-  {
-    skipabove=\subTopSkip, skipbelow=\subTopSkip,
+
+  \mdfdefinestyle{subExa}{%
+    skipabove=\subTopSkip,%
+    skipbelow=\subTopSkip,%
     innertopmargin=\headerOffset, % flush with bar
     innerbottommargin=0cm, % ditto
-    innerleftmargin=\subLeftSkip,
-    hidealllines=true,
-    leftline=true,
-    linecolor=line-black,
-    linewidth=.01cm
+    innerleftmargin=\subLeftSkip,%
+    hidealllines=true,%
+    leftline=true,%
+    linecolor=line-black,%
+    linewidth=.01cm%
   }
+
   \ifTS@HyperrefMacros
     \theoremstyle{BreakBold}
+
     \newaliascnt{example}{theorem}
     \newmdtheoremenv[style=example]{example}[example]{Example}
+    \aliascntresetthe{example}
   \else
     \theoremstyle{BreakBold}
-    \newmdtheoremenv[style=example]{example}[example]{Example}
+
+    \newmdtheoremenv[style=example]{example}[theorem]{Example}
   \fi
+
   \theoremstyle{NoBreakNoNumber}
-  % Refreshes every example
   \newmdtheoremenv[style=subExa]{subExa}{}
-  \theoremstyle{BreakBoldNoNumber}
-  \newmdtheoremenv[style=example]{example}{Example}
+
   \theoremstyle{BreakBoldNoNumber}
   \newmdtheoremenv[style=example]{example*}{Example}
 
@@ -388,32 +437,35 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
-  \mdfdefinestyle{exercise}{
-    skipabove=\envVertSkip, skipbelow=\envVertSkip,
-    innertopmargin=\headerOffset, % want the top of the example to be flush with
-                                %the bar
-    innerbottommargin=0cm, % want the bottom to be flush with the bar
-    innerleftmargin=\envLeftSkip,
-    hidealllines=true, leftline=true, rightline=true, linecolor=line-black,
-    linewidth=.1cm
+  \mdfdefinestyle{exercise}{%
+    skipabove=\envVertSkip, skipbelow=\envVertSkip,%
+    innertopmargin=\headerOffset,%
+    innerbottommargin=0cm,%
+    innerleftmargin=\envLeftSkip,%
+    hidealllines=true,%
+    leftline=true,%
+    rightline=true,%
+    linecolor=line-black,%
+    linewidth=.1cm%
     }
-  \mdfdefinestyle{subExr}
-  {
-    skipabove=\subTopSkip, skipbelow=\subTopSkip,
-    innertopmargin=\dimexpr(\headerOffset + .2cm),
-    innerbottommargin=.25cm, % ditto
-    innerleftmargin=\subLeftSkip,
-    hidealllines=true,
-    topline=true,
-    bottomline=true,
-    linecolor=line-black,
-    linewidth=.01cm
+
+  \mdfdefinestyle{subExr}{%
+    skipabove=\subTopSkip, skipbelow=\subTopSkip,%
+    innertopmargin=\dimexpr(\headerOffset + .2cm),% chktex 1
+    innerbottommargin=.25cm,%
+    innerleftmargin=\subLeftSkip,%
+    hidealllines=true,%
+    topline=true,%
+    bottomline=true,%
+    linecolor=line-black,%
+    linewidth=.01cm%
   }
+
   \theoremstyle{BreakBoldNoNumber}
   \newmdtheoremenv[style=exercise]{exercise}{Exercise}
+
   \theoremstyle{NoBreak}
   \newmdtheoremenv[style=subExr]{subExr}{}
-  % Refreshes every example
 
 %    \end{macrocode}
 % \iffalse
@@ -427,26 +479,32 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
-  \mdfdefinestyle{lemma}
-  {
-    skipabove=\envVertSkip, skipbelow=\envVertSkip,
-    innertopmargin=\headerOffset, innerbottommargin=0cm, % flush
-    innerleftmargin=\envLeftSkip,
-    hidealllines=true,
-    leftline=true, linecolor=line-grey,
-    linewidth=.05cm
+  \mdfdefinestyle{lemma}{%
+    skipabove=\envVertSkip, skipbelow=\envVertSkip,%
+    innertopmargin=\headerOffset,%
+    innerbottommargin=0cm, % flush
+    innerleftmargin=\envLeftSkip,%
+    hidealllines=true,%
+    leftline=true, linecolor=line-grey,%
+    linewidth=.05cm%
   }
   \ifTS@HyperrefMacros
     \theoremstyle{Break}
+
     \newaliascnt{lemma}{theorem}
+
     \newmdtheoremenv[style=lemma]{lemma}[lemma]{Lemma}
+
     \aliascntresetthe{lemma}
+
     \providecommand*{\lemmaautorefname}{Lemma}
   \else
     \theoremstyle{Break}
     \newmdtheoremenv[style=lemma]{lemma}[theorem]{Lemma}
   \fi
+
     \theoremstyle{BreakNoNumber}
+
     \newmdtheoremenv[style=lemma]{lemma*}{Lemma}
 
 %    \end{macrocode}
@@ -461,24 +519,32 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
-  \mdfdefinestyle{corollary}
-  {
-    skipabove=\envVertSkip, skipbelow=\envVertSkip,
-    innertopmargin=\headerOffset, innerbottommargin=0cm, % flush
-    innerleftmargin=\envLeftSkip,
-    hidealllines=true, leftline=true, linecolor=accent-blue,
-    linewidth=.05cm
+  \mdfdefinestyle{corollary}{%
+    skipabove=\envVertSkip, skipbelow=\envVertSkip,%
+    innertopmargin=\headerOffset, innerbottommargin=0cm,%
+    innerleftmargin=\envLeftSkip,%
+    hidealllines=true,%
+    leftline=true,%
+    linecolor=accent-blue,%
+    linewidth=.05cm%
     }
     \ifTS@HyperrefMacros
       \theoremstyle{BreakBold}
+
+      \newaliascnt{corollary}{theorem}
+      
       \newmdtheoremenv[style=corollary]{corollary}%
-        {Corollary}[theorem]
+      [corollary]{Corollary}
+
+      \aliascntresetthe{corollary}
+
       \providecommand*{\corollaryautorefname}{Corollary}
     \else
       \theoremstyle{BreakBold}
       \newmdtheoremenv[style=corollary]{corollary}%
-        {Corollary}[theorem]
+        [theorem]{Corollary}
     \fi
+
       \theoremstyle{BreakBoldNoNumber}
       \newmdtheoremenv[style=corollary]{corollary*}%
         {Corollary}
@@ -495,22 +561,30 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
-  \mdfdefinestyle{remark}{
-    skipabove=\envVertSkip, skipbelow=\envVertSkip,
-    innertopmargin=\headerOffset, innerbottommargin=0cm, % flush
-    innerleftmargin=\envLeftSkip,
-    hidealllines=true, leftline=true, linecolor=line-black
+  \mdfdefinestyle{remark}{%
+    skipabove=\envVertSkip, skipbelow=\envVertSkip,%
+    innertopmargin=\headerOffset, innerbottommargin=0cm,%
+    innerleftmargin=\envLeftSkip,%
+    hidealllines=true,%
+    leftline=true,%
+    linecolor=line-black%
     }
+
   \ifTS@HyperrefMacros
     \theoremstyle{BreakBold}
+
     \newaliascnt{remark}{theorem}
+
     \newmdtheoremenv[style=remark]{remark}[remark]{Remark}
+
     \aliascntresetthe{remark}
+
     \providecommand*{\remarkautorefname}{Remark}
   \else
     \theoremstyle{BreakBold}
     \newmdtheoremenv[style=remark]{remark}{Remark}
   \fi
+
     \theoremstyle{BreakBoldNoNumber}
     \newmdtheoremenv[style=remark]{remark*}{Remark}
 

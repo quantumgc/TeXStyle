@@ -5,7 +5,7 @@ variables:
   notes_dir: src/notes/out
 
 default:
-  image: ctornau/latex
+  image: texstyle:latest
   before_script:
     - sh configure
 
@@ -25,8 +25,7 @@ build-texstyle:
     paths:
       - src/texstyle/out/texstyle.sty
   script:
-    - cd src/texstyle
-    - eval $LUALATEX texstyle.ins
+    - make texstyle
 
 build-notes:
   stage: build
@@ -38,8 +37,7 @@ build-notes:
     paths:
       - src/notes/out/texstyle-notes.cls
   script:
-    - cd src/notes
-    - eval $LUALATEX texstyle-notes.ins
+    - make notes
 
 test-texstyle:
   stage: test
@@ -47,7 +45,7 @@ test-texstyle:
     - master
     - develop
   script:
-    - chktex src/texstyle/out/texstyle.sty
+    - make test-texstyle
 
 test-notes:
   stage: test
@@ -55,7 +53,7 @@ test-notes:
     - master
     - develop
   script:
-    - chktex src/notes/out/texstyle-notes.cls
+    - make test-notes
 
 docs-texstyle:
   stage: docs
@@ -67,9 +65,7 @@ docs-texstyle:
     paths:
       - src/texstyle/out/texstyle.pdf
   script:
-    - cd src/texstyle
-    - eval $LUALATEX texstyle.dtx
-    - eval $LUALATEX texstyle.dtx
+    - make docs-texstyle
 
 docs-notes:
   stage: docs
@@ -81,9 +77,7 @@ docs-notes:
     paths:
       - src/notes/out/texstyle-notes.pdf
   script:
-    - cd src/notes
-    - eval $LUALATEX texstyle-notes.dtx
-    - eval $LUALATEX texstyle-notes.dtx
+    - make docs-notes
 
 package:
   image: alpine
@@ -96,20 +90,4 @@ package:
   before_script:
     - apk add zip tar
   script:
-    - mkdir tmp
-    - mkdir tmp/docs
-    - cp README.md tmp/
-    - cp LICENSE tmp/
-    - cp -r fonts tmp/
-    - cp ${texstyle_dir}/texstyle.sty tmp/
-    - cp ${texstyle_dir}/texstyle.pdf tmp/docs/
-    - cp ${notes_dir}/texstyle-notes.sty tmp/
-    - cp ${notes_dir}/texstyle-notes.pdf tmp/docs/
-    - cp --parents `find ./src -name \*.dtx` tmp/
-    - ls -R tmp
-    - mkdir "builds/${VERSION}"
-    - mv tmp "texstyle-${VERSION}"
-    - zip -r "builds/${VERSION}/texstyle-${VERSION}.zip" "texstyle-${VERSION}"
-    - tar -cz -f "builds/${VERSION}/texstyle-${VERSION}.tar.gz" "texstyle-${VERSION}/"
-    - rm -rf "texstyle-${VERSION}"
-
+    - make package
