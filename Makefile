@@ -40,14 +40,42 @@ build : $(texstyle_preqs) $(notes_preqs)
 # Testing
 .PHONY : test test-texstyle test-notes
 test-texstyle : $(texstyle_dir)/out/texstyle.sty
-	chktex $(texstyle_dir)/out/texstyle.sty
+	for file in $(texstyle_preqs); do \
+		chktex -q $$file ; \
+    done
+	chktex -q $(texstyle_dir)/out/texstyle.sty
+	for file in $(texstyle_preqs); do \
+		lacheck $$file ; \
+    done
+	lacheck $(texstyle_dir)/out/texstyle.sty
 
 test-notes : $(notes_dir)/out/texstyle-notes.cls
-	chktex $(notes_dir)/out/texstyle-notes.cls
+	for file in $(notes_preqs); do \
+		chktex -q $$file ; \
+    done
+	chktex -q $(notes_dir)/out/texstyle-notes.cls
+	for file in $(notes_preqs); do \
+		lacheck $$file ; \
+    done
+	lacheck $(notes_dir)/out/texstyle-notes.cls
 
 test : $(texstyle_dir)/out/texstyle.sty $(notes_dir)/out/texstyle-notes.cls
-	chktex $(texstyle_dir)/out/texstyle.sty
-	chktex $(notes_dir)/out/texstyle-notes.cls
+	for file in $(texstyle_preqs); do \
+		chktex -q $$file ; \
+    done
+	chktex -q $(texstyle_dir)/out/texstyle.sty
+	for file in $(texstyle_preqs); do \
+		lacheck $$file ; \
+    done
+	lacheck $(texstyle_dir)/out/texstyle.sty
+	for file in $(notes_preqs); do \
+		chktex -q $$file ; \
+    done
+	chktex -q $(notes_dir)/out/texstyle-notes.cls
+	for file in $(notes_preqs); do \
+		lacheck $$file ; \
+    done
+	lacheck $(notes_dir)/out/texstyle-notes.cls
 
 # Documentation
 .PHONY : docs docs-texstyle docs-notes
