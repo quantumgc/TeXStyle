@@ -1,16 +1,16 @@
 #!/bin/sh
 
-TEXSTYLESRCDIR="src/texstyle/out"
-TEXSTYLENOTESSRCDIR="src/texstyle-notes/out"
-BUILDDIR="build"
+TEXSTYLESRCDIR="src/texstyle"
+TEXSTYLENOTESSRCDIR="src/notes"
+BUILDDIR="builds"
 
 
-if [ ! -d $TEXSTYLESRCDIR ]; then
-    mkdir -p $TEXSTYLESRCDIR
+if [ ! -d "${TEXSTYLESRCDIR}/out" ]; then
+    mkdir -p "${TEXSTYLESRCDIR}/out"
 fi
 
-if [ ! -d $TEXSTYLENOTESSRCDIR ]; then
-    mkdir -p $TEXSTYLENOTESSRCDIR
+if [ ! -d "${TEXSTYLENOTESSRCDIR}/out" ]; then
+    mkdir -p "${TEXSTYLENOTESSRCDIR}/out"
 fi
 
 if [ ! -d $BUILDDIR ]; then
@@ -23,4 +23,12 @@ else
     if [ ! -d "${TEXMFLOCAL}/tex/latex/texstyle" ]; then
        mkdir -p "${TEXMFLOCAL}/tex/latex/texstyle"
     fi
+fi
+
+if [ ! -d "${TEXSTYLESRCDIR}/fonts/" ]; then
+    cp -r fonts "${TEXSTYLESRCDIR}/"
+fi
+
+if [ ! -d "${TEXSTYLENOTESSRCDIR}/fonts/" ]; then
+    cp -r fonts "${TEXSTYLENOTESSRCDIR}/"
 fi

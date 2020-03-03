@@ -4,15 +4,29 @@
 
 ### bugfixes
 
++ HyperrefMacros option
++ theorem conflicts with `beamer`, theorem envs are no longer loaded in `beamer`
++ texstyle-notes file extension now fixed
++ issue where certain fonts wouldn't load
+
 ### additions
 
 + makefile and configure script
+  + configure checks for the environment variable `TEXMFLOCAL` which it expects
+    to be set to the location of a local texmf tree.
++ unumbered theorem environments
 
 ### removals
 
++ `gensymb`
++ redundant Build.dtx
++ prepare script
+
 ### changes
 
-+ capitalisation of package names
++ capitalisation of package names, all lowercase now
++ mono font is now `IBMPlexMono`
++ length scales are now unified
 
 ## [0.0.4d2]
 
