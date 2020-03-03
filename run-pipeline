@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# runs a test pipeline
+
+# build configuration file, see README for the variables it should define
+if [ -e ".build-config" ]; then
+   source ".build-config"
+fi
+
+# rebuild the containers
+./build-containers
+
+# create and mount the container, but do not run it
+ctr=$(podman create -w "/home/texstyle" "${REGISTRY_DOMAIN}/texstyle-container" make docs)
+mnt=$(podman mount $ctr)
+
+
+# if a local copy of the repository exists
+if [ -n "${LOCAL_REPO}" ]; then
+    # clone it
+    git clone -l --no-hardlinks ./ "${mnt}/home/texstyle"
+else
+    # don't clone it
+    git clone https://gitlab.com/QuantumAnon/TexStyle.git \ --branch develop .tmp/
+    git clone -l --no-hardlinks ./.tmp/ "${mnt}/home/texstyle"
+fi
+
+# run the configure script
+(cd $mnt/home/texstyle; ./configure)
+
+# unmount
+podman umount $ctr
+
+# start the process
+podman start --attach $ctr
+
+# remove the container
+podman rm $ctr
