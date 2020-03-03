@@ -63,12 +63,11 @@ docs-texstyle:
   artifacts:
     expire_in: 1 hour
     paths:
-      - src/texstyle/out/texstyle.sty
       - src/texstyle/out/texstyle.pdf
   dependencies:
     - build-texstyle
   script:
-    - ls src/texstyle/out
+    - make docs-notes
 
 docs-notes:
   stage: docs
@@ -78,8 +77,9 @@ docs-notes:
   artifacts:
     expire_in: 1 hour
     paths:
-      - src/notes/out/texstyle-notes.cls
       - src/notes/out/texstyle-notes.pdf
+  dependencies:
+    - build-notes
   script:
     - make docs-notes
 
@@ -95,5 +95,10 @@ package:
   before_script:
     - apk add zip tar make
     - sh configure
+  dependencies:
+    - build-texstyle
+    - build-notes
+    - docs-texstyle
+    - docs-notes
   script:
     - make package
