@@ -24,8 +24,10 @@ build-texstyle:
     expire_in: 1 hour
     paths:
       - src/texstyle/out/texstyle.sty
+  dependencies:
+    - build-texstyle
   script:
-    - make texstyle
+    - make --debug=b texstyle
 
 build-notes:
   stage: build
@@ -36,8 +38,10 @@ build-notes:
     expire_in: 1 hour
     paths:
       - src/notes/out/texstyle-notes.cls
+  dependencies:
+    - build-notes
   script:
-    - make notes
+    - make --debug=b notes
 
 test-texstyle:
   stage: test
@@ -45,7 +49,7 @@ test-texstyle:
     - master
     - develop
   script:
-    - make test-texstyle
+    - make --debug=b test-texstyle
 
 test-notes:
   stage: test
@@ -53,7 +57,7 @@ test-notes:
     - master
     - develop
   script:
-    - make test-notes
+    - make --debug=b test-notes
 
 docs-texstyle:
   stage: docs
@@ -67,7 +71,7 @@ docs-texstyle:
   dependencies:
     - build-texstyle
   script:
-    - make docs-notes
+    - make --debug=b docs-notes
 
 docs-notes:
   stage: docs
@@ -81,7 +85,7 @@ docs-notes:
   dependencies:
     - build-notes
   script:
-    - make docs-notes
+    - make --debug=b docs-notes
 
 package:
   image: alpine
@@ -93,7 +97,7 @@ package:
     paths:
       - "builds/${VERSION}"
   before_script:
-    - apk add zip tar make
+    - apk add zip tar make --debug=b
     - sh configure
   dependencies:
     - build-texstyle
@@ -101,4 +105,4 @@ package:
     - docs-texstyle
     - docs-notes
   script:
-    - make package
+    - make --debug=b package
