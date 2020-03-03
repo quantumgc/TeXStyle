@@ -1,0 +1,93 @@
+variables:
+  VERSION: 0.0.6
+  LUALATEX: lualatex --interaction=nonstopmode --output-directory ./out
+  texstyle_dir: src/texstyle/out
+  notes_dir: src/notes/out
+
+default:
+  image: registry.gitlab.com/quantumanon/texstyle:latest
+  before_script:
+    - sh configure
+
+stages:
+  - build
+  - test
+  - docs
+  - deploy
+
+build-texstyle:
+  stage: build
+  only:
+    - master
+    - develop
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - src/texstyle/out/texstyle.sty
+  script:
+    - make texstyle
+
+build-notes:
+  stage: build
+  only:
+    - master
+    - develop
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - src/notes/out/texstyle-notes.cls
+  script:
+    - make notes
+
+test-texstyle:
+  stage: test
+  only:
+    - master
+    - develop
+  script:
+    - make test-texstyle
+
+test-notes:
+  stage: test
+  only:
+    - master
+    - develop
+  script:
+    - make test-notes
+
+docs-texstyle:
+  stage: docs
+  only:
+    - master
+    - develop
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - src/texstyle/out/texstyle.pdf
+  script:
+    - make docs-texstyle
+
+docs-notes:
+  stage: docs
+  only:
+    - master
+    - develop
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - src/notes/out/texstyle-notes.pdf
+  script:
+    - make docs-notes
+
+package:
+  image: alpine
+  stage: deploy
+  only:
+    - master
+  artifacts:
+    paths:
+      - "builds/${VERSION}"
+  before_script:
+    - apk add zip tar
+  script:
+    - make package
