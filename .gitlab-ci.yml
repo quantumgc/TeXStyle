@@ -5,9 +5,8 @@ variables:
   notes_dir: src/notes/out
 
 default:
-  image: texstyle:latest
+  image: registry.gitlab.com/quantumanon/texstyle/texstyle-container:latest
   before_script:
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - sh configure
 
 stages:
