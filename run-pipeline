@@ -13,7 +13,6 @@ fi
 ctr=$(podman create -w "/home/texstyle" "${REGISTRY_DOMAIN}/texstyle-container" make docs)
 mnt=$(podman mount $ctr)
 
-
 # if a local copy of the repository exists
 if [ -n "${LOCAL_REPO}" ]; then
     # clone it
@@ -32,6 +31,54 @@ podman umount $ctr
 
 # start the process
 podman start --attach $ctr
+mnt=$(podman mount $ctr)
+
+mkdir -p .tmp
+cp "${mnt}/home/texstyle/src/texstyle/out/texstyle.sty" .tmp/
+cp "${mnt}/home/texstyle/src/notes/out/texstyle-notes.cls" .tmp/
+cp "${mnt}/home/texstyle/src/texstyle/out/texstyle.pdf" .tmp/
+cp "${mnt}/home/texstyle/src/notes/out/texstyle-notes.pdf" .tmp/
 
 # remove the container
 podman rm $ctr
+
+ctr=$(buildah from alpine)
+
+buildah run $ctr /bin/sh -c 'apk add zip tar make'
+
+buildah commit $ctr localhost/packaging-container
+
+buildah rm $ctr
+
+ctr=$(podman create -w "/home/texstyle" "localhost/packaging-container" make package)
+mnt=$(podman mount $ctr)
+
+# if a local copy of the repository exists
+if [ -n "${LOCAL_REPO}" ]; then
+    # clone it
+    git clone -l --no-hardlinks ./ "${mnt}/home/texstyle"
+else
+    # don't clone it
+    git clone https://gitlab.com/QuantumAnon/TexStyle.git \ --branch develop .tmp/
+    git clone -l --no-hardlinks ./.tmp/ "${mnt}/home/texstyle"
+fi
+
+# run the configure script
+(cd $mnt/home/texstyle; ./configure)
+
+cp ".tmp/texstyle.sty" "${mnt}/home/texstyle/src/texstyle/out/"
+cp ".tmp/texstyle-notes.cls" "${mnt}/home/texstyle/src/notes/out/"
+cp ".tmp/texstyle.pdf" "${mnt}/home/texstyle/src/texstyle/out/"
+cp ".tmp/texstyle-notes.pdf" "${mnt}/home/texstyle/src/notes/out/"
+
+# unmount
+podman umount $ctr
+
+podman start --attach $ctr
+
+mnt=$(podman mount $ctr)
+cp -r "${mnt}/home/texstyle/builds/" "builds/podman-build"
+
+podman rm $ctr
+
+rm -rf .tmp
