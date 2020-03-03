@@ -88,6 +88,6 @@ package:
     paths:
       - "builds/${VERSION}"
   before_script:
-    - apk add zip tar
+    - apk add zip tar make
   script:
     - make package
