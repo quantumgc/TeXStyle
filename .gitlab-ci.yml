@@ -9,11 +9,13 @@ default:
   before_script:
     - sh configure
 
+
 stages:
   - build
   - test
   - docs
   - deploy
+
 
 build-texstyle:
   stage: build
@@ -24,8 +26,6 @@ build-texstyle:
     expire_in: 1 hour
     paths:
       - src/texstyle/out/texstyle.sty
-  dependencies:
-    - build-texstyle
   script:
     - make --debug=b texstyle
 
@@ -38,17 +38,19 @@ build-notes:
     expire_in: 1 hour
     paths:
       - src/notes/out/texstyle-notes.cls
-  dependencies:
-    - build-notes
   script:
     - make --debug=b notes
+
 
 test-texstyle:
   stage: test
   only:
     - master
     - develop
+  dependencies:
+    - build-texstyle
   script:
+    - make -t src/texstyle/out/texstyle.sty
     - make --debug=b test-texstyle
 
 test-notes:
@@ -56,8 +58,12 @@ test-notes:
   only:
     - master
     - develop
+  dependencies:
+    - build-notes
   script:
+    - make -t src/notes/out/texstyle-notes.pdf
     - make --debug=b test-notes
+
 
 docs-texstyle:
   stage: docs
@@ -71,7 +77,8 @@ docs-texstyle:
   dependencies:
     - build-texstyle
   script:
-    - make --debug=b docs-notes
+    - make -t src/texstyle/out/texstyle.sty
+    - make --debug=b docs-texstyle
 
 docs-notes:
   stage: docs
@@ -85,7 +92,9 @@ docs-notes:
   dependencies:
     - build-notes
   script:
+    - make -t src/notes/out/texstyle-notes.cls
     - make --debug=b docs-notes
+
 
 package:
   image: alpine
@@ -105,4 +114,8 @@ package:
     - docs-texstyle
     - docs-notes
   script:
+    - make -t src/texstyle/out/texstyle.sty
+    - make -t src/notes/out/texstyle-notes.cls
+    - make -t src/texstyle/out/texstyle.pdf
+    - make -t src/notes/out/texstyle-notes.pdf
     - make --debug=b package
