@@ -5,7 +5,7 @@ variables:
   notes_dir: src/notes/out
 
 default:
-  image: registry.gitlab.com/quantumanon/texstyle:latest
+  image: registry.gitlab.com/quantumanon/texstyle/texstyle-container:latest
   before_script:
     - sh configure
 
