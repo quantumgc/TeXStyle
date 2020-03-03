@@ -27,7 +27,7 @@ build-texstyle:
     paths:
       - src/texstyle/out/texstyle.sty
   script:
-    - make --debug=b texstyle
+    - make texstyle
 
 build-notes:
   stage: build
@@ -39,7 +39,7 @@ build-notes:
     paths:
       - src/notes/out/texstyle-notes.cls
   script:
-    - make --debug=b notes
+    - make notes
 
 
 test-texstyle:
@@ -51,7 +51,7 @@ test-texstyle:
     - build-texstyle
   script:
     - make -t src/texstyle/out/texstyle.sty
-    - make --debug=b test-texstyle
+    - make test-texstyle
 
 test-notes:
   stage: test
@@ -62,7 +62,7 @@ test-notes:
     - build-notes
   script:
     - make -t src/notes/out/texstyle-notes.pdf
-    - make --debug=b test-notes
+    - make test-notes
 
 
 docs-texstyle:
@@ -78,7 +78,7 @@ docs-texstyle:
     - build-texstyle
   script:
     - make -t src/texstyle/out/texstyle.sty
-    - make --debug=b docs-texstyle
+    - make docs-texstyle
 
 docs-notes:
   stage: docs
@@ -93,7 +93,7 @@ docs-notes:
     - build-notes
   script:
     - make -t src/notes/out/texstyle-notes.cls
-    - make --debug=b docs-notes
+    - make docs-notes
 
 
 package:
@@ -106,7 +106,7 @@ package:
     paths:
       - "builds/${VERSION}"
   before_script:
-    - apk add zip tar make --debug=b
+    - apk add zip tar make
     - sh configure
   dependencies:
     - build-texstyle
@@ -118,4 +118,4 @@ package:
     - make -t src/notes/out/texstyle-notes.cls
     - make -t src/texstyle/out/texstyle.pdf
     - make -t src/notes/out/texstyle-notes.pdf
-    - make --debug=b package
+    - make package
