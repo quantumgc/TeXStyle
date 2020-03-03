@@ -13,6 +13,9 @@ if [ ! -d "${TEXSTYLENOTESSRCDIR}/out" ]; then
     mkdir -p "${TEXSTYLENOTESSRCDIR}/out"
 fi
 
+ls "${TEXSTYLESRCDIR}/out"
+ls "${TEXSTYLENOTESSRCDIR}/out"
+
 if [ ! -d $BUILDDIR ]; then
     mkdir -p $BUILDDIR
 fi
