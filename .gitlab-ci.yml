@@ -45,7 +45,7 @@ test-texstyle:
     - master
     - develop
   script:
-    - make test-texstyle
+    - ls src/texstyle/out/
 
 test-notes:
   stage: test
