@@ -63,6 +63,7 @@ docs-texstyle:
   artifacts:
     expire_in: 1 hour
     paths:
+      - src/texstyle/out/texstyle.sty
       - src/texstyle/out/texstyle.pdf
   script:
     - make docs-texstyle
@@ -75,6 +76,7 @@ docs-notes:
   artifacts:
     expire_in: 1 hour
     paths:
+      - src/notes/out/texstyle-notes.cls
       - src/notes/out/texstyle-notes.pdf
   script:
     - make docs-notes
@@ -84,10 +86,12 @@ package:
   stage: deploy
   only:
     - master
+    - develop
   artifacts:
     paths:
       - "builds/${VERSION}"
   before_script:
     - apk add zip tar make
+    - sh configure
   script:
     - make package
