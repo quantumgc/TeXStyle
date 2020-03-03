@@ -45,7 +45,7 @@ test-texstyle:
     - master
     - develop
   script:
-    - ls src/texstyle/out/
+    - make test-texstyle
 
 test-notes:
   stage: test
@@ -65,8 +65,10 @@ docs-texstyle:
     paths:
       - src/texstyle/out/texstyle.sty
       - src/texstyle/out/texstyle.pdf
+  dependencies:
+    - build-texstyle
   script:
-    - make docs-texstyle
+    - ls src/texstyle/out
 
 docs-notes:
   stage: docs
