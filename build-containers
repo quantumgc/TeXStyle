@@ -2,156 +2,166 @@
 # build-containers
 # builds the necessary containers for the texstyle package
 
+notify () {
+    echo \
+"################################################################################"
+    echo "$1"
+}
+
+warn () {
+    echo "WARNING: $1"
+}
+
 # build configuration file, see README for the variables it should define
-if [ -e ".build-config" ]; then
+if [ -s ".build-config" ]; then
    source ".build-config"
+else
+    warn ".build-config not found or empty .build config"
+    exit 1
 fi
 
-#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-# texlive-medium
-#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-# check if we need to build the texlive-medium image
-if [ -n "${BUILD_IMAGE_MEDIUM}" -o -z "$(buildah images | grep "texlive-medium")" ]; then
-    # if not, create an empty alpine container
-    ctr=$(buildah from alpine)
-    mnt=$(buildah mount $ctr)
-    brunch="buildah run $ctr /bin/sh -c"
-
-    # install base packages
-    $brunch 'apk add make wget perl tar gzip git'
-
-    # get and unpack the texlive installer
-    if [ -n "${TEXLIVE_INST}" ]; then
-        cp "${TEXLIVE_INST}" "$mnt/home/"
-    else
-        $brunch \
-            "wget \
-\"http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz\" \
--O home/install-tl-unx.tar.gz"
-    fi
-
-    $brunch "cd home; tar -xf install-tl-unx.tar.gz"
-
-    # directory into which the installer was unpacked
-    texlivedir=$($brunch "cd home; tar --exclude='*/*' -tf install-tl-unx.tar.gz")
-
-    # copy the install profile into the unpacked directory
-    cp texlive.profile "${mnt}/home/${texlivedir}"
-
-    if [ -n "${CTANDIR}" ]; then
-        # make the mountpoint for the local CTAN mirror
-        mkdir "${mnt}/home/texlive-local"
-        mount --bind "${CTANDIR}" "${mnt}/home/texlive-local"
-    fi
-
-    $brunch "cd home/${texlivedir}; ./install-tl $REPO_FLAG \
--profile=texlive.profile"
-
-    $brunch "rm -rf home/${texlivedir}"
-
-    if [ -n "${CTANDIR}" ]; then
-        # unmount the local CTAN mirror
-        umount "${mnt}/home/texlive-local"
-    fi
-
-    # commit the new container and remove it
-    buildah commit $ctr "${REGISTRY_DOMAIN}/texlive-medium"
-    buildah umount $ctr
-    buildah rm $ctr
-fi
-
-#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-# test-container
-#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-if [ -n "${BUILD_IMAGE_TEST}" -o -z "$(buildah images | grep "test-container")" ]; then
-    # if not, create an empty alpine container
-    ctr=$(buildah from alpine)
-    mnt=$(buildah mount $ctr)
-    brunch="buildah run $ctr /bin/sh -c"
-
-    # install base packages
-    $brunch 'apk add make wget perl tar gzip git'
-
-    # get and unpack the texlive installer
-    if [ -n "${TEXLIVE_INST}" ]; then
-        cp "${TEXLIVE_INST}" "$mnt/home/"
-    else
-        $brunch \
-            "wget \
-\"http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz\" \
--O home/install-tl-unx.tar.gz"
-    fi
-
-    $brunch "cd home; tar -xf install-tl-unx.tar.gz"
-
-    # directory into which the installer was unpacked
-    texlivedir=$($brunch "cd home; tar --exclude='*/*' -tf install-tl-unx.tar.gz")
-
-    # copy the install profile into the unpacked directory
-    cp texlive.profile "${mnt}/home/${texlivedir}"
-    sed -e 's/medium/minimal/' -i "${mnt}/home/${texlivedir}/texlive.profile"
-    cat "${mnt}/home/${texlivedir}/texlive.profile"
-
-    if [ -n "${CTANDIR}" ]; then
-        # make the mountpoint for the local CTAN mirror
-        mkdir "${mnt}/home/texlive-local"
-        mount --bind "${CTANDIR}" "${mnt}/home/texlive-local"
-    fi
-
-    $brunch "cd home/${texlivedir}; ./install-tl $REPO_FLAG \
--profile=texlive.profile"
-
-    $brunch "rm -rf home/${texlivedir}"
-
-    # install chktex
-    $brunch "tlmgr install $REPO_FLAG chktex"
-
-    if [ -n "${CTANDIR}" ]; then
-        # unmount the local CTAN mirror
-        umount "${mnt}/home/texlive-local"
-    fi
-
-    # commit the new container and remove it
-    buildah commit $ctr "${REGISTRY_DOMAIN}/test-container"
-    buildah umount $ctr
-    buildah rm $ctr
-fi
-
-#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-# texstyle-container
-#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-if [ -n "${BUILD_IMAGE_TEXSTYLE}" -o -z "$(buildah images | grep "texstyle-container")" ]; then
-    # create a texlive-medium container
-    ctr=$(buildah from "${REGISTRY_DOMAIN}/texlive-medium")
-    mnt=$(buildah mount $ctr)
-    echo "$mnt"
-    brunch="buildah run $ctr /bin/sh -c"
+# mounts a local CTAN repository
+ctan-mount () {
+    local mnt="$1"
 
     if [ -n "${CTANDIR}" ]; then
         # make the mountpoint for the local CTAN mirror
         mkdir -p "${mnt}/home/texlive-local"
         mount --bind "${CTANDIR}" "${mnt}/home/texlive-local"
     fi
+}
 
-    # install any additional packages
-    $brunch "tlmgr install $REPO_FLAG \
-lipsum bbm bbm-macros mdframed zref needspace enumitem"
+ctan-umount () {
+    local mnt="$1"
 
     if [ -n "${CTANDIR}" ]; then
         # unmount the local CTAN mirror
         umount "${mnt}/home/texlive-local"
     fi
+}
+
+# performs a texlive installation
+install-texlive () {
+    local ctr="$1"
+    local mnt="$2"
+    local profile="$3"
+    local brunch="buildah run --net host $ctr /bin/sh -c"
+
+    # install base packages
+    $brunch 'apk add make wget perl tar gzip git'
+
+    # get and unpack the texlive installer
+    if [ -n "${LOCAL_INST}" ]; then
+        cp "${TEXLIVE_INST}" "$mnt/home/"
+    else
+        $brunch "wget \"${TEXLIVE_INST}\" -O home/install-tl-unx.tar.gz"
+    fi
+
+    $brunch "cd home; tar -xf install-tl-unx.tar.gz"
+
+    # directory into which the installer was unpacked
+    local texlivedir="$($brunch "cd home; tar --exclude='*/*' -tf install-tl-unx.tar.gz")"
+
+    # copy the install profile into the unpacked directory
+    cp "${profile}" "${mnt}/home/${texlivedir}/texlive.profile"
+
+    ctan-mount "${mnt}"
+
+    notify "installing texlive"
+    $brunch "cd home/${texlivedir}; ./install-tl $REPO_FLAG \
+-profile=texlive.profile"
+    notify "texlive install complete"
+
+    $brunch "rm -rf home/${texlivedir}"
+
+    ctan-umount "${mnt}"
+}
+
+texlive-medium () {
+    # create and mount containers
+    local ctr=$(buildah from alpine)
+    local mnt=$(buildah mount $ctr)
+    # convenience command
+    local brunch="buildah run --net host $ctr /bin/sh -c"
+
+    install-texlive "${ctr}" "${mnt}" "profiles/medium"
+
+    # commit the new container and remove it
+    buildah commit $ctr "localhost/texlive-medium"
+    buildah umount $ctr
+    buildah rm $ctr
+}
+
+texlive-small () {
+    # create and mount containers
+    local ctr=$(buildah from alpine)
+    local mnt=$(buildah mount $ctr)
+    # convenience command
+    local brunch="buildah run --net host $ctr /bin/sh -c"
+
+    install-texlive "${ctr}" "${mnt}" "profiles/small"
+
+    # commit the new container and remove it
+    buildah commit $ctr "localhost/texlive-small"
+    buildah umount $ctr
+    buildah rm $ctr
+}
+
+build-test-container () {
+    local ctr=$(buildah from localhost/texlive-small)
+    local mnt=$(buildah mount $ctr)
+    brunch="buildah run --net host $ctr /bin/sh -c"
+
+    ctan-mount "${mnt}"
+
+    # install chktex and docstrip
+    $brunch "tlmgr install $REPO_FLAG chktex lacheck"
+    $brunch "tlmgr path add"
+
+    ctan-umount "${mnt}"
+
+    # commit the new container and remove it
+    buildah commit $ctr "${REGISTRY_DOMAIN}/build-test-container"
+    buildah umount $ctr
+    buildah rm $ctr
+}
+
+texstyle-container () {
+    ctr=$(buildah from "localhost/texlive-medium")
+    mnt=$(buildah mount $ctr)
+    brunch="buildah run --net host $ctr /bin/sh -c"
+
+    ctan-mount "${mnt}"
+
+    # install any additional packages
+    $brunch "tlmgr install $REPO_FLAG \
+lipsum bbm bbm-macros mdframed zref needspace enumitem"
+    $brunch "tlmgr path add"
+
+    ctan-umount "${mnt}"
 
     # commit the new container and remove it
     buildah commit $ctr "${REGISTRY_DOMAIN}/texstyle-container"
     buildah umount $ctr
     buildah rm $ctr
-fi
+}
+
+packaging-container () {
+    # make a container for packaging
+    local ctr=$(buildah from alpine)
+    buildah run --net host $ctr /bin/sh -c 'apk add zip tar make'
+    buildah commit $ctr "${REGISTRY_DOMAIN}/packaging-container"
+    buildah rm $ctr
+}
+
+texlive-medium
+texlive-small
+texstyle-container
+build-test-container
+packaging-container
 
 podman login "${REGISTRY}" -u "${REGISTRY_USERNAME}" -p "${REGISTRY_TOKEN}"
-buildah push "${REGISTRY_DOMAIN}/texlive-medium"
-buildah push "${REGISTRY_DOMAIN}/test-container"
 buildah push "${REGISTRY_DOMAIN}/texstyle-container"
+buildah push "${REGISTRY_DOMAIN}/test-container"
+buildah push "${REGISTRY_DOMAIN}/build-test-container"
+buildah push "${REGISTRY_DOMAIN}/packaging-container"
