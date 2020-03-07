@@ -44,6 +44,7 @@ build-notes:
 
 test-texstyle:
   stage: test
+  image: registry.gitlab.com/quantumanon/texstyle/test-container:latest
   only:
     - master
     - develop
@@ -55,13 +56,14 @@ test-texstyle:
 
 test-notes:
   stage: test
+  image: registry.gitlab.com/quantumanon/texstyle/test-container:latest
   only:
     - master
     - develop
   dependencies:
     - build-notes
   script:
-    - make -t src/notes/out/texstyle-notes.pdf
+    - make -t src/notes/out/texstyle-notes.cls
     - make test-notes
 
 
