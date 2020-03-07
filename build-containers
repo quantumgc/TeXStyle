@@ -153,5 +153,5 @@ fi
 
 podman login "${REGISTRY}" -u "${REGISTRY_USERNAME}" -p "${REGISTRY_TOKEN}"
 buildah push "${REGISTRY_DOMAIN}/texlive-medium"
-#buildah push "${REGISTRY_DOMAIN}/test-container"
+buildah push "${REGISTRY_DOMAIN}/test-container"
 buildah push "${REGISTRY_DOMAIN}/texstyle-container"
