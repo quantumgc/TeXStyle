@@ -214,13 +214,14 @@
 
   \newtheoremstyle{Theorem*}{}{}{}%
     {}{\bfseries}{}{\newline}%
-    {\thmname{#1}:\thmnote{ #3}}%
+    {\thmname{#1}:\thmnote{\ #3}}%
   \theoremstyle{Theorem*}
   \newmdtheoremenv[style=theorem]{theorem*}{Theorem}
 
 %    \end{macrocode}
 % \iffalse
 %</package>%
+% \fi
 %
 % \end{environment}
 %
@@ -303,13 +304,13 @@
 %    \begin{macrocode}
   \newtheoremstyle{Definition}{5pt}{5pt}{\sffamily}%
     {}{\sffamily\bfseries}{}{\newline}%
-    {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
+    {\thmname{#1}\ \thmnumber{#2}:\ \thmnote{#3}}
 
   \newtheoremstyle{Definition*}{5pt}{5pt}{\sffamily}%
     {}{\sffamily\bfseries}{}{\newline}%
-    {\thmname{#1}:\thmnote{ #3}}
+    {\ \thmname{#1}:\thmnote{#3}}
 
-  \mdfdefinestyle{definition}{
+  \mdfdefinestyle{definition}{%
     skipabove=\envVertSkip,%
     skipbelow=\envVertSkip,%
     innertopmargin=\envTopInner,%
@@ -322,15 +323,15 @@
 
   \newtheoremstyle{SubDefinition}{}{}{\sffamily}%
     {}{\bfseries}{}{.5em}%
-    {\thmname{#1}\thmnumber{ #2}:\thmnote{ #3}}
+    {\thmname{#1}\ \thmnumber{#2}:\ \thmnote{#3}}
 
   \mdfdefinestyle{subDef}
-  {
+  {%
     % skipabove needs to be a bit
-% higher to balance with the lower skip
+    % higher to balance with the lower skip
     skipabove=\dimexpr(\subTopSkip + .25cm), % chktex 1
     skipbelow=\subBotSkip,
-    innertopmargin=0cm,%
+    innertopmargin=0cm,
     % =\dimexpr(\headerOffset + .3cm)
     % we want subDefs to be flush with the main definition
     innerleftmargin=0cm,
@@ -340,7 +341,7 @@
     linewidth=.01cm
   }
   \ifTS@HyperrefMacros
-    \theoremstyle{Definition}
+      \theoremstyle{Definition}
 
     \newaliascnt{definition}{theorem}
     \newmdtheoremenv[style=definition]{definition}%
@@ -354,6 +355,7 @@
 
     \providecommand*{\definitionautorefname}{Definition}
     \providecommand*{\subDefautorefname}{Definition}
+
   \else
     \theoremstyle{Definition}
 
@@ -604,9 +606,7 @@
   \makeatletter
   \@ifclassloaded{beamer}
   {}
-  {
-    \newtheorem{note}{Note}
-  }
+  {\newtheorem{note}{Note}}
   \makeatother
 
 %    \end{macrocode}
@@ -785,7 +785,7 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
-  \lstset{
+  \lstset{%
     basicstyle=\fontsize{8}{10}\ttfamily,
     aboveskip={0.8\baselineskip},
     belowskip={0.8\baselineskip},

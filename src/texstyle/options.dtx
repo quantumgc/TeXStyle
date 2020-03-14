@@ -19,12 +19,11 @@
   \DeclareBoolOption[false]{draft}
   \DeclareBoolOption[false]{defaultFonts}
   \DeclareBoolOption[false]{HyperrefMacros}
-  \@ifpackageloaded{hyperref}{
+  \@ifpackageloaded{hyperref}{%
     \TS@HyperrefMacrostrue
-  }
-  {
+  }{%
     \ifTS@HyperrefMacros
-    \PackageWarning{TeXStyle}{
+    \PackageWarning{TeXStyle}{%
       Loading hyperref macros even though hyperref%
       has not been detected yet. If hyperref has%
       been loaded later in the document, ignore%
@@ -33,7 +32,7 @@
     \fi
   }
   \DeclareStringOption[section]{envRefreshLevel}
-  \DeclareDefaultOption{
+  \DeclareDefaultOption{%
     \PackageWarning{TeXStyle}{Unknown Option '\CurrentOption'}
     }
     \ProcessKeyvalOptions*
