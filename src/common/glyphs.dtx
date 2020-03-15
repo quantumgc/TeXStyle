@@ -327,37 +327,43 @@
 %           \item {\ttfamily IBMPlexMono  as the monospace font}
 %         \end{itemize}
 %
-%         Please verify that each font is installed and visible to
-%         \textbf{xelatex} before using the style.
+%         The location of the fonts can be set with the |fontPath| option.
+%        
 % \iffalse
 %<*package>
 % \fi
 %    \begin{macrocode}
 
+  \ifTS@defaultFonts
+  \else
   \setmainfont[
-    Path=./fonts/libertinus/,
+    Path=\TS@fontPath/libertinus/,
     Extension=.otf,
     UprightFont={*-Regular},
     BoldFont={*-Bold},
     ItalicFont={*-Italic},
     BoldItalicFont={*-BoldItalic}
   ]{LibertinusSerif}
-  \setmathrm[Path=./fonts/libertinus/]
+
+  \setmathrm[Path=\TS@fontPath/libertinus/]
   {LibertinusMath-Regular.otf}
+
   \setsansfont[
-    Path=./fonts/libertinus/,
+    Path=\TS@fontPath/libertinus/,
     Extension=.otf,
     UprightFont={*-Regular},
     BoldFont={*-Bold},
     ItalicFont={*-Italic}
   ]{LibertinusSans}
+
   \setmonofont[
-    Path=./fonts/ibm-plex/,
+    Path=\TS@fontPath/ibm-plex/,
     Extension=.otf,
     UprightFont={*-Regular},
     ItalicFont={*-Italic},
     BoldFont={*-Bold}
   ]{IBMPlexMono}
+  \fi
 %    \end{macrocode}
 % \iffalse
 %</package>

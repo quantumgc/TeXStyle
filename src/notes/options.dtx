@@ -21,6 +21,8 @@
 }
 
 %% |- Option initialisation
+\DeclareStringOption[./fonts]{fontPath}
+
 \DeclareBoolOption{defaultFonts} % Use the in built fonts
 
 \DeclareBoolOption{draft} % Draft mode
@@ -30,8 +32,9 @@
 \DeclareVoidOption{twoside}{\Twosidedtrue} % Twosided document
 
 \DeclareBoolOption[true]{HyperrefMacros} % Hyperref enabled links
+
 \DeclareStringOption[section]{envRefreshLevel} % The level at which to refresh
-                                % the
+                                % the theorems
 
 %% |- Default Option
 \DeclareDefaultOption{%
@@ -39,6 +42,30 @@
 }
 
 \ProcessKeyvalOptions*
+
+\@ifpackageloaded{hyperref}{%
+  \TS@HyperrefMacrostrue
+}{%
+  \ifTS@HyperrefMacros
+  \PackageWarning{texstyle}{%
+    Loading hyperref macros even though hyperref%
+    has not been detected yet. If hyperref has%
+    been loaded later in the document, ignore%
+    this message.
+  }
+  \fi
+}
+
+\ifTS@defaultFonts
+\DisableKeyvalOption[action]{TS}{fontPath}
+\else
+\IfFileExists{\TS@fontPath}{}{
+  \PackageWarning{texstyle}{%
+    The font path \TS@fontPath was not found.%
+    Fonts may not be loaded correctly.
+  }
+}
+\fi
 
 %    \end{macrocode}
 % \iffalse

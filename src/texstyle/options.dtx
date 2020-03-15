@@ -16,14 +16,27 @@
     family=TS,
     prefix=TS@
   }
-  \DeclareBoolOption[false]{draft}
+
+  \DeclareBoolOption{draft}
+  \DeclareComplementaryOption{final}{draft}
+
+  \DeclareBoolOption{HyperrefMacros}
+
+  \DeclareStringOption[section]{envRefreshLevel}
+
+  \DeclareStringOption[./fonts]{fontPath}
   \DeclareBoolOption[false]{defaultFonts}
-  \DeclareBoolOption[false]{HyperrefMacros}
+
+  \DeclareDefaultOption{%
+    \PackageWarning{TeXStyle}{Unknown Option '\CurrentOption'}
+  }
+  \ProcessKeyvalOptions*
+
   \@ifpackageloaded{hyperref}{%
     \TS@HyperrefMacrostrue
   }{%
     \ifTS@HyperrefMacros
-    \PackageWarning{TeXStyle}{%
+    \PackageWarning{texstyle}{%
       Loading hyperref macros even though hyperref%
       has not been detected yet. If hyperref has%
       been loaded later in the document, ignore%
@@ -31,11 +44,17 @@
     }
     \fi
   }
-  \DeclareStringOption[section]{envRefreshLevel}
-  \DeclareDefaultOption{%
-    \PackageWarning{TeXStyle}{Unknown Option '\CurrentOption'}
+
+  \ifTS@defaultFonts
+  \DisableKeyvalOption[action]{TS}{fontPath}
+  \else
+  \IfFileExists{\TS@fontPath}{}{
+    \PackageWarning{texstyle}{%
+      The font path \TS@fontPath was not found.%
+      Fonts may not be loaded correctly.
     }
-    \ProcessKeyvalOptions*
+  }
+  \fi
 
 %    \end{macrocode}
 % \iffalse
