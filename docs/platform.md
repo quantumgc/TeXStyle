@@ -47,9 +47,10 @@ Once you've understood that,
 [this](https://tex.stackexchange.com/questions/69483/create-a-local-texmf-tree-in-miktex#69484)
 thread should tell you how to create a local tree.
 
-In your local `texmf` tree place `texstyle.sty` and the class files you want in an appropriate subdirectory.  
-MiKTeX downloads packages on request, so when using TeXStyle for the first time
-you may have to download a number of them at once.
+In your local `texmf` tree place `texstyle.sty` and the class files you want in
+an appropriate subdirectory.</br> MiKTeX downloads packages on request, so when
+using TeXStyle for the first time you may have to download a number of them at
+once.
 
 ## Linux/*BSD
 
