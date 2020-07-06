@@ -36,4 +36,5 @@ instructions on where this might be, see the [platform
 guide](./docs/platform.md).
 
 Please note that for the style or class to work out of the box, you will need to
-copy the fonts to either the root of the project directory or 
+copy the fonts to either the root of the project directory or pass the
+`useDefaultFonts` argument.
