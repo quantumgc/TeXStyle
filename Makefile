@@ -1,5 +1,6 @@
 SHELL := /bin/sh
 LUALATEX := lualatex --interaction=nonstopmode --output-directory ./out
+LATEXMK := latexmk -g -lualatex -output-directory=./out -aux-directory=./out
 VERSION := 0.0.6
 
 working_dir := $(@pwd)
@@ -80,19 +81,15 @@ test : $(texstyle_dir)/out/texstyle.sty $(notes_dir)/out/texstyle-notes.cls
 # Documentation
 .PHONY : docs docs-texstyle docs-notes
 docs-texstyle $(texstyle_dir)/out/texstyle.pdf : $(texstyle_dir)/out/texstyle.sty
-	@cd $(texstyle_dir) && $(LUALATEX) texstyle.dtx
-	@cd $(texstyle_dir) && $(LUALATEX) texstyle.dtx
+	@cd $(texstyle_dir) && $(LATEXMK) texstyle.dtx
 
 docs-notes $(notes_dir)/out/texstyle-notes.pdf : \
 $(notes_dir)/out/texstyle-notes.cls  $(texstyle_dir)/out/texstyle.sty
-	@cd $(notes_dir)    && $(LUALATEX) texstyle-notes.dtx
-	@cd $(notes_dir)    && $(LUALATEX) texstyle-notes.dtx
+	@cd $(notes_dir)    && $(LATEXMK) texstyle-notes.dtx
 
 docs : $(texstyle_dir)/out/texstyle.sty $(notes_dir)/out/texstyle-notes.cls
-	@cd $(texstyle_dir) && $(LUALATEX) texstyle.dtx
-	@cd $(texstyle_dir) && $(LUALATEX) texstyle.dtx
-	@cd $(notes_dir)    && $(LUALATEX) texstyle-notes.dtx
-	@cd $(notes_dir)    && $(LUALATEX) texstyle-notes.dtx
+	@cd $(texstyle_dir) && $(LATEXMK) texstyle.dtx
+	@cd $(notes_dir)    && $(LATEXMK) texstyle-notes.dtx
 
 # Cleaning, installation and packaging
 .PHONY : clean install package
