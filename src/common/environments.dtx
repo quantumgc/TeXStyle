@@ -30,7 +30,10 @@
 %% Environments
 %% |- Dependencies
   \RequirePackage{amsthm}
+  \ifTS@loadBareEnvs
+  \else
   \RequirePackage[framemethod=tikz]{mdframed}
+  \fi
   \RequirePackage{listings}
   \RequirePackage[shortlabels]{enumitem}
 
