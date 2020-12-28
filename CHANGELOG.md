@@ -9,12 +9,18 @@
 ### additions
 
 + added the `fontPath` option to set the font directory
++ added two new blackboard bold macros:
+  - `\QQ` for ℚ
+  - `\PP` for ℙ
 
 ### removals
 
 ### changes
 
 + `latexmk` is now used to build the docs as opposed to stock `lualatex`
++ Some of the blackboard bold macros have changed:
+  - `\ZZ` replaces `\Z`, this prints ℤ
+  - `\RR` replaces `\R`, this prints ℝ
 
 ## [0.0.6]
 
