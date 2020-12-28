@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.0.6]
+
+This version mainly focuses on getting the build system into a usable state.
+There weren't any changes to how texstyle itself works, but the makefile and install process have been completely redone
+
 ## [0.0.5]
 
 ### bugfixes
