@@ -3,35 +3,147 @@
 
 # build configuration file, see README for the variables it should define
 if [ -e ".build-config" ]; then
-   source ".build-config"
+    source ".build-config"
 fi
 
-# rebuild the containers
-./build-containers
+podman login "${REGISTRY}" -u "${REGISTRY_USERNAME}" -p "${REGISTRY_TOKEN}"
+buildah pull "${REGISTRY_DOMAIN}/texstyle-container"
+buildah pull "${REGISTRY_DOMAIN}/build-test-container"
+buildah pull "${REGISTRY_DOMAIN}/packaging-container"
 
-# create and mount the container, but do not run it
-ctr=$(podman create -w "/home/texstyle" "${REGISTRY_DOMAIN}/texstyle-container" make docs)
-mnt=$(podman mount $ctr)
+# clones a copy of the repository to a mountpoint and configures it
+setUp () {
+    local mnt="$1"
+    # if a local copy of the repository exists
+    if [ -n "${LOCAL_REPO}" ]; then
+        # clone it
+        git clone -l --no-hardlinks ./ "${mnt}/home/texstyle"
+    else
+        # don't clone it
+        git clone https://gitlab.com/QuantumAnon/TexStyle.git \
+            --branch master .tmp/
+        git clone -l --no-hardlinks ./.tmp/ "${mnt}/home/texstyle"
+    fi
 
+    # run the configure script
+    (cd $mnt/home/texstyle; ./configure)
+}
 
-# if a local copy of the repository exists
-if [ -n "${LOCAL_REPO}" ]; then
-    # clone it
-    git clone -l --no-hardlinks ./ "${mnt}/home/texstyle"
-else
-    # don't clone it
-    git clone https://gitlab.com/QuantumAnon/TexStyle.git \ --branch develop .tmp/
-    git clone -l --no-hardlinks ./.tmp/ "${mnt}/home/texstyle"
-fi
+notify () {
+    echo \
+"################################################################################"
+    echo "$1"
+}
 
-# run the configure script
-(cd $mnt/home/texstyle; ./configure)
+# build step of the pipeline
+runBuild () {
+    # create and mount the container, but do not run it
+    local ctr=$(podman create \
+                 -w "/home/texstyle" \
+                 --net=host \
+                 "${REGISTRY_DOMAIN}/build-test-container" \
+                 make build)
+    local mnt=$(podman mount $ctr)
 
-# unmount
-podman umount $ctr
+    setUp "${mnt}"
 
-# start the process
-podman start --attach $ctr
+    # unmount
+    podman umount $ctr
 
-# remove the container
-podman rm $ctr
+    # start the process
+    notify "running 'make build'"
+    podman start --attach $ctr
+    notify "finished"
+
+    # remount container to copy over files
+    local mnt=$(podman mount $ctr)
+
+    # copy over built files
+    cp "${mnt}/home/texstyle/src/texstyle/out/texstyle.sty" .tmp/
+    cp "${mnt}/home/texstyle/src/notes/out/texstyle-notes.cls" .tmp/
+
+    # remove the container
+    podman rm $ctr
+}
+
+runTest () {
+    local ctr=$(podman create \
+                 -w "/home/texstyle" \
+                 --net=host \
+                 "${REGISTRY_DOMAIN}/build-test-container" \
+                 make test)
+    local mnt=$(podman mount $ctr)
+
+    setUp "${mnt}"
+
+    # copy targets over
+    cp ".tmp/texstyle.sty" "${mnt}/home/texstyle/src/texstyle/out/"
+    cp ".tmp/texstyle-notes.cls" "${mnt}/home/texstyle/src/notes/out/"
+
+    podman umount $ctr
+
+    notify "running 'make test'"
+    podman start --attach $ctr
+    notify "finished"
+
+    podman rm $ctr
+}
+
+runDocs () {
+    local ctr=$(podman create \
+                 -w "/home/texstyle" \
+                 --net=host \
+                 "${REGISTRY_DOMAIN}/texstyle-container" \
+                 make docs)
+    local mnt=$(podman mount $ctr)
+
+    setUp "${mnt}"
+
+    cp ".tmp/texstyle.sty" "${mnt}/home/texstyle/src/texstyle/out/"
+    cp ".tmp/texstyle-notes.cls" "${mnt}/home/texstyle/src/notes/out/"
+
+    podman umount $ctr
+
+    notify "running 'make docs'"
+    podman start --attach $ctr
+    notify "finished"
+
+    local mnt=$(podman mount $ctr)
+    cp "${mnt}/home/texstyle/src/texstyle/out/texstyle.pdf" .tmp/
+    cp "${mnt}/home/texstyle/src/notes/out/texstyle-notes.pdf" .tmp/
+
+    podman rm $ctr
+}
+
+runPackage () {
+    local ctr=$(podman create \
+                 -w "/home/texstyle" \
+                 --net=host \
+                 "${REGISTRY_DOMAIN}/packaging-container" make package)
+    local mnt=$(podman mount $ctr)
+
+    setUp "${mnt}"
+
+    cp ".tmp/texstyle.sty" "${mnt}/home/texstyle/src/texstyle/out/"
+    cp ".tmp/texstyle-notes.cls" "${mnt}/home/texstyle/src/notes/out/"
+    cp ".tmp/texstyle.pdf" "${mnt}/home/texstyle/src/texstyle/out/"
+    cp ".tmp/texstyle-notes.pdf" "${mnt}/home/texstyle/src/notes/out/"
+
+    podman umount $ctr
+
+    notify "running 'make package'"
+    podman start --attach $ctr
+    notify "finished"
+
+    mnt=$(podman mount $ctr)
+    cp -r "${mnt}/home/texstyle/builds/" "builds/podman-build"
+
+    podman rm $ctr
+}
+
+mkdir -p .tmp
+runBuild
+runTest
+runDocs
+runPackage
+rm -rf .tmp

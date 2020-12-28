@@ -5,15 +5,17 @@ variables:
   notes_dir: src/notes/out
 
 default:
-  image: registry.gitlab.com/quantumanon/texstyle/texstyle-container:latest
+  image: registry.gitlab.com/quantumanon/texstyle/build-test-container:latest
   before_script:
     - sh configure
+
 
 stages:
   - build
   - test
   - docs
   - deploy
+
 
 build-texstyle:
   stage: build
@@ -39,12 +41,16 @@ build-notes:
   script:
     - make notes
 
+
 test-texstyle:
   stage: test
   only:
     - master
     - develop
+  dependencies:
+    - build-texstyle
   script:
+    - make -t src/texstyle/out/texstyle.sty
     - make test-texstyle
 
 test-notes:
@@ -52,11 +58,16 @@ test-notes:
   only:
     - master
     - develop
+  dependencies:
+    - build-notes
   script:
+    - make -t src/notes/out/texstyle-notes.cls
     - make test-notes
+
 
 docs-texstyle:
   stage: docs
+  image: registry.gitlab.com/quantumanon/texstyle/texstyle-container:latest
   only:
     - master
     - develop
@@ -64,11 +75,15 @@ docs-texstyle:
     expire_in: 1 hour
     paths:
       - src/texstyle/out/texstyle.pdf
+  dependencies:
+    - build-texstyle
   script:
+    - make -t src/texstyle/out/texstyle.sty
     - make docs-texstyle
 
 docs-notes:
   stage: docs
+  image: registry.gitlab.com/quantumanon/texstyle/texstyle-container:latest
   only:
     - master
     - develop
@@ -76,11 +91,15 @@ docs-notes:
     expire_in: 1 hour
     paths:
       - src/notes/out/texstyle-notes.pdf
+  dependencies:
+    - build-notes
   script:
+    - make -t src/notes/out/texstyle-notes.cls
     - make docs-notes
 
+
 package:
-  image: alpine
+  image: registry.gitlab.com/quantumanon/texstyle/packaging-container:latest
   stage: deploy
   only:
     - master
@@ -89,5 +108,14 @@ package:
       - "builds/${VERSION}"
   before_script:
     - apk add zip tar make
+  dependencies:
+    - build-texstyle
+    - build-notes
+    - docs-texstyle
+    - docs-notes
   script:
+    - make -t src/texstyle/out/texstyle.sty
+    - make -t src/notes/out/texstyle-notes.cls
+    - make -t src/texstyle/out/texstyle.pdf
+    - make -t src/notes/out/texstyle-notes.pdf
     - make package

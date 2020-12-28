@@ -33,12 +33,13 @@
 \usepackage{hyperref}
 \usepackage{lipsum}
 \usepackage{out/texstyle}
-\EnableCrossrefs
-\CodelineIndex
-\RecordChanges
+\EnableCrossrefs%
+\CodelineIndex%
+\RecordChanges%
 
 \begin{document}
-    \let\origPrintIndex=\PrintIndex \let\PrintIndex=\relax
+    \let\origPrintIndex=\PrintIndex%
+    \let\PrintIndex=\relax%
     \DocInput{texstyle.dtx}
     \section{Options}
     \DocInput{options.dtx}
@@ -47,10 +48,10 @@
     \section{Glyphs}
     \DocInput{../common/glyphs.dtx}
     \section{Environments}
-    % \DocInput{../common/environments.dtx}
+    \DocInput{../common/environments.dtx}
     \section{Graphics}
     \DocInput{graphics.dtx}
-    \origPrintIndex
+    \origPrintIndex%
 \end{document}
 %</driver>
 % \fi

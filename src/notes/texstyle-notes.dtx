@@ -43,11 +43,12 @@
 \usepackage{hyperref}
 \usepackage{../texstyle/out/texstyle}
 \usepackage{lipsum}
-\EnableCrossrefs
-\CodelineIndex
-\RecordChanges
+\EnableCrossrefs % chktex 1
+\CodelineIndex % chktex 1
+\RecordChanges % chktex 1
 \begin{document}
-    \let\origPrintIndex=\PrintIndex \let\PrintIndex=\relax
+    \let\origPrintIndex=\PrintIndex
+    \let\PrintIndex=\relax
     \DocInput{texstyle-notes.dtx}
     \section{Options}
     \DocInput{options.dtx}
@@ -61,7 +62,7 @@
     \DocInput{document.dtx}
     \section{Headers}
     \DocInput{headers.dtx}
-    \origPrintIndex
+    \origPrintIndex % chktex 1
 \end{document}
 %</driver>
 % \fi
