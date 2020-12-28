@@ -24,8 +24,10 @@
 
   \DeclareStringOption[section]{envRefreshLevel}
 
-  \DeclareStringOption[./fonts]{fontPath}
-  \DeclareBoolOption[false]{defaultFonts}
+  \DeclareStringOption[./fonts]{fontPath} % path to fonts
+  \DeclareBoolOption[false]{defaultFonts} % load the default fonts
+
+  \DeclareBoolOption[false]{loadBareEnvs} % load bare theorem environments
 
   \DeclareDefaultOption{%
     \PackageWarning{TeXStyle}{Unknown Option '\CurrentOption'}
