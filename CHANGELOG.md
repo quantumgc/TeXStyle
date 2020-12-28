@@ -4,11 +4,17 @@
 
 ### bugfixes
 
++ Fixed an issue in `texstyle` where using the `defaultFonts` option would raise an exception
+
 ### additions
+
++ added the `fontPath` option to set the font directory
 
 ### removals
 
 ### changes
+
++ `latexmk` is now used to build the docs as opposed to stock `lualatex`
 
 ## [0.0.6]
 
