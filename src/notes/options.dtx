@@ -57,11 +57,11 @@
 }
 
 \ifTS@defaultFonts
-\DisableKeyvalOption[action]{TS}{fontPath}
+\DisableKeyvalOption{TS}{fontPath}
 \else
 \IfFileExists{\TS@fontPath}{}{
   \PackageWarning{texstyle}{%
-    The font path \TS@fontPath was not found.%
+    The font path \TS@fontPath{} was not found.%
     Fonts may not be loaded correctly.
   }
 }
