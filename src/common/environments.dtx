@@ -199,6 +199,12 @@
     {}{\bfseries}{}{\newline}%
     {\thmname{#1} \thmnumber{#2}: \thmnote{#3}}
 
+  \newtheoremstyle{Theorem*}{}{}{}%
+    {}{\bfseries}{}{\newline}%
+    {\thmname{#1}:\thmnote{\ #3}}%
+
+  \ifTS@loadBareEnvs
+  \else
   \mdfdefinestyle{theorem}{%
     skipabove=\envVertSkip,%
     skipbelow=\envVertSkip,%
@@ -209,17 +215,25 @@
     linewidth=.05cm,%
     backgroundcolor=back-blue!20%
     }
+  \fi
+
 
   \theoremstyle{Theorem}
 
+  \ifTS@loadBareEnvs
+  \newtheorem{theorem}{Theorem}[\TS@envRefreshLevel]
+  \else
   \newmdtheoremenv[style=theorem]{theorem}%
   {Theorem}[\TS@envRefreshLevel]
+  \fi
 
-  \newtheoremstyle{Theorem*}{}{}{}%
-    {}{\bfseries}{}{\newline}%
-    {\thmname{#1}:\thmnote{\ #3}}%
   \theoremstyle{Theorem*}
+
+  \ifTS@loadBareEnvs
+  \newtheorem*{theorem*}{Theorem}
+  \else
   \newmdtheoremenv[style=theorem]{theorem*}{Theorem}
+  \fi
 
 %    \end{macrocode}
 % \iffalse
@@ -241,6 +255,9 @@
   {}{\bfseries}{}{\newline}%
   {\thmname{#1}: \thmnote{#3}}
 
+
+  \ifTS@loadBareEnvs
+  \else
   \mdfdefinestyle{proposition}{%
     skipabove=\envVertSkip,%
     skipbelow=\envVertSkip,%
@@ -264,16 +281,28 @@
     linecolor=line-grey,%
     linewidth=.05cm%
   }
+  \fi
+
   \ifTS@HyperrefMacros
     \newaliascnt{proposition}{theorem}
     \theoremstyle{Proposition}
+
+    \ifTS@loadBareEnvs
+    \newtheorem{proposition}[proposition]{Proposition}
+    \else
     \newmdtheoremenv[style=proposition]{proposition}%
     [proposition]{Proposition}
+    \fi
     \aliascntresetthe{proposition}
 
     % Refreshes every proposition
     \theoremstyle{NoBreakBold}
+
+    \ifTS@loadBareEnvs
+    \newtheorem{subPro}{}[proposition]
+    \else
     \newmdtheoremenv[style=subPro]{subPro}{}[proposition]
+    \fi
 
     % autoref commands
     \providecommand*{\propositionautorefname}{Proposition}
@@ -281,17 +310,32 @@
 
   \else
     \theoremstyle{Proposition}
+
+    \ifTS@loadBareEnvs
+    \newtheorem{proposition}[theorem]{Proposition}
+    \else
     \newmdtheoremenv[style=proposition]{proposition}%
     [theorem]{Proposition}
+    \fi
 
     % Refreshes counter every proposition
     \theoremstyle{NoBreakBold}
+
+    \ifTS@loadBareEnvs
+    \newtheorem{subPro}{}[theorem]
+    \else
     \newmdtheoremenv[style=subPro]{subPro}{}[theorem]
+    \fi
   \fi
 
   \theoremstyle{Proposition*}
+
+  \ifTS@loadBareEnvs
+  \newtheorem*{proposition*}{Proposition}
+  \else
   \newmdtheoremenv[style=proposition]{proposition*}%
   {Proposition}
+  \fi
 
 %    \end{macrocode}
 % \iffalse
@@ -313,6 +357,12 @@
     {}{\sffamily\bfseries}{}{\newline}%
     {\ \thmname{#1}:\thmnote{#3}}
 
+  \newtheoremstyle{SubDefinition}{}{}{\sffamily}%
+    {}{\bfseries}{}{.5em}%
+    {\thmname{#1}\ \thmnumber{#2}:\ \thmnote{#3}}
+
+    \ifTS@loadBareEnvs
+    \else
   \mdfdefinestyle{definition}{%
     skipabove=\envVertSkip,%
     skipbelow=\envVertSkip,%
@@ -323,10 +373,6 @@
     linewidth=.05cm,%
     nobreak%
     }
-
-  \newtheoremstyle{SubDefinition}{}{}{\sffamily}%
-    {}{\bfseries}{}{.5em}%
-    {\thmname{#1}\ \thmnumber{#2}:\ \thmnote{#3}}
 
   \mdfdefinestyle{subDef}
   {%
@@ -343,18 +389,31 @@
     linecolor=line-black,
     linewidth=.01cm
   }
+    \fi
+
   \ifTS@HyperrefMacros
       \theoremstyle{Definition}
 
     \newaliascnt{definition}{theorem}
+
+    \ifTS@loadBareEnvs
+    \newtheorem{definition}[definition]{Definition}
+    \else
     \newmdtheoremenv[style=definition]{definition}%
     [definition]{Definition}
+    \fi
 
     \aliascntresetthe{definition}
+
     \theoremstyle{SubDefinition}
 
     % Refreshes every definition
+
+    \ifTS@loadBareEnvs
+    \newtheorem{subDef}{}[definition]
+    \else
     \newmdtheoremenv[style=subDef]{subDef}{}[definition]
+    \fi
 
     \providecommand*{\definitionautorefname}{Definition}
     \providecommand*{\subDefautorefname}{Definition}
@@ -362,18 +421,31 @@
   \else
     \theoremstyle{Definition}
 
+    \ifTS@loadBareEnvs
+    \newtheorem{definition}[theorem]{Definition}
+    \else
     \newmdtheoremenv[style=definition]{definition}%
     [theorem]{Definition}
+    \fi
 
     \theoremstyle{SubDefinition}
     % Refreshes every definition
+
+    \ifTS@loadBareEnvs
+    \newtheorem{subDef}{}[theorem]
+    \else
     \newmdtheoremenv[style=subDef]{subDef}{}[theorem]
+    \fi
   \fi
 
     \theoremstyle{Definition*}
 
+    \ifTS@loadBareEnvs
+    \newtheorem*{definition*}{Definition}
+    \else
     \newmdtheoremenv[style=definition]{definition*}%
     {Definition}
+    \fi
 
 %    \end{macrocode}
 % \iffalse
@@ -387,6 +459,9 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
+
+\ifTS@loadBareEnvs
+\else
   \mdfdefinestyle{example}{%
     skipabove=\envVertSkip, skipbelow=\envVertSkip,%
     % want the top and bottom of the example to be
@@ -411,24 +486,44 @@
     linecolor=line-black,%
     linewidth=.01cm%
   }
+\fi
 
   \ifTS@HyperrefMacros
     \theoremstyle{BreakBold}
 
     \newaliascnt{example}{theorem}
+
+    \ifTS@loadBareEnvs
+    \newtheorem{example}[example]{Example}
+    \else
     \newmdtheoremenv[style=example]{example}[example]{Example}
+    \fi
     \aliascntresetthe{example}
   \else
     \theoremstyle{BreakBold}
 
+    \ifTS@loadBareEnvs
+    \newtheorem{example}[theorem]{Example}
+    \else
     \newmdtheoremenv[style=example]{example}[theorem]{Example}
+    \fi
   \fi
 
   \theoremstyle{NoBreakNoNumber}
+
+  \ifTS@loadBareEnvs
+  \newtheorem{subExa}{}
+  \else
   \newmdtheoremenv[style=subExa]{subExa}{}
+  \fi
 
   \theoremstyle{BreakBoldNoNumber}
+
+  \ifTS@loadBareEnvs
+  \newtheorem*{example*}{Example}
+  \else
   \newmdtheoremenv[style=example]{example*}{Example}
+  \fi
 
 %    \end{macrocode}
 % \iffalse
@@ -442,6 +537,9 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
+
+\ifTS@loadBareEnvs
+\else
   \mdfdefinestyle{exercise}{%
     skipabove=\envVertSkip, skipbelow=\envVertSkip,%
     innertopmargin=\headerOffset,%
@@ -465,12 +563,23 @@
     linecolor=line-black,%
     linewidth=.01cm%
   }
+\fi
 
   \theoremstyle{BreakBoldNoNumber}
+
+  \ifTS@loadBareEnvs
+  \newtheorem{exercise}{Exercise}
+  \else
   \newmdtheoremenv[style=exercise]{exercise}{Exercise}
+  \fi
 
   \theoremstyle{NoBreak}
+
+  \ifTS@loadBareEnvs
+  \newtheorem{subExr}{}
+  \else
   \newmdtheoremenv[style=subExr]{subExr}{}
+  \fi
 
 %    \end{macrocode}
 % \iffalse
@@ -484,6 +593,9 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
+
+\ifTS@loadBareEnvs
+\else
   \mdfdefinestyle{lemma}{%
     skipabove=\envVertSkip, skipbelow=\envVertSkip,%
     innertopmargin=\headerOffset,%
@@ -493,24 +605,39 @@
     leftline=true, linecolor=line-grey,%
     linewidth=.05cm%
   }
+\fi
+
   \ifTS@HyperrefMacros
     \theoremstyle{Break}
 
     \newaliascnt{lemma}{theorem}
 
+    \ifTS@loadBareEnvs
+    \newtheorem{lemma}[lemma]{Lemma}
+    \else
     \newmdtheoremenv[style=lemma]{lemma}[lemma]{Lemma}
+    \fi
 
     \aliascntresetthe{lemma}
 
     \providecommand*{\lemmaautorefname}{Lemma}
   \else
     \theoremstyle{Break}
+
+    \ifTS@loadBareEnvs
+    \newtheorem{lemma}[theorem]{Lemma}
+    \else
     \newmdtheoremenv[style=lemma]{lemma}[theorem]{Lemma}
+    \fi
   \fi
 
     \theoremstyle{BreakNoNumber}
 
+    \ifTS@loadBareEnvs
+    \newtheorem*{lemma*}{Lemma}
+    \else
     \newmdtheoremenv[style=lemma]{lemma*}{Lemma}
+    \fi
 
 %    \end{macrocode}
 % \iffalse
@@ -524,35 +651,54 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
-  \mdfdefinestyle{corollary}{%
-    skipabove=\envVertSkip, skipbelow=\envVertSkip,%
-    innertopmargin=\headerOffset, innerbottommargin=0cm,%
-    innerleftmargin=\envLeftSkip,%
-    hidealllines=true,%
-    leftline=true,%
-    linecolor=accent-blue,%
-    linewidth=.05cm%
-    }
+
+    \ifTS@loadBareEnvs
+    \else
+      \mdfdefinestyle{corollary}{%
+        skipabove=\envVertSkip, skipbelow=\envVertSkip,%
+        innertopmargin=\headerOffset, innerbottommargin=0cm,%
+        innerleftmargin=\envLeftSkip,%
+        hidealllines=true,%
+        leftline=true,%
+        linecolor=accent-blue,%
+        linewidth=.05cm%
+        }
+    \fi
+
     \ifTS@HyperrefMacros
       \theoremstyle{BreakBold}
 
       \newaliascnt{corollary}{theorem}
-      
+
+      \ifTS@loadBareEnvs
+      \newtheorem{corollary}[corollary]{Corollary}
+      \else
       \newmdtheoremenv[style=corollary]{corollary}%
       [corollary]{Corollary}
+      \fi
 
       \aliascntresetthe{corollary}
 
       \providecommand*{\corollaryautorefname}{Corollary}
     \else
       \theoremstyle{BreakBold}
+
+      \ifTS@loadBareEnvs
+      \newtheorem{corollary}[theorem]{Corollary}
+      \else
       \newmdtheoremenv[style=corollary]{corollary}%
         [theorem]{Corollary}
+      \fi
     \fi
 
       \theoremstyle{BreakBoldNoNumber}
+
+      \ifTS@loadBareEnvs
+      \newtheorem*{corollary*}{Corollary}
+      \else
       \newmdtheoremenv[style=corollary]{corollary*}%
         {Corollary}
+      \fi
 
 %    \end{macrocode}
 % \iffalse
@@ -566,32 +712,50 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
-  \mdfdefinestyle{remark}{%
-    skipabove=\envVertSkip, skipbelow=\envVertSkip,%
-    innertopmargin=\headerOffset, innerbottommargin=0cm,%
-    innerleftmargin=\envLeftSkip,%
-    hidealllines=true,%
-    leftline=true,%
-    linecolor=line-black%
-    }
+
+  \ifTS@loadBareEnvs
+  \else
+    \mdfdefinestyle{remark}{%
+      skipabove=\envVertSkip, skipbelow=\envVertSkip,%
+      innertopmargin=\headerOffset, innerbottommargin=0cm,%
+      innerleftmargin=\envLeftSkip,%
+      hidealllines=true,%
+      leftline=true,%
+      linecolor=line-black%
+      }
+  \fi
 
   \ifTS@HyperrefMacros
     \theoremstyle{BreakBold}
 
     \newaliascnt{remark}{theorem}
 
+    \ifTS@loadBareEnvs
+    \newtheorem{remark}[remark]{Remark}
+    \else
     \newmdtheoremenv[style=remark]{remark}[remark]{Remark}
+    \fi
 
     \aliascntresetthe{remark}
 
     \providecommand*{\remarkautorefname}{Remark}
   \else
     \theoremstyle{BreakBold}
+
+    \ifTS@loadBareEnvs
+    \newtheorem{remark}{Remark}
+    \else
     \newmdtheoremenv[style=remark]{remark}{Remark}
+    \fi
   \fi
 
     \theoremstyle{BreakBoldNoNumber}
+
+    \ifTS@loadBareEnvs
+    \newtheorem*{remark*}{Remark}
+    \else
     \newmdtheoremenv[style=remark]{remark*}{Remark}
+    \fi
 
 %    \end{macrocode}
 % \iffalse
