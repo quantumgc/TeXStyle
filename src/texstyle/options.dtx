@@ -48,6 +48,16 @@
     \fi
   }
 
+  \@ifclassloaded{beamer}{%
+    \PackageInfo{texstyle}{%
+      Beamer has predefined theorem environments, disabling texstyle
+      environments%
+    }%
+    \TS@noLoadEnvstrue%
+    \DisableKeyvalOption{TS}{loadBareEnvs}%
+    \DisableKeyvalOption{TS}{envRefreshLevel}%
+  }
+
   \ifTS@defaultFonts
   \DisableKeyvalOption{TS}{fontPath}
   \else
