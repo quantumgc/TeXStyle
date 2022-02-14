@@ -139,6 +139,9 @@
   \newlength{\subTopSkip}
   \newlength{\subBotSkip}
   \newlength{\headerOffset}
+  \newlength{\envTopSkip}
+  \newlength{\envBotSkip}
+
 
 %%    |- Define lengths
   \setlength{\envVertSkip}{.5cm}
@@ -149,6 +152,8 @@
   \setlength{\subTopSkip}{0cm}
   \setlength{\subBotSkip}{.1cm}
   \setlength{\headerOffset}{-.3cm}
+  \setlength{\envTopSkip}{.05cm}
+  \setlength{\envBotSkip}{.05cm}
 
 %       \end{macrocode}
 % \iffalse
@@ -200,11 +205,11 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
-  \newtheoremstyle{Theorem}{}{}{}%
+  \newtheoremstyle{Theorem}{\envTopSkip}{\envBotSkip}{}%
     {}{\bfseries}{}{\newline}%
     {\thmname{#1} \thmnumber{#2}: \thmnote{#3}}
 
-  \newtheoremstyle{Theorem*}{}{}{}%
+  \newtheoremstyle{Theorem*}{\envTopSkip}{\envBotSkip}{}%
     {}{\bfseries}{}{\newline}%
     {\thmname{#1}:\thmnote{\ #3}}%
 
@@ -252,11 +257,11 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
-  \newtheoremstyle{Proposition}{}{}{\itshape}%
+  \newtheoremstyle{Proposition}{\envTopSkip}{\envBotSkip}{\itshape}%
     {}{\bfseries}{}{\newline}%
     {\thmname{#1} \thmnumber{#2}: \thmnote{#3}}
 
-  \newtheoremstyle{Proposition*}{}{}{\itshape}%
+  \newtheoremstyle{Proposition*}{\envTopSkip}{\envBotSkip}{\itshape}%
   {}{\bfseries}{}{\newline}%
   {\thmname{#1}: \thmnote{#3}}
 
@@ -354,11 +359,11 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
-  \newtheoremstyle{Definition}{5pt}{5pt}{\sffamily}%
+  \newtheoremstyle{Definition}{\envTopSkip}{\envBotSkip}{\sffamily}%
     {}{\sffamily\bfseries}{}{\newline}%
     {\thmname{#1}\ \thmnumber{#2}:\ \thmnote{#3}}
 
-  \newtheoremstyle{Definition*}{5pt}{5pt}{\sffamily}%
+  \newtheoremstyle{Definition*}{\envTopSkip}{\envBotSkip}{\sffamily}%
     {}{\sffamily\bfseries}{}{\newline}%
     {\ \thmname{#1}:\thmnote{#3}}
 
