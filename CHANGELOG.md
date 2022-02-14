@@ -12,7 +12,7 @@
 + added two new blackboard bold macros:
   - `\QQ` for ℚ
   - `\PP` for ℙ
-+ added the `loadBareEnvs` option to load minimalist environments
++ added the `loadBareEnvs` and `noLoadEnvs` options to load minimalist environments and no environments respectively
 
 ### removals
 

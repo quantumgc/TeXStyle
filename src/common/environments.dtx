@@ -29,12 +29,17 @@
 %%------------------------------------------------------------
 %% Environments
 %% |- Dependencies
+\ifTS@noLoadEnvs
+\else
   \RequirePackage{amsthm}
   \ifTS@loadBareEnvs
   \else
   \RequirePackage[framemethod=tikz]{mdframed}
   \fi
+\fi
   \RequirePackage{listings}
+\ifTS@noLoadEnvs
+\else
   \RequirePackage[shortlabels]{enumitem}
 
   \ifTS@HyperrefMacros
@@ -769,6 +774,7 @@
 %<*package>
 % \fi
 %    \begin{macrocode}
+\fi
   \theoremstyle{NoBreakBoldNoNumber}
   \makeatletter
   \@ifclassloaded{beamer}

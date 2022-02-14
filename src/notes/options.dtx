@@ -33,8 +33,10 @@
 
 \DeclareBoolOption[true]{HyperrefMacros} % Hyperref enabled links
 
-\DeclareStringOption[section]{envRefreshLevel} % The level at which to refresh
-                                % the theorems
+\DeclareStringOption[section]{envRefreshLevel} % The level at which to refresh the theorems
+
+\DeclareBoolOption[false]{loadBareEnvs} % load bare theorem environments
+\DeclareBoolOption[false]{noLoadEnvs} % don't load environments
 
 %% |- Default Option
 \DeclareDefaultOption{%
