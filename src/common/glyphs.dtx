@@ -16,7 +16,6 @@
   \RequirePackage{amsmath}
   \RequirePackage{centernot}
   \RequirePackage{bbm}
-  \RequirePackage[no-math]{fontspec}
 
 %    \end{macrocode}
 % \iffalse
@@ -345,52 +344,3 @@
 % \fi
 % \end{macro}
 %
-%       \subsection{Fonts}
-%         TeXStyle uses the following fonts:
-%         \begin{itemize}
-%           \item Libertinus serif as the serif font
-%           \item {\sffamily Libertinus Sans as the sans serif font}
-%           \item {\ttfamily IBMPlexMono  as the monospace font}
-%         \end{itemize}
-%
-%         The location of the fonts can be set with the |fontPath| option.
-%        
-% \iffalse
-%<*package>
-% \fi
-%    \begin{macrocode}
-
-  \ifTS@defaultFonts
-  \else
-  \setmainfont[
-    Path=\TS@fontPath/libertinus/,
-    Extension=.otf,
-    UprightFont={*-Regular},
-    BoldFont={*-Bold},
-    ItalicFont={*-Italic},
-    BoldItalicFont={*-BoldItalic}
-  ]{LibertinusSerif}
-
-  \setmathrm[Path=\TS@fontPath/libertinus/]
-  {LibertinusMath-Regular.otf}
-
-  \setsansfont[
-    Path=\TS@fontPath/libertinus/,
-    Extension=.otf,
-    UprightFont={*-Regular},
-    BoldFont={*-Bold},
-    ItalicFont={*-Italic}
-  ]{LibertinusSans}
-
-  \setmonofont[
-    Path=\TS@fontPath/ibm-plex/,
-    Extension=.otf,
-    UprightFont={*-Regular},
-    ItalicFont={*-Italic},
-    BoldFont={*-Bold}
-  ]{IBMPlexMono}
-  \fi
-%    \end{macrocode}
-% \iffalse
-%</package>
-% \fi

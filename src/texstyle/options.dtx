@@ -24,9 +24,6 @@
 
   \DeclareStringOption[section]{envRefreshLevel}
 
-  \DeclareStringOption[./fonts]{fontPath} % path to fonts
-  \DeclareBoolOption[false]{defaultFonts} % load the default fonts
-
   \DeclareBoolOption[false]{loadBareEnvs} % load bare theorem environments
   \DeclareBoolOption[false]{noLoadEnvs} % don't load environments
 
@@ -57,17 +54,6 @@
     \DisableKeyvalOption{TS}{loadBareEnvs}%
     \DisableKeyvalOption{TS}{envRefreshLevel}%
   }
-
-  \ifTS@defaultFonts
-  \DisableKeyvalOption{TS}{fontPath}
-  \else
-  \IfFileExists{\TS@fontPath}{}{
-    \PackageWarning{texstyle}{%
-      The font path \TS@fontPath{} was not found.%
-      Fonts may not be loaded correctly.
-    }
-  }
-  \fi
 
 %    \end{macrocode}
 % \iffalse

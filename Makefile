@@ -117,7 +117,6 @@ $(addprefix $(notes_dir)/out/texstyle-notes,.cls .pdf)
 
 	cp README.md tmp/
 	cp LICENSE tmp/
-	cp -r fonts tmp/
 	cp $(addprefix $(texstyle_dir)/out/texstyle,.sty .pdf) tmp/
 	mv tmp/texstyle.pdf tmp/docs/
 	cp $(addprefix $(notes_dir)/out/texstyle-notes,.cls .pdf) tmp/

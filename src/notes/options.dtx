@@ -21,9 +21,6 @@
 }
 
 %% |- Option initialisation
-\DeclareStringOption[./fonts]{fontPath}
-
-\DeclareBoolOption{defaultFonts} % Use the in built fonts
 
 \DeclareBoolOption{draft} % Draft mode
 \DeclareComplementaryOption{final}{draft}
@@ -57,17 +54,6 @@
   }
   \fi
 }
-
-\ifTS@defaultFonts
-\DisableKeyvalOption{TS}{fontPath}
-\else
-\IfFileExists{\TS@fontPath}{}{
-  \PackageWarning{texstyle}{%
-    The font path \TS@fontPath{} was not found.%
-    Fonts may not be loaded correctly.
-  }
-}
-\fi
 
 %    \end{macrocode}
 % \iffalse
